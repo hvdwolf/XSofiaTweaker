@@ -1,5 +1,5 @@
 # XSofiaTweaker
-### Will most probably be renamed to XSofiaTweaker or XSofiaModder (or something like that)
+
 This xposed module:
 * captures the hardware keys from the Joying unit and allows you to reprogram them. This must/can be configured from the Settings (sub)screen.
 * allows you to switch on/off the nokill.
@@ -36,19 +36,19 @@ This module can replace the custom key mod mod from Gustden.
 
 ## Some preliminary images
 **Main settings screen**
-![Image of main settings screen](https://github.com/hvdwolf/XSofiaTweaker/blob/settings/images/01-Settings-Main.png)
+![Image of main settings screen](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/01-Settings-Main.png)
 **Miscellaneous Settings**
-![Image of Miscellaneous Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/settings/images/02-Settings-Miscellaneous.png)
+![Image of Miscellaneous Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/02-Settings-Miscellaneous.png)
 
 **Application Key Mod Settings**
-![Image of app key mods settings](https://github.com/hvdwolf/XSofiaTweaker/blob/settings/images/03-Settings-AppKeyMods.png)
+![Image of app key mods settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/03-Settings-AppKeyMods.png)
 **Call Method**
-![Image of app key call method](https://github.com/hvdwolf/XSofiaTweaker/blob/settings/images/03-01-Settings-AppKeyMods.png)
+![Image of app key call method](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/03-01-Settings-AppKeyMods.png)
 **String to be used**
-![Image of app key mods text string](https://github.com/hvdwolf/XSofiaTweaker/blob/settings/images/03-02-Settings-AppKeyMods.png)
+![Image of app key mods text string](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/03-02-Settings-AppKeyMods.png)
 
 **What to do when the contact/unit is switched ON or OFF**
-![Image of acc_on_off_resume text string](https://github.com/hvdwolf/XSofiaTweaker/blob/settings/images/Settings-acc_on_of.png)
+![Image of acc_on_off_resume text string](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/Settings-acc_on_of.png)
 
 **System Key Mod Settings**
-![Image of System Key Mod Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/settings/images/04-Settings-SysKeyMods.png)
+![Image of System Key Mod Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/04-Settings-SysKeyMods.png)
