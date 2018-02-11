@@ -8,7 +8,7 @@ This xposed module:
 
 This module can replace the custom key mod mod from Gustden.
 
-Please help to translate in your own language: see [here](https://github.com/hvdwolf/XSofiaTweaker#Translations)!
+Please help to translate in your own language: see bottom of this page.
 
 # Experimental !!
 
