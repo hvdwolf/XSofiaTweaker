@@ -8,6 +8,8 @@ This xposed module:
 
 This module can replace the custom key mod mod from Gustden.
 
+Please help to translate in your own language: see [here](https://github.com/hvdwolf/XSofiaTweaker#Translations)!
+
 # Experimental !!
 
 **Working:** 
@@ -52,3 +54,17 @@ This module can replace the custom key mod mod from Gustden.
 
 **System Key Mod Settings**
 ![Image of System Key Mod Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/04-Settings-SysKeyMods.png)
+
+
+## Translations
+You can help to translate this app into your own language.
+
+See https://github.com/hvdwolf/XSofiaTweaker/tree/master/app/src/main/res You will see a folder values. In this folder you will find a strings.xml file. In this file you will find lines like: 
+`<string name="app_settings">Application preferences</string>`
+and 
+`<string name="misc_settings">Miscellaneous Settings</string>`
+The second part "Application preferences" and Miscellaneous Settings are the strings to be translated.
+
+Note: Do use an editor that can handle unix linefeeds. Do NOT use windows notepad. Instead use a tool like Notepad++ (if you are on Windows)
+
+If you are ready, create an issue (top menu of this page) and call it something like "Finnish translation" (or whatever your language is). Attach your file and again: specify which language it is!
