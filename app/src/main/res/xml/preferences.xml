@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceScreen
+		android:title="@string/misc_settings"
+		android:key="misc_settings">
+		<SwitchPreference
+			android:defaultValue="true"
+			android:key="pref_no_kill"
+			android:summary="@string/nokill_sum"
+			android:title="@string/nokill_title" />
+		<SwitchPreference
+			android:defaultValue="false"
+			android:key="pref_skip_channel_four"
+			android:summary="@string/skip_ch_four_sum"
+			android:title="@string/skip_ch_four_title" />
+	</PreferenceScreen>
+
+
+	<PreferenceScreen
+		android:title="@string/app_keymod_settings"
+		android:key="app_keymod_settings">
+		<PreferenceCategory
+			android:title="@string/bt_phone_key_settings"
+			android:key="bt_phone_key_settings">
+			<ListPreference
+			        android:key="bt_phone_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgintent"
+			        android:title="@string/bt_phone_key_call_title" />
+			<EditTextPreference
+				android:dependency="bt_phone_key_call_option"
+				android:key="bt_phone_key_entry"
+				android:title="@string/bt_phone_key_text_title"
+				android:defaultValue="com.syu.bt/.act.ActBt" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/media_key_settings"
+			android:key="media_key_settings">
+			<ListPreference
+			        android:key="media_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgname"
+			        android:title="@string/media_key_call_title" />
+			<EditTextPreference
+				android:dependency="media_key_call_option"
+				android:key="media_key_entry"
+				android:title="@string/media_key_text_title"
+				android:defaultValue="com.syu.music" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/band_key_settings"
+			android:key="band_key_settings">
+			<ListPreference
+			        android:key="band_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgname"
+			        android:title="@string/band_key_call_title" />
+			<EditTextPreference
+				android:dependency="band_key_call_option"
+				android:key="band_key_entry"
+				android:title="@string/band_key_text_title"
+				android:defaultValue="com.syu.radio" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/navi_key_settings"
+			android:key="navi_key_settings">
+			<ListPreference
+			        android:key="navi_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgname"
+			        android:title="@string/navi_key_call_title" />
+			<EditTextPreference
+				android:dependency="navi_key_call_option"
+				android:key="navi_key_entry"
+				android:title="@string/navi_key_text_title"
+				android:defaultValue="com.syu.onekeynavi" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/dvd_key_settings"
+			android:key="dvd_key_settings">
+			<ListPreference
+			        android:key="dvd_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgname"
+			        android:title="@string/dvd_key_call_title" />
+			<EditTextPreference
+				android:dependency="dvd_key_call_option"
+				android:key="dvd_key_entry"
+				android:title="@string/dvd_key_text_title"
+				android:defaultValue="com.syu.dvd" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/eq_key_settings"
+			android:key="eq_key_settings">
+			<ListPreference
+			        android:key="eq_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgname"
+			        android:title="@string/eq_key_call_title" />
+			<EditTextPreference
+				android:dependency="eq_key_call_option"
+				android:key="eq_key_entry"
+				android:title="@string/eq_key_text_title"
+				android:defaultValue="com.syu.eq" />
+		</PreferenceCategory>
+	</PreferenceScreen>
+
+
+	<PreferenceScreen
+		android:title="@string/acc_on_off_settings"
+		android:key="acc_on_off_settings">
+		<PreferenceCategory
+			android:title="@string/acc_on_settings"
+			android:key="acc_on_settings">
+			<ListPreference
+			        android:key="acc_on_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="sys_call"
+			        android:title="@string/acc_on_call_title" />
+			<EditTextPreference
+				android:dependency="acc_on_call_option"
+				android:key="acc_on_entry"
+				android:title="@string/acc_on_text_title"
+				android:defaultValue="input keyevent 126" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/acc_off_settings"
+			android:key="acc_off_settings">
+			<ListPreference
+			        android:key="acc_off_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="sys_call"
+			        android:title="@string/acc_off_call_title" />
+			<EditTextPreference
+				android:dependency="acc_off_call_option"
+				android:key="acc_off_entry"
+				android:title="@string/acc_off_text_title"
+				android:defaultValue="input keyevent 127" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/resume_settings"
+			android:key="resume_settings">
+			<ListPreference
+			        android:key="resume_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="sys_call"
+			        android:title="@string/resume_call_title" />
+			<EditTextPreference
+				android:dependency="resume_call_option"
+				android:key="resume_entry"
+				android:title="@string/resume_text_title"
+				android:defaultValue="sleep 2; input keyevent 3" />
+		</PreferenceCategory>
+	</PreferenceScreen>
+
+
+	<PreferenceScreen
+		android:title="@string/sys_keymod_settings"
+		android:key="sys_keymod_settings">
+		<PreferenceCategory
+			android:title="@string/home_key_settings"
+			android:key="home_key_settings">
+			<CheckBoxPreference
+				android:defaultValue="true"
+				android:key="home_key_capture_enabled"
+				android:title="@string/home_key_capture_enabled_title"
+				android:summary="@string/home_key_capture_summary" />
+			<ListPreference
+				android:dependency="home_key_capture_enabled"
+			        android:key="home_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="sys_call"
+			        android:title="@string/home_key_call_title" />
+			<EditTextPreference
+				android:dependency="home_key_capture_enabled"
+				android:key="home_key_entry"
+				android:title="@string/home_key_text_title"
+				android:defaultValue="am start -a android.intent.action.MAIN -c android.intent.category.HOME" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/back_key_settings"
+			android:key="back_key_settings">
+			<CheckBoxPreference
+				android:defaultValue="false"
+				android:key="back_key_capture_enabled"
+				android:title="@string/back_key_capture_enabled_title"
+				android:summary="@string/back_key_capture_summary" />
+			<ListPreference
+				android:dependency="back_key_capture_enabled"
+			        android:key="back_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="sys_call"
+			        android:title="@string/back_key_call_title" />
+			<EditTextPreference
+				android:dependency="back_key_capture_enabled"
+				android:key="back_key_entry"
+				android:title="@string/back_key_text_title"
+				android:defaultValue="" />
+		</PreferenceCategory>
+	</PreferenceScreen>
+
+</PreferenceScreen>
