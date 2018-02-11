@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">XSofiaTweaker</string>
+	<string name="app_name" translatable="false">XSofiaTweaker</string>
 	<string name="app_settings">Application preferences</string>
 	<string name="misc_settings">Miscellaneous Settings</string>
 	<string name="nokill_title">Switch NoKill option on or off</string>
