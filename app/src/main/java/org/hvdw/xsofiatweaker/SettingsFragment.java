@@ -12,76 +12,25 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 
 public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
     Context mContext;
+    private BroadcastReceiver broadcastReceiver;
+    IntentFilter intentFilter = new IntentFilter();
+
     @Override
 
     public void onAttach(Activity activity) {
-        super.onAttach(activity);
+//    public void onAttach(Context mContext) {
+//        super.onAttach(mContext);
+	super.onAttach(activity);
         mContext = activity;
     }
 
     public static final String TAG = "XSofiaTweaker-SettingsFragment";
 
-    /* All the necessary variables */
-    public static final String PREF_NO_KILL = "pref_no_kill";
-    public static final String ACTION_PREF_NO_KILL_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_NO_KILL_CHANGED";
-    public static final String EXTRA_PREF_NO_KILL_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_NO_KILL_ENABLED";
-
-    public static final String PREF_SKIP_CH_FOUR = "pref_skip_channel_four";
-    public static final String ACTION_PREF_SKIP_CH_FOUR_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_SKIP_CH_FOUR_CHANGED";
-    public static final String EXTRA_PREF_SKIP_CH_FOUR_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_SKIP_CH_FOUR_ENABLED";
-
-    public static final String NAVI_CALL_OPTION = "navi_key_call_option";
-    public static final String ACTION_NAVI_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_OPTION_CHANGED";
-    public static final String EXTRA_NAVI_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_OPTION_STRING";
-    public static final String NAVI_CALL_ENTRY = "navi_key_entry";
-    public static final String ACTION_NAVI_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_ENTRY_CHANGED";
-    public static final String EXTRA_NAVI_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_ENTRY_STRING";
-
-    public static final String MEDIA_CALL_OPTION = "media_key_call_option";
-    public static final String ACTION_MEDIA_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_OPTION_CHANGED";
-    public static final String EXTRA_MEDIA_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MEDIA_CALL_OPTION_STRING";
-    public static final String MEDIA_CALL_ENTRY = "media_key_entry";
-    public static final String ACTION_MEDIA_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_ENTRY_CHANGED";
-    public static final String EXTRA_MEDIA_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MEDIA_CALL_ENTRY_STRING";
-
-    public static final String BT_PHONE_CALL_OPTION = "bt_phone_key_call_option";
-    public static final String ACTION_BT_PHONE_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_OPTION_CHANGED";
-    public static final String EXTRA_BT_PHONE_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_OPTION_STRING";
-    public static final String BT_PHONE_CALL_ENTRY = "bt_phone_key_entry";
-    public static final String ACTION_BT_PHONE_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_ENTRY_CHANGED";
-    public static final String EXTRA_BT_PHONE_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_ENTRY_STRING";
-
-    public static final String BAND_CALL_OPTION = "band_key_call_option";
-    public static final String ACTION_BAND_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BAND_CALL_OPTION_CHANGED";
-    public static final String EXTRA_BAND_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BAND_CALL_OPTION_STRING";
-    public static final String BAND_CALL_ENTRY = "band_key_entry";
-    public static final String ACTION_BAND_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BAND_CALL_ENTRY_CHANGED";
-    public static final String EXTRA_BAND_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BAND_CALL_ENTRY_STRING";
-
-    public static final String DVD_CALL_OPTION = "dvd_key_call_option";
-    public static final String ACTION_DVD_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_DVD_CALL_OPTION_CHANGED";
-    public static final String EXTRA_DVD_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_DVD_CALL_OPTION_STRING";
-    public static final String DVD_CALL_ENTRY = "dvd_key_entry";
-    public static final String ACTION_DVD_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_DVD_CALL_ENTRY_CHANGED";
-    public static final String EXTRA_DVD_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_DVD_CALL_ENTRY_STRING";
-
-    public static final String EJECT_CALL_OPTION = "eject_key_call_option";
-    public static final String ACTION_EJECT_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EJECT_CALL_OPTION_CHANGED";
-    public static final String EXTRA_EJECT_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EJECT_CALL_OPTION_STRING";
-    public static final String EJECT_CALL_ENTRY = "eject_key_entry";
-    public static final String ACTION_EJECT_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EJECT_CALL_ENTRY_CHANGED";
-    public static final String EXTRA_EJECT_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EJECT_CALL_ENTRY_STRING";
-
-    public static final String EQ_CALL_OPTION = "eq_key_call_option";
-    public static final String ACTION_EQ_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EQ_CALL_OPTION_CHANGED";
-    public static final String EXTRA_EQ_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EQ_CALL_OPTION_STRING";
-    public static final String EQ_CALL_ENTRY = "eq_key_entry";
-    public static final String ACTION_EQ_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EQ_CALL_ENTRY_CHANGED";
-    public static final String EXTRA_EQ_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EQ_CALL_ENTRY_STRING";
-    /* End of all the necessary variables */
 
 
     @SuppressWarnings("deprecation")
@@ -92,18 +41,29 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
         addPreferencesFromResource(R.xml.preferences);
+	intentFilter.addAction(MySettings.ACTION_NAVI_CALL_OPTION_CHANGED);
+	intentFilter.addAction(MySettings.ACTION_NAVI_CALL_ENTRY_CHANGED);
+	getActivity().registerReceiver(broadcastReceiver, intentFilter);
     }
 
     @Override
     public void onResume() {
-        super.onResume();
         getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+	getActivity().registerReceiver(broadcastReceiver, intentFilter);
+        super.onResume();
     }
 
     @Override
     public void onPause() {
         getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        //getActivity().unregisterReceiver(broadcastReceiver);
         super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        //getActivity().unregisterReceiver(broadcastReceiver);
+        super.onDestroy();
     }
 
     @Override
@@ -112,71 +72,71 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	String toastText = "";
 
         switch (key) {
-            case PREF_NO_KILL:
-                intent.setAction(ACTION_PREF_NO_KILL_CHANGED);
-                intent.putExtra(EXTRA_PREF_NO_KILL_ENABLED, sharedPreferences.getBoolean(key, false));
+            case MySettings.PREF_NO_KILL:
+                intent.setAction(MySettings.ACTION_PREF_NO_KILL_CHANGED);
+                intent.putExtra(MySettings.EXTRA_PREF_NO_KILL_ENABLED, sharedPreferences.getBoolean(key, false));
 		toastText = "PREF_NO_KILL";
                 break;
-            case PREF_SKIP_CH_FOUR:
-                intent.setAction(ACTION_PREF_SKIP_CH_FOUR_CHANGED);
-                intent.putExtra(EXTRA_PREF_SKIP_CH_FOUR_ENABLED, sharedPreferences.getBoolean(key, false));
+            case MySettings.PREF_SKIP_CH_FOUR:
+                intent.setAction(MySettings.ACTION_PREF_SKIP_CH_FOUR_CHANGED);
+                intent.putExtra(MySettings.EXTRA_PREF_SKIP_CH_FOUR_ENABLED, sharedPreferences.getBoolean(key, false));
 		toastText = "PREF_SKIP_CH_FOUR";
                 break;
-	    case NAVI_CALL_OPTION:
-                intent.setAction(ACTION_NAVI_CALL_OPTION_CHANGED);
-                intent.putExtra(EXTRA_NAVI_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.NAVI_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case NAVI_CALL_ENTRY:
-                intent.setAction(ACTION_NAVI_CALL_ENTRY_CHANGED);
-                intent.putExtra(EXTRA_NAVI_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.NAVI_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MEDIA_CALL_OPTION:
-                intent.setAction(ACTION_MEDIA_CALL_OPTION_CHANGED);
-                intent.putExtra(EXTRA_MEDIA_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.MEDIA_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MEDIA_CALL_ENTRY:
-                intent.setAction(ACTION_MEDIA_CALL_ENTRY_CHANGED);
-                intent.putExtra(EXTRA_MEDIA_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.MEDIA_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case BT_PHONE_CALL_OPTION:
-                intent.setAction(ACTION_BT_PHONE_CALL_OPTION_CHANGED);
-                intent.putExtra(EXTRA_BT_PHONE_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.BT_PHONE_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_BT_PHONE_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case BT_PHONE_CALL_ENTRY:
-                intent.setAction(ACTION_BT_PHONE_CALL_ENTRY_CHANGED);
-                intent.putExtra(EXTRA_BT_PHONE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.BT_PHONE_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case BAND_CALL_OPTION:
-                intent.setAction(ACTION_BAND_CALL_OPTION_CHANGED);
-                intent.putExtra(EXTRA_BAND_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.BAND_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BAND_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case BAND_CALL_ENTRY:
-                intent.setAction(ACTION_BAND_CALL_ENTRY_CHANGED);
-                intent.putExtra(EXTRA_BAND_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.BAND_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case DVD_CALL_OPTION:
-                intent.setAction(ACTION_DVD_CALL_OPTION_CHANGED);
-                intent.putExtra(EXTRA_DVD_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.DVD_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_DVD_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_DVD_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case DVD_CALL_ENTRY:
-                intent.setAction(ACTION_DVD_CALL_ENTRY_CHANGED);
-                intent.putExtra(EXTRA_DVD_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.DVD_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_DVD_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_DVD_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case EJECT_CALL_OPTION:
-                intent.setAction(ACTION_EJECT_CALL_OPTION_CHANGED);
-                intent.putExtra(EXTRA_EJECT_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.EJECT_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_EJECT_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_EJECT_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case EJECT_CALL_ENTRY:
-                intent.setAction(ACTION_EJECT_CALL_ENTRY_CHANGED);
-                intent.putExtra(EXTRA_EJECT_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.EJECT_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_EJECT_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_EJECT_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case EQ_CALL_OPTION:
-                intent.setAction(ACTION_EQ_CALL_OPTION_CHANGED);
-                intent.putExtra(EXTRA_EQ_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.EQ_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_EQ_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_EQ_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case EQ_CALL_ENTRY:
-                intent.setAction(ACTION_EQ_CALL_ENTRY_CHANGED);
-                intent.putExtra(EXTRA_EQ_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.EQ_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_EQ_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_EQ_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
         }
 

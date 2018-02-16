@@ -23,24 +23,6 @@ import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static org.hvdw.xsofiatweaker.SettingsFragment.PREF_NO_KILL;
-import static org.hvdw.xsofiatweaker.SettingsFragment.PREF_SKIP_CH_FOUR;
-import static org.hvdw.xsofiatweaker.SettingsFragment.NAVI_CALL_OPTION;
-import static org.hvdw.xsofiatweaker.SettingsFragment.NAVI_CALL_ENTRY;
-import static org.hvdw.xsofiatweaker.SettingsFragment.MEDIA_CALL_OPTION;
-import static org.hvdw.xsofiatweaker.SettingsFragment.MEDIA_CALL_ENTRY;
-import static org.hvdw.xsofiatweaker.SettingsFragment.BT_PHONE_CALL_OPTION;
-import static org.hvdw.xsofiatweaker.SettingsFragment.BT_PHONE_CALL_ENTRY;
-import static org.hvdw.xsofiatweaker.SettingsFragment.BAND_CALL_OPTION;
-import static org.hvdw.xsofiatweaker.SettingsFragment.BAND_CALL_ENTRY;
-import static org.hvdw.xsofiatweaker.SettingsFragment.DVD_CALL_OPTION;
-import static org.hvdw.xsofiatweaker.SettingsFragment.DVD_CALL_ENTRY;
-import static org.hvdw.xsofiatweaker.SettingsFragment.EJECT_CALL_OPTION;
-import static org.hvdw.xsofiatweaker.SettingsFragment.EJECT_CALL_ENTRY;
-import static org.hvdw.xsofiatweaker.SettingsFragment.EQ_CALL_OPTION;
-import static org.hvdw.xsofiatweaker.SettingsFragment.EQ_CALL_ENTRY;
-
-
 
 public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPackage {
 	public static final String TAG = "XSofiaTweaker";
@@ -71,22 +53,22 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
 		sharedPreferences.makeWorldReadable();
 
-		noKillEnabled = sharedPreferences.getBoolean(PREF_NO_KILL, true);
-		skip_ch_four = sharedPreferences.getBoolean(PREF_SKIP_CH_FOUR, false);
-		bt_phone_call_option = sharedPreferences.getString(BT_PHONE_CALL_OPTION, "");
-		bt_phone_call_entry = sharedPreferences.getString(BT_PHONE_CALL_ENTRY, "");
-		navi_call_option = sharedPreferences.getString(NAVI_CALL_OPTION, "");
-		navi_call_entry = sharedPreferences.getString(NAVI_CALL_ENTRY, "");
-		band_call_option = sharedPreferences.getString(BAND_CALL_OPTION, "");
-		band_call_entry = sharedPreferences.getString(BAND_CALL_ENTRY, "");
-		media_call_option = sharedPreferences.getString(MEDIA_CALL_OPTION, "");
-		media_call_entry = sharedPreferences.getString(MEDIA_CALL_ENTRY, "");
-		dvd_call_option = sharedPreferences.getString(DVD_CALL_OPTION, "");
-		dvd_call_entry = sharedPreferences.getString(DVD_CALL_ENTRY, "");
-		eject_call_option = sharedPreferences.getString(EJECT_CALL_OPTION, "");
-		eject_call_entry = sharedPreferences.getString(EJECT_CALL_ENTRY, "");
-		eq_call_option = sharedPreferences.getString(EQ_CALL_OPTION, "");
-		eq_call_entry = sharedPreferences.getString(EQ_CALL_ENTRY, "");
+		noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
+		skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
+		bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
+		bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
+		navi_call_option = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION, "");
+		navi_call_entry = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY, "");
+		band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
+		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
+		media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
+		media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
+		dvd_call_option = sharedPreferences.getString(MySettings.DVD_CALL_OPTION, "");
+		dvd_call_entry = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY, "");
+		eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
+		eject_call_entry = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY, "");
+		eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
+		eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
 	}
 
 

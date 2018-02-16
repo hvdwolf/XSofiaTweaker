@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import de.robv.android.xposed.XSharedPreferences;
 
-import static org.hvdw.xsofiatweaker.SettingsFragment.PREF_NO_KILL;
+/*import static org.hvdw.xsofiatweaker.SettingsFragment.PREF_NO_KILL;
 import static org.hvdw.xsofiatweaker.SettingsFragment.PREF_SKIP_CH_FOUR;
 import static org.hvdw.xsofiatweaker.SettingsFragment.NAVI_CALL_OPTION;
 import static org.hvdw.xsofiatweaker.SettingsFragment.NAVI_CALL_ENTRY;
@@ -23,7 +23,7 @@ import static org.hvdw.xsofiatweaker.SettingsFragment.DVD_CALL_OPTION;
 import static org.hvdw.xsofiatweaker.SettingsFragment.DVD_CALL_ENTRY;
 import static org.hvdw.xsofiatweaker.SettingsFragment.EQ_CALL_OPTION;
 import static org.hvdw.xsofiatweaker.SettingsFragment.EQ_CALL_ENTRY;
-
+*/
 
 
 public class SettingsReceiver extends BroadcastReceiver {
@@ -50,12 +50,12 @@ public class SettingsReceiver extends BroadcastReceiver {
 	private String eq_call_option;
 	private String eq_call_entry; 
 
-
+    
     public void onReceive(Context context, Intent intent) {
 	Context mContext = context.getApplicationContext();
         String settingsKey = intent.getAction();
+	Log.d(TAG, "I received " + settingsKey);
 	Toast mToast = Toast.makeText(mContext, "I received " + settingsKey, Toast.LENGTH_LONG);
-	//mToast.setGravity(Toast.Gravity.TOP|Toast.Gravity.CENTER_HORIZONTAL, 0, 0);
 	mToast.show();
 	//Bundle extras = intent.getExtras();
 	//String settingsString = intent.getStringExtra
@@ -68,56 +68,56 @@ public class SettingsReceiver extends BroadcastReceiver {
 */
 /*        if (action.equals("AdBlocker.intent.action.POST_NOTIFICATION")) {
             Bundle extras = intent.getExtras();
-            String description = extras.getString("description");
+            String description = extras.getString(MySettings."description");
             int id = extras.getInt("id");
-            String title = extras.getString("title");
+            String title = extras.getString(MySettings."title");
             NotificationUtils.postNotification(title, description, id, context);
         } */
 	Log.d(TAG, "received key: " + settingsKey);
 	switch (settingsKey) {
             case "ACTION_PREF_NO_KILL_CHANGED":
 		//updatedString = extras.getBoolean((boolean) EXTRA_PREF_NO_KILL_ENABLED);
-		noKillEnabled = sharedPreferences.getBoolean(PREF_NO_KILL, true);
+		noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
                 break;
             case "ACTION_PREF_SKIP_CH_FOUR_CHANGED":
-		skip_ch_four = sharedPreferences.getBoolean(PREF_SKIP_CH_FOUR, false);
+		skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
                 break;
 	    case "ACTION_NAVI_CALL_OPTION_CHANGED":
-		navi_call_option = sharedPreferences.getString(NAVI_CALL_OPTION, "");
+		navi_call_option = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION, "");
                 break;
 	    case "ACTION_NAVI_CALL_ENTRY_CHANGED":
-		navi_call_entry = sharedPreferences.getString(NAVI_CALL_ENTRY, "");
+		navi_call_entry = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY, "");
                 break;
 	    case "ACTION_MEDIA_CALL_OPTION_CHANGED":
-		media_call_option = sharedPreferences.getString(MEDIA_CALL_OPTION, "");
+		media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
                 break;
 	    case "ACTION_MEDIA_CALL_ENTRY_CHANGED":
-		media_call_entry = sharedPreferences.getString(MEDIA_CALL_ENTRY, "");
+		media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
                 break;
 	    case "ACTION_BT_PHONE_CALL_OPTION_CHANGED":
-		bt_phone_call_option = sharedPreferences.getString(BT_PHONE_CALL_OPTION, "");
+		bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
                 break;
 	    case "ACTION_BT_PHONE_CALL_ENTRY_CHANGED":
-		bt_phone_call_entry = sharedPreferences.getString(BT_PHONE_CALL_ENTRY, "");
+		bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
                 break;
 	    case "ACTION_BAND_CALL_OPTION_CHANGED":
-		band_call_option = sharedPreferences.getString(BAND_CALL_OPTION, "");
+		band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
                 break;
 	    case "ACTION_BAND_CALL_ENTRY_CHANGED":
-		band_call_entry = sharedPreferences.getString(BAND_CALL_ENTRY, "");
+		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
 		Log.d(TAG, "ACTION_BAND_CALL_ENTRY: " + band_call_entry);
                 break;
 	    case "ACTION_DVD_CALL_OPTION_CHANGED":
-		dvd_call_option = sharedPreferences.getString(DVD_CALL_OPTION, "");
+		dvd_call_option = sharedPreferences.getString(MySettings.DVD_CALL_OPTION, "");
                 break;
 	    case "ACTION_DVD_CALL_ENTRY_CHANGED":
-		dvd_call_entry = sharedPreferences.getString(DVD_CALL_ENTRY, "");
+		dvd_call_entry = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY, "");
                 break;
 	    case "ACTION_EQ_CALL_OPTION_CHANGED":
-		eq_call_option = sharedPreferences.getString(EQ_CALL_OPTION, "");
+		eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
                 break;
 	    case "ACTION_EQ_CALL_ENTRY_CHANGED":
-		eq_call_entry = sharedPreferences.getString(EQ_CALL_ENTRY, "");
+		eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
                 break;
         }
 
