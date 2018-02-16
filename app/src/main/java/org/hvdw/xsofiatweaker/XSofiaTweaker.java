@@ -35,6 +35,8 @@ import static org.hvdw.xsofiatweaker.SettingsFragment.BAND_CALL_OPTION;
 import static org.hvdw.xsofiatweaker.SettingsFragment.BAND_CALL_ENTRY;
 import static org.hvdw.xsofiatweaker.SettingsFragment.DVD_CALL_OPTION;
 import static org.hvdw.xsofiatweaker.SettingsFragment.DVD_CALL_ENTRY;
+import static org.hvdw.xsofiatweaker.SettingsFragment.EJECT_CALL_OPTION;
+import static org.hvdw.xsofiatweaker.SettingsFragment.EJECT_CALL_ENTRY;
 import static org.hvdw.xsofiatweaker.SettingsFragment.EQ_CALL_OPTION;
 import static org.hvdw.xsofiatweaker.SettingsFragment.EQ_CALL_ENTRY;
 
@@ -58,6 +60,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private String media_call_entry;
 	private String dvd_call_option;
 	private String dvd_call_entry;
+	private String eject_call_option;
+	private String eject_call_entry;
 	private String eq_call_option;
 	private String eq_call_entry;
 
@@ -79,6 +83,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		media_call_entry = sharedPreferences.getString(MEDIA_CALL_ENTRY, "");
 		dvd_call_option = sharedPreferences.getString(DVD_CALL_OPTION, "");
 		dvd_call_entry = sharedPreferences.getString(DVD_CALL_ENTRY, "");
+		eject_call_option = sharedPreferences.getString(EJECT_CALL_OPTION, "");
+		eject_call_entry = sharedPreferences.getString(EJECT_CALL_ENTRY, "");
 		eq_call_option = sharedPreferences.getString(EQ_CALL_OPTION, "");
 		eq_call_entry = sharedPreferences.getString(EQ_CALL_ENTRY, "");
 	}
@@ -204,21 +210,23 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			});
 		}
 
-		findAndHookMethod("util.JumpPage", lpparam.classLoader, "eq", new XC_MethodHook() {
-			@Override
-			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-				XposedBridge.log(TAG + " EQ button pressed; forward action  to the launcher.sh");
-				Log.d(TAG, "EQ button pressed; forward action  to the launcher.sh");
-				//onItemSelectedp(33);
-				Context context = (Context) AndroidAppHelper.currentApplication();
-				startActivityByIntentName(context, "com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.VoiceSearchActivity"); // Google Voice Search
-				param.setResult(null);
-			}
-		});
+		if ((eq_call_option != "") && (eq_call_entry != "")) {
+			findAndHookMethod("util.JumpPage", lpparam.classLoader, "eq", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XposedBridge.log(TAG + " EQ button pressed; forward action  to specific call method");
+					Log.d(TAG, "EQ button pressed; forward action  to specific call method");
+					whichActionToPerform(context, eq_call_option, eq_call_entry);
+					param.setResult(null);
+				}
+			});
+		}
 
 		findAndHookMethod("dev.ReceiverMcu", lpparam.classLoader, "onHandle", byte[].class, int.class, int.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+				Context context = (Context) AndroidAppHelper.currentApplication();
 				//byte[] data  = getByteField(param.thisObject, "byte[].class");
 				byte[] data =  (byte[]) param.args[0];
 				/* int start = getIntField(param.thisObject, "start");
@@ -229,20 +237,14 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 				//Log.d(TAG, "DVD or eject button; Executed the Media action to the launcher.sh");
 				if ((b & 255) == 1 && (data[start + 1] & 255) == 0 && (data[start + 2] & 255) == 16 && (data[start + 3] & 255) == 80) {
-					XposedBridge.log(TAG + " DVD button pressed; forward action  to the launcher.sh");
-					Log.d(TAG, "DVD button pressed; forward action  to the launcher.sh");
-					onItemSelectedp(31);
+					XposedBridge.log(TAG + " DVD button pressed; forward action to specific call method");
+					Log.d(TAG, "DVD button pressed; forward action to specific call method");
+					whichActionToPerform(context, dvd_call_option, dvd_call_entry);
 				}
 				if ((b & 255) == 1 && (data[start + 1] & 255) == 161 && (data[start + 2] & 255) == 2 && (data[start + 3] & 255) == 91) {
-					XposedBridge.log(TAG + " EJECT; forward action  to the launcher.sh");
-					Log.d(TAG, "EJECT button pressed; forward action  to the launcher.sh");
-					// For the launcher.sh use the onItemSelectedp()
-					onItemSelectedp(32);
-					// To directly start an app use the startActivityByPackageName( packageName)
-					// Later to be used via a preference screen
-					// like startActivityByPackageName(com.google.android.apps.maps)    Google Maps
-					// like startActivityByPackageName(com.syu.radio) Joying Radio
-					//startActivityByPackageName(context, "com.waze");
+					XposedBridge.log(TAG + " EJECT button pressed; forward action to specific call method");
+					Log.d(TAG, "EJECT button pressed; forward action to specific call method");
+					whichActionToPerform(context, eject_call_option, eject_call_entry);
 				}
 			}
 		});

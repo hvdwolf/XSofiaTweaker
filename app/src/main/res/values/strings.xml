@@ -23,6 +23,9 @@
 	<string name="dvd_key_settings">Settings for the DVD key</string>
 	<string name="dvd_key_call_title">DVD Key: Call method</string>
 	<string name="dvd_key_text_title">DVD Key: String to be used</string>
+	<string name="eject_key_settings">Settings for the EJECT key</string>
+	<string name="eject_key_call_title">EJECT Key: Call method</string>
+	<string name="eject_key_text_title">EJECT Key: String to be used</string>
 	<string name="eq_key_settings">Settings for the EQ key</string>
 	<string name="eq_key_call_title">EQ Key: Call method</string>
 	<string name="eq_key_text_title">EQ Key: String to be used</string>
