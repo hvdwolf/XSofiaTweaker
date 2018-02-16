@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.app.AndroidAppHelper;
+import android.widget.Toast;
 
 
 import de.robv.android.xposed.XposedBridge;
@@ -47,6 +48,16 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private String eq_call_option;
 	private String eq_call_entry;
 
+	private String acc_on_call_option;
+	private String acc_on_call_entry;
+	private String acc_off_call_option;
+	private String acc_off_call_entry;
+	private String resume_call_option;
+	private String resume_call_entry;
+
+	private boolean home_key_capture_enabled;
+	private String home_call_option;
+	private String home_call_entry;
 
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
@@ -69,6 +80,17 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		eject_call_entry = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY, "");
 		eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
 		eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
+
+		acc_on_call_option = sharedPreferences.getString(MySettings.ACC_ON_CALL_OPTION, "");
+		acc_on_call_entry = sharedPreferences.getString(MySettings.ACC_ON_CALL_ENTRY, "");
+		acc_off_call_option = sharedPreferences.getString(MySettings.ACC_OFF_CALL_OPTION, "");
+		acc_off_call_entry = sharedPreferences.getString(MySettings.ACC_OFF_CALL_ENTRY, "");
+		resume_call_option = sharedPreferences.getString(MySettings.RESUME_CALL_OPTION, "");
+		resume_call_entry = sharedPreferences.getString(MySettings.RESUME_CALL_ENTRY, "");
+
+		home_key_capture_enabled = sharedPreferences.getBoolean(MySettings.HOME_KEY_CAPTURE, true);
+		home_call_option = sharedPreferences.getString(MySettings.HOME_CALL_OPTION, "");
+		home_call_entry = sharedPreferences.getString(MySettings.HOME_CALL_ENTRY, "");
 	}
 
 
@@ -83,6 +105,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "killAppWhenSleep", new XC_MethodHook() {
 				@Override
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
 					XposedBridge.log(TAG + " nokill enabled");
 					param.setResult(null);
 				}
@@ -101,8 +127,13 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 					int stream = (int) param.args[0];
 					if (stream == 4) {
+						Context context = (Context) AndroidAppHelper.currentApplication();
+						XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+						sharedPreferences.makeWorldReadable();
+						skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
 						XposedBridge.log(TAG + " skipping alarm channel 4 mute");
 						Log.d(TAG, " skipping alarm channel 4 mute");
+
 						param.setResult(null);
 					}
 				}
@@ -114,9 +145,13 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		findAndHookMethod("app.HandlerApp", lpparam.classLoader, "wakeup", new XC_MethodHook() {
 			@Override
 			protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-				XposedBridge.log(TAG + " Execute the RESUME action to the launcher.sh");
-				Log.d(TAG, "Execute the RESUME action to the launcher.sh");
-				onItemSelectedp(99);
+				Context context = (Context) AndroidAppHelper.currentApplication();
+				XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+				sharedPreferences.makeWorldReadable();
+				resume_call_option = sharedPreferences.getString(MySettings.RESUME_CALL_OPTION, "");
+				resume_call_entry = sharedPreferences.getString(MySettings.RESUME_CALL_ENTRY, "");
+				XposedBridge.log(TAG + " Execute the RESUME action using specific call method");
+				Log.d(TAG, "Execute the RESUME action using specific call method");
 			}
 		});
 
@@ -126,6 +161,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				@Override
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
+					bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
 					XposedBridge.log(TAG + " mcuKeyBtPhone pressed; bt_phone_call_option: " + bt_phone_call_option + " bt_phone_call_entry : " + bt_phone_call_entry);
 					whichActionToPerform(context, navi_call_option, navi_call_entry);
 
@@ -139,6 +178,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				@Override
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					navi_call_option = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION, "");
+					navi_call_entry = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY, "");
 					XposedBridge.log(TAG + " mcuKeyNavi  pressed; navi_call_option: " + navi_call_option + " navi_call_entry : " + navi_call_entry);
 					whichActionToPerform(context, navi_call_option, navi_call_entry);
 
@@ -153,13 +196,14 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				@Override
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
+					band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
 					XposedBridge.log(TAG + " mcuKeyBand (Radio) pressed; forward action to specific call method");
 					Log.d(TAG, "mcuKeyBand (Radio) pressed; forward action to specific call method");
-					//startActivityByPackageName(context, band_call_entry);
-					//startActivityByPackageName(context, "com.syu.radio");
 					XposedBridge.log(TAG + " band_call_option: " + band_call_option + " band_call_entry : " + band_call_entry);
 					whichActionToPerform(context, band_call_option, band_call_entry);
-					//whichActionToPerform( "band_call_option", "band_key_entry");
 
 					param.setResult(null);
 				}
@@ -182,11 +226,14 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				@Override
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
+					media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
 					XposedBridge.log(TAG + " MEDIA button pressed; forward action to specific call method");
 					Log.d(TAG, "MEDIA button pressed; forward action to specific call method");
-					//startActivityByPackageName(context, media_call_entry);
 					whichActionToPerform(context, media_call_option, media_call_entry);
-					//whichActionToPerform( "media_call_option", "media_key_entry");
+
 					param.setResult(null);
 				}
 			});
@@ -197,9 +244,14 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				@Override
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
+					eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
 					XposedBridge.log(TAG + " EQ button pressed; forward action  to specific call method");
 					Log.d(TAG, "EQ button pressed; forward action  to specific call method");
 					whichActionToPerform(context, eq_call_option, eq_call_entry);
+
 					param.setResult(null);
 				}
 			});
@@ -217,13 +269,20 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				int length = (int) param.args[2];
 				byte b = data[start];
 
+				XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+				sharedPreferences.makeWorldReadable();
+
 				//Log.d(TAG, "DVD or eject button; Executed the Media action to the launcher.sh");
 				if ((b & 255) == 1 && (data[start + 1] & 255) == 0 && (data[start + 2] & 255) == 16 && (data[start + 3] & 255) == 80) {
+					dvd_call_option = sharedPreferences.getString(MySettings.DVD_CALL_OPTION, "");
+					dvd_call_entry = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY, "");
 					XposedBridge.log(TAG + " DVD button pressed; forward action to specific call method");
 					Log.d(TAG, "DVD button pressed; forward action to specific call method");
 					whichActionToPerform(context, dvd_call_option, dvd_call_entry);
 				}
 				if ((b & 255) == 1 && (data[start + 1] & 255) == 161 && (data[start + 2] & 255) == 2 && (data[start + 3] & 255) == 91) {
+					eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
+					eject_call_entry = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY, "");
 					XposedBridge.log(TAG + " EJECT button pressed; forward action to specific call method");
 					Log.d(TAG, "EJECT button pressed; forward action to specific call method");
 					whichActionToPerform(context, eject_call_option, eject_call_entry);
@@ -235,33 +294,45 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			@Override
 			protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 				String actionName = (String) param.args[0];
+				Context context = (Context) AndroidAppHelper.currentApplication();
+				XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+				sharedPreferences.makeWorldReadable();
 				XposedBridge.log(TAG + " broadcastByIntentName in util.JumpPage afterHooked " + actionName);
 				Log.d(TAG, "broadcastByIntentName in util.JumpPage afterHooked " + actionName);
 				if (actionName == "com.glsx.boot.ACCON") {
+					acc_on_call_option = sharedPreferences.getString(MySettings.ACC_ON_CALL_OPTION, "");
+					acc_on_call_entry = sharedPreferences.getString(MySettings.ACC_ON_CALL_ENTRY, "");
 					Log.d(TAG, "ACC_ON command received");
 					XposedBridge.log(TAG + " ACC_ON command received");
-					onItemSelectedp(97);
+					whichActionToPerform(context, acc_on_call_option, acc_on_call_entry);
 				}
 				if (actionName == "com.glsx.boot.ACCOFF") {
+					acc_off_call_option = sharedPreferences.getString(MySettings.ACC_OFF_CALL_OPTION, "");
+					acc_off_call_entry = sharedPreferences.getString(MySettings.ACC_OFF_CALL_ENTRY, "");
 					Log.d(TAG, "ACC_OFF command received");
 					XposedBridge.log(TAG + " ACC_OFF command received");
-					onItemSelectedp(98);
+					whichActionToPerform(context, acc_off_call_option, acc_off_call_entry);
 				}
 			}
 		});
 
-		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "keyHome", new XC_MethodHook() {
-			@Override
-			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-				XposedBridge.log(TAG + " HOME button pressed; forward action  to the launcher.sh");
-				Log.d(TAG, "HOME button pressed; forward action  to the launcher.sh");
-				//onItemSelectedp(3);
-				//Context context = (Context) AndroidAppHelper.currentApplication();
-				//startActivityByPackageName(context, "com.google.android.googlequicksearchbox"); // Google Voice Search
-				executeSystemCall("am start -a android.intent.action.MAIN -c android.intent.category.HOME");
-				param.setResult(null);
-			}
-		});
+		if (home_key_capture_enabled == true) {
+			findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "keyHome", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					home_call_option = sharedPreferences.getString(MySettings.HOME_CALL_OPTION, "");
+					home_call_entry = sharedPreferences.getString(MySettings.HOME_CALL_ENTRY, "");
+					XposedBridge.log(TAG + " HOME button pressed; forward action  to the launcher.sh");
+					Log.d(TAG, "HOME button pressed; forward action  to the launcher.sh");
+					//executeSystemCall("am start -a android.intent.action.MAIN -c android.intent.category.HOME");
+					whichActionToPerform(context, home_call_option, home_call_entry);
+					param.setResult(null);
+				}
+			});
+		}
 
 /*		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "keyBack", new XC_MethodHook() {
 			@Override

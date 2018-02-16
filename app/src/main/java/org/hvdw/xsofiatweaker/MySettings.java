@@ -59,6 +59,38 @@ class MySettings {
     public static final String EQ_CALL_ENTRY = "eq_key_entry";
     public static final String ACTION_EQ_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EQ_CALL_ENTRY_CHANGED";
     public static final String EXTRA_EQ_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EQ_CALL_ENTRY_STRING";
+
+    public static final String ACC_ON_CALL_OPTION = "acc_on_key_call_option";
+    public static final String ACTION_ACC_ON_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_ACC_ON_CALL_OPTION_CHANGED";
+    public static final String EXTRA_ACC_ON_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_ACC_ON_CALL_OPTION_STRING";
+    public static final String ACC_ON_CALL_ENTRY = "acc_on_key_entry";
+    public static final String ACTION_ACC_ON_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_ACC_ON_CALL_ENTRY_CHANGED";
+    public static final String EXTRA_ACC_ON_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_ACC_ON_CALL_ENTRY_STRING";
+
+    public static final String ACC_OFF_CALL_OPTION = "acc_off_key_call_option";
+    public static final String ACTION_ACC_OFF_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_ACC_OFF_CALL_OPTION_CHANGED";
+    public static final String EXTRA_ACC_OFF_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_ACC_OFF_CALL_OPTION_STRING";
+    public static final String ACC_OFF_CALL_ENTRY = "acc_off_key_entry";
+    public static final String ACTION_ACC_OFF_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_ACC_OFF_CALL_ENTRY_CHANGED";
+    public static final String EXTRA_ACC_OFF_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_ACC_OFF_CALL_ENTRY_STRING";
+
+    public static final String RESUME_CALL_OPTION = "resume_key_call_option";
+    public static final String ACTION_RESUME_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_RESUME_CALL_OPTION_CHANGED";
+    public static final String EXTRA_RESUME_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_RESUME_CALL_OPTION_STRING";
+    public static final String RESUME_CALL_ENTRY = "resume_key_entry";
+    public static final String ACTION_RESUME_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_RESUME_CALL_ENTRY_CHANGED";
+    public static final String EXTRA_RESUME_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_RESUME_CALL_ENTRY_STRING";
+
+    public static final String HOME_KEY_CAPTURE = "home_key_capture_enabled";
+    public static final String ACTION_HOME_KEY_CAPTURE_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_HOME_KEY_CAPTURE_CHANGED";
+    public static final String EXTRA_HOME_KEY_CAPTURE_STRING = "org.hvdw.xsofiatweaker.extra.PREF_HOME_KEY_CAPTURE_STRING";
+    public static final String HOME_CALL_OPTION = "home_key_call_option";
+    public static final String ACTION_HOME_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_HOME_CALL_OPTION_CHANGED";
+    public static final String EXTRA_HOME_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_HOME_CALL_OPTION_STRING";
+    public static final String HOME_CALL_ENTRY = "home_key_entry";
+    public static final String ACTION_HOME_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_HOME_CALL_ENTRY_CHANGED";
+    public static final String EXTRA_HOME_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_HOME_CALL_ENTRY_STRING";
+
     /* End of all the necessary variables */
 
 }
