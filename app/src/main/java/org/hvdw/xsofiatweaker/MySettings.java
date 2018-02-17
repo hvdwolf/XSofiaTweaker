@@ -25,6 +25,13 @@ class MySettings {
     public static final String ACTION_MEDIA_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_ENTRY_CHANGED";
     public static final String EXTRA_MEDIA_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MEDIA_CALL_ENTRY_STRING";
 
+    public static final String MODE_SRC_CALL_OPTION = "mode_src_key_call_option";
+    public static final String ACTION_MODE_SRC_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_OPTION_CHANGED";
+    public static final String EXTRA_MODE_SRC_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_OPTION_STRING";
+    public static final String MODE_SRC_CALL_ENTRY = "mode_src_key_entry";
+    public static final String ACTION_MODE_SRC_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_ENTRY_CHANGED";
+    public static final String EXTRA_MODE_SRC_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_ENTRY_STRING";
+
     public static final String BT_PHONE_CALL_OPTION = "bt_phone_key_call_option";
     public static final String ACTION_BT_PHONE_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_OPTION_CHANGED";
     public static final String EXTRA_BT_PHONE_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_OPTION_STRING";

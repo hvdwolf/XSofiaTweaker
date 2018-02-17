@@ -14,6 +14,9 @@
 	<string name="media_key_settings">Settings for the MEDIA key</string>
 	<string name="media_key_call_title">MEDIA Key: Call method</string>
 	<string name="media_key_text_title">MEDIA Key: String to be used</string>
+	<string name="mode_src_key_settings">Settings for the MODE_SRC key</string>
+	<string name="mode_src_key_call_title">MODE_SRC Key: Call method</string>
+	<string name="mode_src_key_text_title">MODE_SRC Key: String to be used</string>
 	<string name="band_key_settings">Settings for the BAND key</string>
 	<string name="band_key_call_title">BAND Key: Call method</string>
 	<string name="band_key_text_title">BAND Key: String to be used</string>

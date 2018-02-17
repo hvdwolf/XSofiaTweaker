@@ -41,6 +41,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private String band_call_entry;
 	private String media_call_option;
 	private String media_call_entry;
+	private String mode_src_call_option;
+	private String mode_src_call_entry;
 	private String dvd_call_option;
 	private String dvd_call_entry;
 	private String eject_call_option;
@@ -74,6 +76,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
 		media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
 		media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
+		mode_src_call_option = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION, "");
+		mode_src_call_entry = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY, "");
 		dvd_call_option = sharedPreferences.getString(MySettings.DVD_CALL_OPTION, "");
 		dvd_call_entry = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY, "");
 		eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
@@ -210,16 +214,23 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			});
 		}
 
-		findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyMode", new XC_MethodHook() {
-			@Override
-			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-				XposedBridge.log(TAG + " Source/Mode pressed; forward action  to the launcher.sh");
-				Log.d(TAG, "Source/Mode pressed; forward action  to the launcher.sh");
-				onItemSelectedp(37);
-				param.setResult(null);
-			}
-		});
+		if ((mode_src_call_option != "") && (mode_src_call_entry != "")) {
+			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyMode", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					mode_src_call_option = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION, "");
+					mode_src_call_entry = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY, "");
+					XposedBridge.log(TAG + " Source/Mode pressed; forward action  to specific call method");
+					Log.d(TAG, "Source/Mode pressed; forward action  to specific call method");
+					whichActionToPerform(context, mode_src_call_option, mode_src_call_entry);
 
+					param.setResult(null);
+				}
+			});
+		}
 
 		if ((media_call_option != "") && (media_call_entry != "")) {
 			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyPlayer", new XC_MethodHook() {

@@ -51,6 +51,21 @@
 				android:defaultValue="com.syu.music" />
 		</PreferenceCategory>
 		<PreferenceCategory
+			android:title="@string/mode_src_key_settings"
+			android:key="mode_src_key_settings">
+			<ListPreference
+			        android:key="mode_src_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkg_intent"
+			        android:title="@string/mode_src_key_call_title" />
+			<EditTextPreference
+				android:dependency="mode_src_key_call_option"
+				android:key="mode_src_key_entry"
+				android:title="@string/mode_src_key_text_title"
+				android:defaultValue="com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.VoiceSearchActivity" />
+		</PreferenceCategory>
+		<PreferenceCategory
 			android:title="@string/band_key_settings"
 			android:key="band_key_settings">
 			<ListPreference
