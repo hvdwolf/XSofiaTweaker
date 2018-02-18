@@ -303,7 +303,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 		findAndHookMethod("util.JumpPage", lpparam.classLoader, "broadcastByIntentName", String.class, new XC_MethodHook() {
 			@Override
-			protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 				String actionName = (String) param.args[0];
 				Context context = (Context) AndroidAppHelper.currentApplication();
 				XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
