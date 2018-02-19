@@ -33,22 +33,22 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 	private boolean noKillEnabled;
 	private boolean skip_ch_four;
-	private String navi_call_option;
-	private String navi_call_entry;
-	private String bt_phone_call_option;
-	private String bt_phone_call_entry;
 	private String band_call_option;
 	private String band_call_entry;
-	private String media_call_option;
-	private String media_call_entry;
-	private String mode_src_call_option;
-	private String mode_src_call_entry;
+	private String bt_phone_call_option;
+	private String bt_phone_call_entry;
 	private String dvd_call_option;
 	private String dvd_call_entry;
 	private String eject_call_option;
 	private String eject_call_entry;
 	private String eq_call_option;
 	private String eq_call_entry;
+	private String media_call_option;
+	private String media_call_entry;
+	private String mode_src_call_option;
+	private String mode_src_call_entry;
+	private String navi_call_option;
+	private String navi_call_entry;
 
 	private String acc_on_call_option;
 	private String acc_on_call_entry;
@@ -60,6 +60,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private boolean home_key_capture_enabled;
 	private String home_call_option;
 	private String home_call_entry;
+	private boolean mute_key_capture_enabled;
+	private String mute_call_option;
+	private String mute_call_entry;
 
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
@@ -68,22 +71,22 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 		noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
 		skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
-		bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
-		bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
-		navi_call_option = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION, "");
-		navi_call_entry = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY, "");
 		band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
 		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
-		media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
-		media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
-		mode_src_call_option = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION, "");
-		mode_src_call_entry = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY, "");
+		bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
+		bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
 		dvd_call_option = sharedPreferences.getString(MySettings.DVD_CALL_OPTION, "");
 		dvd_call_entry = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY, "");
 		eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
 		eject_call_entry = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY, "");
 		eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
 		eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
+		media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
+		media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
+		mode_src_call_option = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION, "");
+		mode_src_call_entry = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY, "");
+		navi_call_option = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION, "");
+		navi_call_entry = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY, "");
 
 		acc_on_call_option = sharedPreferences.getString(MySettings.ACC_ON_CALL_OPTION, "");
 		acc_on_call_entry = sharedPreferences.getString(MySettings.ACC_ON_CALL_ENTRY, "");
@@ -95,6 +98,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		home_key_capture_enabled = sharedPreferences.getBoolean(MySettings.HOME_KEY_CAPTURE, true);
 		home_call_option = sharedPreferences.getString(MySettings.HOME_CALL_OPTION, "");
 		home_call_entry = sharedPreferences.getString(MySettings.HOME_CALL_ENTRY, "");
+		mute_key_capture_enabled = sharedPreferences.getBoolean(MySettings.MUTE_KEY_CAPTURE, true);
+		mute_call_option = sharedPreferences.getString(MySettings.MUTE_CALL_OPTION, "");
+		mute_call_entry = sharedPreferences.getString(MySettings.MUTE_CALL_ENTRY, "");
 	}
 
 
@@ -336,8 +342,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 					sharedPreferences.makeWorldReadable();
 					home_call_option = sharedPreferences.getString(MySettings.HOME_CALL_OPTION, "");
 					home_call_entry = sharedPreferences.getString(MySettings.HOME_CALL_ENTRY, "");
-					XposedBridge.log(TAG + " HOME button pressed; forward action  to the launcher.sh");
-					Log.d(TAG, "HOME button pressed; forward action  to the launcher.sh");
+					XposedBridge.log(TAG + " HOME button pressed; forward action to specific call method");
+					Log.d(TAG, "HOME button pressed; forward action to specific call method");
 					//executeSystemCall("am start -a android.intent.action.MAIN -c android.intent.category.HOME");
 					whichActionToPerform(context, home_call_option, home_call_entry);
 					param.setResult(null);
@@ -354,6 +360,24 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				param.setResult(null);
 			}
 		}); */
+
+		if (mute_key_capture_enabled == true) {
+			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolMute", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					mute_call_option = sharedPreferences.getString(MySettings.MUTE_CALL_OPTION, "");
+					mute_call_entry = sharedPreferences.getString(MySettings.MUTE_CALL_ENTRY, "");
+					XposedBridge.log(TAG + " MUTE button pressed; forward action to specific call method");
+					Log.d(TAG, "MUTE button pressed; forward action to specific call method");
+					whichActionToPerform(context, mute_call_option, mute_call_entry);
+					param.setResult(null);
+				}
+			});
+		}
+
 
 	}
 	/* End of the handleLoadPackage function doing the capture key functions */

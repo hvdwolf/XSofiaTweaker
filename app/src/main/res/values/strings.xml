@@ -8,21 +8,12 @@
 	<string name="skip_ch_four_sum">Switched on it will prevent the unit from muting channel 4. This will enable voice feedback from Google Voice. It will also generate noise when no other channel is active.</string>
 
 	<string name="app_keymod_settings">Settings for the different application hardware keys</string>
-	<string name="bt_phone_key_settings">Settings for the BT_PHONE key</string>
-	<string name="bt_phone_key_call_title">BT_PHONE Key: Call method</string>
-	<string name="bt_phone_key_text_title">BT_PHONE Key: String to be used</string>
-	<string name="media_key_settings">Settings for the MEDIA key</string>
-	<string name="media_key_call_title">MEDIA Key: Call method</string>
-	<string name="media_key_text_title">MEDIA Key: String to be used</string>
-	<string name="mode_src_key_settings">Settings for the MODE_SRC key</string>
-	<string name="mode_src_key_call_title">MODE_SRC Key: Call method</string>
-	<string name="mode_src_key_text_title">MODE_SRC Key: String to be used</string>
 	<string name="band_key_settings">Settings for the BAND key</string>
 	<string name="band_key_call_title">BAND Key: Call method</string>
 	<string name="band_key_text_title">BAND Key: String to be used</string>
-	<string name="navi_key_settings">Settings for the NAVI key</string>
-	<string name="navi_key_call_title">NAVI Key: Call method</string>
-	<string name="navi_key_text_title">NAVI Key: String to be used</string>
+	<string name="bt_phone_key_settings">Settings for the BT_PHONE key</string>
+	<string name="bt_phone_key_call_title">BT_PHONE Key: Call method</string>
+	<string name="bt_phone_key_text_title">BT_PHONE Key: String to be used</string>
 	<string name="dvd_key_settings">Settings for the DVD key</string>
 	<string name="dvd_key_call_title">DVD Key: Call method</string>
 	<string name="dvd_key_text_title">DVD Key: String to be used</string>
@@ -32,6 +23,15 @@
 	<string name="eq_key_settings">Settings for the EQ key</string>
 	<string name="eq_key_call_title">EQ Key: Call method</string>
 	<string name="eq_key_text_title">EQ Key: String to be used</string>
+	<string name="media_key_settings">Settings for the MEDIA key</string>
+	<string name="media_key_call_title">MEDIA Key: Call method</string>
+	<string name="media_key_text_title">MEDIA Key: String to be used</string>
+	<string name="mode_src_key_settings">Settings for the MODE_SRC key</string>
+	<string name="mode_src_key_call_title">MODE_SRC Key: Call method</string>
+	<string name="mode_src_key_text_title">MODE_SRC Key: String to be used</string>
+	<string name="navi_key_settings">Settings for the NAVI key</string>
+	<string name="navi_key_call_title">NAVI Key: Call method</string>
+	<string name="navi_key_text_title">NAVI Key: String to be used</string>
 	<string name="key_summary">Call method</string>
 	<string name="key_text_title">String to be used</string>
 
@@ -58,4 +58,9 @@
 	<string name="back_key_settings">Settings for the BACK key</string>
 	<string name="back_key_call_title">BACK Key: Call method</string>
 	<string name="back_key_text_title">BACK Key: String to be used</string>
+	<string name="mute_key_capture_enabled_title">Enable MUTE key capture</string>
+	<string name="mute_key_capture_summary">The Mute functions normally mutes 5 audio channels (4 Android and the radio audio).</string>
+	<string name="mute_key_settings">Settings for the MUTE key</string>
+	<string name="mute_key_call_title">MUTE Key: Call method</string>
+	<string name="mute_key_text_title">MUTE Key: String to be used</string>
 </resources>

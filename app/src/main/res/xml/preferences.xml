@@ -21,51 +21,6 @@
 		android:title="@string/app_keymod_settings"
 		android:key="app_keymod_settings">
 		<PreferenceCategory
-			android:title="@string/bt_phone_key_settings"
-			android:key="bt_phone_key_settings">
-			<ListPreference
-			        android:key="bt_phone_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgintent"
-			        android:title="@string/bt_phone_key_call_title" />
-			<EditTextPreference
-				android:dependency="bt_phone_key_call_option"
-				android:key="bt_phone_key_entry"
-				android:title="@string/bt_phone_key_text_title"
-				android:defaultValue="com.syu.bt/.act.ActBt" />
-		</PreferenceCategory>
-		<PreferenceCategory
-			android:title="@string/media_key_settings"
-			android:key="media_key_settings">
-			<ListPreference
-			        android:key="media_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgname"
-			        android:title="@string/media_key_call_title" />
-			<EditTextPreference
-				android:dependency="media_key_call_option"
-				android:key="media_key_entry"
-				android:title="@string/media_key_text_title"
-				android:defaultValue="com.syu.music" />
-		</PreferenceCategory>
-		<PreferenceCategory
-			android:title="@string/mode_src_key_settings"
-			android:key="mode_src_key_settings">
-			<ListPreference
-			        android:key="mode_src_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkg_intent"
-			        android:title="@string/mode_src_key_call_title" />
-			<EditTextPreference
-				android:dependency="mode_src_key_call_option"
-				android:key="mode_src_key_entry"
-				android:title="@string/mode_src_key_text_title"
-				android:defaultValue="com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.VoiceSearchActivity" />
-		</PreferenceCategory>
-		<PreferenceCategory
 			android:title="@string/band_key_settings"
 			android:key="band_key_settings">
 			<ListPreference
@@ -81,19 +36,19 @@
 				android:defaultValue="com.syu.radio" />
 		</PreferenceCategory>
 		<PreferenceCategory
-			android:title="@string/navi_key_settings"
-			android:key="navi_key_settings">
+			android:title="@string/bt_phone_key_settings"
+			android:key="bt_phone_key_settings">
 			<ListPreference
-			        android:key="navi_key_call_option"
+			        android:key="bt_phone_key_call_option"
 				android:entries="@array/key_call_entries"
 				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgname"
-			        android:title="@string/navi_key_call_title" />
+				android:defaultValue="pkgintent"
+			        android:title="@string/bt_phone_key_call_title" />
 			<EditTextPreference
-				android:dependency="navi_key_call_option"
-				android:key="navi_key_entry"
-				android:title="@string/navi_key_text_title"
-				android:defaultValue="com.syu.onekeynavi" />
+				android:dependency="bt_phone_key_call_option"
+				android:key="bt_phone_key_entry"
+				android:title="@string/bt_phone_key_text_title"
+				android:defaultValue="com.syu.bt/.act.ActBt" />
 		</PreferenceCategory>
 		<PreferenceCategory
 			android:title="@string/dvd_key_settings"
@@ -139,6 +94,51 @@
 				android:key="eq_key_entry"
 				android:title="@string/eq_key_text_title"
 				android:defaultValue="com.syu.eq" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/media_key_settings"
+			android:key="media_key_settings">
+			<ListPreference
+			        android:key="media_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgname"
+			        android:title="@string/media_key_call_title" />
+			<EditTextPreference
+				android:dependency="media_key_call_option"
+				android:key="media_key_entry"
+				android:title="@string/media_key_text_title"
+				android:defaultValue="com.syu.music" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/mode_src_key_settings"
+			android:key="mode_src_key_settings">
+			<ListPreference
+			        android:key="mode_src_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkg_intent"
+			        android:title="@string/mode_src_key_call_title" />
+			<EditTextPreference
+				android:dependency="mode_src_key_call_option"
+				android:key="mode_src_key_entry"
+				android:title="@string/mode_src_key_text_title"
+				android:defaultValue="com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.VoiceSearchActivity" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/navi_key_settings"
+			android:key="navi_key_settings">
+			<ListPreference
+			        android:key="navi_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgname"
+			        android:title="@string/navi_key_call_title" />
+			<EditTextPreference
+				android:dependency="navi_key_call_option"
+				android:key="navi_key_entry"
+				android:title="@string/navi_key_text_title"
+				android:defaultValue="com.syu.onekeynavi" />
 		</PreferenceCategory>
 	</PreferenceScreen>
 
@@ -238,6 +238,27 @@
 				android:key="back_key_entry"
 				android:title="@string/back_key_text_title"
 				android:defaultValue="" />
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/mute_key_settings"
+			android:key="mute_key_settings">
+			<CheckBoxPreference
+				android:defaultValue="false"
+				android:key="mute_key_capture_enabled"
+				android:title="@string/mute_key_capture_enabled_title"
+				android:summary="@string/mute_key_capture_summary" />
+			<ListPreference
+				android:dependency="mute_key_capture_enabled"
+			        android:key="mute_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="sys_call"
+			        android:title="@string/mute_key_call_title" />
+			<EditTextPreference
+				android:dependency="mute_key_capture_enabled"
+				android:key="mute_key_entry"
+				android:title="@string/mute_key_text_title"
+				android:defaultValue="am start -a android.intent.action.MAIN -c android.intent.category.HOME" />
 		</PreferenceCategory>
 	</PreferenceScreen>
 

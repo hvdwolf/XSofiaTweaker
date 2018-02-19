@@ -98,6 +98,16 @@ class MySettings {
     public static final String ACTION_HOME_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_HOME_CALL_ENTRY_CHANGED";
     public static final String EXTRA_HOME_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_HOME_CALL_ENTRY_STRING";
 
+    public static final String MUTE_KEY_CAPTURE = "mute_key_capture_enabled";
+    public static final String ACTION_MUTE_KEY_CAPTURE_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MUTE_KEY_CAPTURE_CHANGED";
+    public static final String EXTRA_MUTE_KEY_CAPTURE_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MUTE_KEY_CAPTURE_STRING";
+    public static final String MUTE_CALL_OPTION = "mute_key_call_option";
+    public static final String ACTION_MUTE_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MUTE_CALL_OPTION_CHANGED";
+    public static final String EXTRA_MUTE_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MUTE_CALL_OPTION_STRING";
+    public static final String MUTE_CALL_ENTRY = "mute_key_entry";
+    public static final String ACTION_MUTE_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MUTE_CALL_ENTRY_CHANGED";
+    public static final String EXTRA_MUTE_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MUTE_CALL_ENTRY_STRING";
+
     /* End of all the necessary variables */
 
 }

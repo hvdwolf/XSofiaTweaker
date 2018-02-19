@@ -80,29 +80,13 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.putExtra(MySettings.EXTRA_PREF_SKIP_CH_FOUR_ENABLED, sharedPreferences.getBoolean(key, false));
 		toastText = "PREF_SKIP_CH_FOUR";
                 break;
-	    case MySettings.NAVI_CALL_OPTION:
-                intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_CHANGED);
-                intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.BAND_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BAND_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.NAVI_CALL_ENTRY:
-                intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_CHANGED);
-                intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
-                break;
-	    case MySettings.MEDIA_CALL_OPTION:
-                intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_CHANGED);
-                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
-                break;
-	    case MySettings.MEDIA_CALL_ENTRY:
-                intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_CHANGED);
-                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
-                break;
-	    case MySettings.MODE_SRC_CALL_OPTION:
-                intent.setAction(MySettings.ACTION_MODE_SRC_CALL_OPTION_CHANGED);
-                intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
-                break;
-	    case MySettings.MODE_SRC_CALL_ENTRY:
-                intent.setAction(MySettings.ACTION_MODE_SRC_CALL_ENTRY_CHANGED);
-                intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+	    case MySettings.BAND_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
 	    case MySettings.BT_PHONE_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_OPTION_CHANGED);
@@ -111,14 +95,6 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	    case MySettings.BT_PHONE_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
-                break;
-	    case MySettings.BAND_CALL_OPTION:
-                intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_CHANGED);
-                intent.putExtra(MySettings.EXTRA_BAND_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
-                break;
-	    case MySettings.BAND_CALL_ENTRY:
-                intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_CHANGED);
-                intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
 	    case MySettings.DVD_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_DVD_CALL_OPTION_CHANGED);
@@ -143,6 +119,30 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	    case MySettings.EQ_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_EQ_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EQ_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MEDIA_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MEDIA_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MODE_SRC_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_MODE_SRC_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MODE_SRC_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_MODE_SRC_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.NAVI_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.NAVI_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
 	    case MySettings.ACC_ON_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_ACC_ON_CALL_OPTION_CHANGED);
@@ -181,10 +181,23 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_HOME_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_HOME_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
+	    case MySettings.MUTE_KEY_CAPTURE:
+                intent.setAction(MySettings.ACTION_MUTE_KEY_CAPTURE_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MUTE_KEY_CAPTURE_STRING, sharedPreferences.getBoolean(key, true));
+		toastText = "MUTE_KEY_CAPTURE";
+                break;
+	    case MySettings.MUTE_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_MUTE_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MUTE_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MUTE_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_MUTE_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MUTE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
         }
 
 	Log.d(TAG, "updated key is " + key);
-	if ((toastText.equals("PREF_NO_KILL")) || (toastText.equals("PREF_SKIP_CH_FOUR")) || (toastText.equals("HOME_KEY_CAPTURE"))) {
+	if ((toastText.equals("PREF_NO_KILL")) || (toastText.equals("PREF_SKIP_CH_FOUR")) || (toastText.equals("HOME_KEY_CAPTURE")) || (toastText.equals("MUTE_KEY_CAPTURE"))) {
 		toastText = "You updated boolean key \"" + toastText + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
 	} else {
 		Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
