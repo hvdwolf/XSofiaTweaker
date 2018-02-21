@@ -406,16 +406,30 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		if (callMethod.equals("sys_call")) {
 			executeSystemCall(actionString);
 		}
-		if (callMethod.equals("broad_cast")) {
+		/*if (callMethod.equals("broad_cast")) {
 			executeBroadcast(actionString);
-		}
+		} 
+		if (callMethod.equals("script")) {
+			executeScript(actionString);
+		} */
 	};
 
 
 	private static void executeSystemCall(String input) {
-		//StringBuffer output = new StringBuffer();
-		String cmd = "/system/bin/sh -c \"" + input + "\"";
+		//String cmd = "/system/bin/sh -c \"" + input + "\"";
 		//String[] cmd = { "/system/bin/sh", "-c", input};
+		String cmd = input;
+		try {
+			Process p = Runtime.getRuntime().exec(cmd);
+			Log.d(TAG, cmd);
+			XposedBridge.log(TAG + ": " + cmd);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	};
+
+	private static void executeScript(String input) {
+		String cmd = input;
 		try {
 			Process p = Runtime.getRuntime().exec(cmd);
 			Log.d(TAG, cmd);
