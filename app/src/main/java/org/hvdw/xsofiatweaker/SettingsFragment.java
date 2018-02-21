@@ -168,6 +168,19 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_RESUME_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_RESUME_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
+	    case MySettings.BACK_KEY_CAPTURE:
+                intent.setAction(MySettings.ACTION_BACK_KEY_CAPTURE_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BACK_KEY_CAPTURE_STRING, sharedPreferences.getBoolean(key, true));
+		toastText = "BACK_KEY_CAPTURE";
+                break;
+	    case MySettings.BACK_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_BACK_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BACK_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BACK_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_BACK_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BACK_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
 	    case MySettings.HOME_KEY_CAPTURE:
                 intent.setAction(MySettings.ACTION_HOME_KEY_CAPTURE_CHANGED);
                 intent.putExtra(MySettings.EXTRA_HOME_KEY_CAPTURE_STRING, sharedPreferences.getBoolean(key, true));

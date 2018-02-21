@@ -88,6 +88,16 @@ class MySettings {
     public static final String ACTION_RESUME_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_RESUME_CALL_ENTRY_CHANGED";
     public static final String EXTRA_RESUME_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_RESUME_CALL_ENTRY_STRING";
 
+    public static final String BACK_KEY_CAPTURE = "back_key_capture_enabled";
+    public static final String ACTION_BACK_KEY_CAPTURE_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BACK_KEY_CAPTURE_CHANGED";
+    public static final String EXTRA_BACK_KEY_CAPTURE_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BACK_KEY_CAPTURE_STRING";
+    public static final String BACK_CALL_OPTION = "back_key_call_option";
+    public static final String ACTION_BACK_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BACK_CALL_OPTION_CHANGED";
+    public static final String EXTRA_BACK_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BACK_CALL_OPTION_STRING";
+    public static final String BACK_CALL_ENTRY = "back_key_entry";
+    public static final String ACTION_BACK_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BACK_CALL_ENTRY_CHANGED";
+    public static final String EXTRA_BACK_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BACK_CALL_ENTRY_STRING";
+
     public static final String HOME_KEY_CAPTURE = "home_key_capture_enabled";
     public static final String ACTION_HOME_KEY_CAPTURE_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_HOME_KEY_CAPTURE_CHANGED";
     public static final String EXTRA_HOME_KEY_CAPTURE_STRING = "org.hvdw.xsofiatweaker.extra.PREF_HOME_KEY_CAPTURE_STRING";

@@ -204,7 +204,8 @@
 				android:defaultValue="false"
 				android:key="home_key_capture_enabled"
 				android:title="@string/home_key_capture_enabled_title"
-				android:summary="@string/home_key_capture_summary" />
+				android:summaryOn="@string/home_key_capture_summary_enabled"
+				android:summaryOff="@string/home_key_capture_summary_disabled" />
 			<ListPreference
 				android:dependency="home_key_capture_enabled"
 			        android:key="home_key_call_option"
@@ -218,14 +219,15 @@
 				android:title="@string/home_key_text_title"
 				android:defaultValue="am start -a android.intent.action.MAIN -c android.intent.category.HOME" />
 		</PreferenceCategory>
-		<PreferenceCategory
+<!--		<PreferenceCategory
 			android:title="@string/back_key_settings"
 			android:key="back_key_settings">
 			<CheckBoxPreference
 				android:defaultValue="false"
 				android:key="back_key_capture_enabled"
 				android:title="@string/back_key_capture_enabled_title"
-				android:summary="@string/back_key_capture_summary" />
+				android:summaryOn="@string/back_key_capture_summary_enabled"
+				android:summaryOff="@string/back_key_capture_summary_disabled" />
 			<ListPreference
 				android:dependency="back_key_capture_enabled"
 			        android:key="back_key_call_option"
@@ -238,7 +240,7 @@
 				android:key="back_key_entry"
 				android:title="@string/back_key_text_title"
 				android:defaultValue="" />
-		</PreferenceCategory>
+		</PreferenceCategory> -->
 		<PreferenceCategory
 			android:title="@string/mute_key_settings"
 			android:key="mute_key_settings">
@@ -246,7 +248,8 @@
 				android:defaultValue="false"
 				android:key="mute_key_capture_enabled"
 				android:title="@string/mute_key_capture_enabled_title"
-				android:summary="@string/mute_key_capture_summary" />
+				android:summaryOn="@string/mute_key_capture_summary_enabled"
+				android:summaryOff="@string/mute_key_capture_summary_disabled" />
 			<ListPreference
 				android:dependency="mute_key_capture_enabled"
 			        android:key="mute_key_call_option"
