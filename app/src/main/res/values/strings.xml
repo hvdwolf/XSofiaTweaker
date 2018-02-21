@@ -3,9 +3,11 @@
 	<string name="app_settings">Application preferences</string>
 	<string name="misc_settings">Miscellaneous Settings</string>
 	<string name="nokill_title">Switch NoKill option on or off</string>
-	<string name="nokill_sum">Switched on it will prevent the unit from killing all apps on going into deep-sleep</string>
+	<string name="nokill_sum_on">ON: apps will NOT be killed on going into deep-sleep</string>
+	<string name="nokill_sum_off">OFF: Default behavior: All apps are killed on going into deep-sleep</string>
 	<string name="skip_ch_four_title">Switch Channel 4 (alarm) option on or off</string>
-	<string name="skip_ch_four_sum">Switched on it will prevent the unit from muting channel 4. This will enable voice feedback from Google Voice. It will also generate noise when no other channel is active.</string>
+	<string name="skip_ch_four_sum_on">ON: Channel 4 will NOT be muted. This will enable voice feedback from Google Voice. It will also generate noise when no other channel is active.</string>
+	<string name="skip_ch_four_sum_off">OFF: channel 4 muted. No voice feedback from Google Voice. No noise either when no other channel is active.</string>
 
 	<string name="app_keymod_settings">Settings for the different application hardware keys</string>
 	<string name="band_key_settings">Settings for the BAND key</string>
@@ -49,20 +51,20 @@
 
 	<string name="sys_keymod_settings">Settings for the different system hardware keys (BE CAREFUL!); Require soft reboot.</string>
 	<string name="home_key_capture_enabled_title">Enable HOME key capture</string>
-	<string name="home_key_capture_summary_enabled">Assign something else to the HOME key.</string>
-	<string name="home_key_capture_summary_disabled">Default SofiaServer HOME key activity.</string>
+	<string name="home_key_capture_summary_enabled">Enabled: Assign app or other action to the HOME key.</string>
+	<string name="home_key_capture_summary_disabled">Disabled: Default HOME key activity.</string>
 	<string name="home_key_settings">Settings for the HOME key</string>
 	<string name="home_key_call_title">HOME Key: Call method</string>
 	<string name="home_key_text_title">HOME Key: String to be used</string>
 	<string name="back_key_capture_enabled_title">Enable BACK key capture</string>
-	<string name="back_key_capture_summary_enabled">Be careful(!) as this overrides the default android onBackPressed() function for every (!) application</string>
-	<string name="back_key_capture_summary_disabled">Default SofiaServer BACK key activity.</string>
+	<string name="back_key_capture_summary_enabled">Enabled: Be careful(!) as this overrides the default android onBackPressed() function for every (!) application</string>
+	<string name="back_key_capture_summary_disabled">Disabled: Default BACK key activity.</string>
 	<string name="back_key_settings">Settings for the BACK key</string>
 	<string name="back_key_call_title">BACK Key: Call method</string>
 	<string name="back_key_text_title">BACK Key: String to be used</string>
 	<string name="mute_key_capture_enabled_title">Enable MUTE key capture</string>
-	<string name="mute_key_capture_summary_enabled">Assign an app or other action to the MUTE key.</string>
-	<string name="mute_key_capture_summary_disabled">Default MUTE action: mutes 5 audio channels (4 Android and the radio audio).</string>
+	<string name="mute_key_capture_summary_enabled">Enabled: Assign an app or other action to the MUTE key.</string>
+	<string name="mute_key_capture_summary_disabled">Disabled: Default MUTE action: mutes 5 audio channels (4 Android and the radio audio).</string>
 	<string name="mute_key_settings">Settings for the MUTE key</string>
 	<string name="mute_key_call_title">MUTE Key: Call method</string>
 	<string name="mute_key_text_title">MUTE Key: String to be used</string>
