@@ -413,8 +413,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 
 	private static void executeSystemCall(String input) {
-		StringBuffer output = new StringBuffer();
-		String cmd = input;
+		//StringBuffer output = new StringBuffer();
+		String cmd = "/system/bin/sh -c \"" + input + "\"";
+		//String[] cmd = { "/system/bin/sh", "-c", input};
 		try {
 			Process p = Runtime.getRuntime().exec(cmd);
 			Log.d(TAG, cmd);

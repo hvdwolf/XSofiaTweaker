@@ -47,7 +47,7 @@
 	<string name="resume_text_title">Resume: String to be used</string>
 
 
-	<string name="sys_keymod_settings">Settings for the different system hardware keys (BE CAREFUL!)</string>
+	<string name="sys_keymod_settings">Settings for the different system hardware keys (BE CAREFUL!); Require soft reboot.</string>
 	<string name="home_key_capture_enabled_title">Enable HOME key capture</string>
 	<string name="home_key_capture_summary">Joying doesn\'t use default android HOME call intent, but calls their own default laucher.</string>
 	<string name="home_key_settings">Settings for the HOME key</string>

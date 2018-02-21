@@ -201,7 +201,7 @@
 			android:title="@string/home_key_settings"
 			android:key="home_key_settings">
 			<CheckBoxPreference
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="home_key_capture_enabled"
 				android:title="@string/home_key_capture_enabled_title"
 				android:summary="@string/home_key_capture_summary" />
