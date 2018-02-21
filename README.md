@@ -10,7 +10,7 @@ This module can replace the custom key mod mod from Gustden.
 
 Please help to translate in your own language: see bottom of this page.
 
-# Experimental !!
+## Beta !!
 
 **Working:** 
 * ACC_ON/ACC_OF (key 97 and 98)
