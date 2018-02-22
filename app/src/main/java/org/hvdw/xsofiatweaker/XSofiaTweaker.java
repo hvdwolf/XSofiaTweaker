@@ -314,7 +314,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				Context context = (Context) AndroidAppHelper.currentApplication();
 				XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
 				sharedPreferences.makeWorldReadable();
-				XposedBridge.log(TAG + " broadcastByIntentName in util.JumpPage afterHooked " + actionName);
+				XposedBridge.log(TAG + " broadcastByIntentName in util.JumpPage beforeHooked " + actionName);
 				Log.d(TAG, "broadcastByIntentName in util.JumpPage afterHooked " + actionName);
 				if (actionName == "com.glsx.boot.ACCON") {
 					acc_on_call_option = sharedPreferences.getString(MySettings.ACC_ON_CALL_OPTION, "");

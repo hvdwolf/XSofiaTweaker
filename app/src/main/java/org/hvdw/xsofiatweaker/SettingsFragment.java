@@ -1,19 +1,30 @@
 package org.hvdw.xsofiatweaker;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import android.util.Log;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.net.Uri;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceActivity;
+import android.preference.ListPreference;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
+
 
 public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
     Context mContext;
@@ -27,6 +38,8 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 //        super.onAttach(mContext);
 	super.onAttach(activity);
         mContext = activity;
+
+	//getPackages(mContext);
     }
 
     public static final String TAG = "XSofiaTweaker-SettingsFragment";
@@ -42,6 +55,8 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
         addPreferencesFromResource(R.xml.preferences);
 	getActivity().registerReceiver(broadcastReceiver, intentFilter);
+
+	//getPackages(mContext);
     }
 
     @Override
@@ -63,6 +78,19 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         //getActivity().unregisterReceiver(broadcastReceiver);
         super.onDestroy();
     }
+
+/*    public void getPackages(Context context) {
+	final PackageManager pm = context.getPackageManager();
+	//get a list of installed apps.
+	List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+
+	for (ApplicationInfo packageInfo : packages) {
+		Log.d(TAG, "Installed package :" + packageInfo.packageName);
+		Log.d(TAG, "Source dir : " + packageInfo.sourceDir);
+		Log.d(TAG, "Launch Activity :" + pm.getLaunchIntentForPackage(packageInfo.packageName)); 
+	}
+	//</applicationinfo>
+    } */
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {

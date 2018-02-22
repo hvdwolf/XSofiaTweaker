@@ -22,8 +22,9 @@ public class AppsListPref extends ListPreference {
 	public AppsListPref(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		final PackageManager pm = context.getPackageManager();
-        final String[] pk1 = new String[1];
-        final String[] pk2 = new String[1];
+        	final String[] pk1 = new String[1];
+        	final String[] pk2 = new String[1];
+		Log.d(TAG, "Inside AppsListPref.java");
 		List<PackageInfo> appListInfo = pm.getInstalledPackages(PackageManager.GET_ACTIVITIES); 
 		Collections.sort(appListInfo, new Comparator<PackageInfo>() {
 			@Override

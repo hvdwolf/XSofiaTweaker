@@ -266,5 +266,43 @@
 				android:defaultValue="am start -a android.intent.action.MAIN -c android.intent.category.HOME" />
 		</PreferenceCategory>
 	</PreferenceScreen>
+	<PreferenceScreen
+		android:title="@string/about_info_screen"
+		android:key="about_info">
+		<PreferenceCategory
+			android:key="ABOUT"
+			android:title="@string/about">
+			<Preference
+				android:key="xda_discussion"
+				android:title="@string/xda_discussion_title"
+				android:summary="@string/xda_discussion_summary">
+				<intent
+					android:action="android.intent.action.VIEW"
+					android:data="https://forum.xda-developers.com/android-auto/android-head-units/xposed-4-xposed-modules-to-tweak-intel-t3748009" />
+			</Preference>
+			<Preference
+				android:key="github"
+				android:title="@string/github_title"
+				android:summary="@string/github_summary">
+				<intent
+					android:action="android.intent.action.VIEW"
+					android:data="https://github.com/hvdwolf/XSofiaTweaker" />
+			</Preference>
+		</PreferenceCategory>
+		<PreferenceCategory
+			android:title="@string/donation"
+			android:key="DONATION">
+			<Preference
+				android:key="paypal_donation"
+				android:title="@string/paypal_donation_title"
+				android:summary="@string/paypal_donation_summary">
+				<intent
+					android:action="android.intent.action.VIEW"
+					android:data="@string/paypal_url" />
+					<!-- android:data="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick\u0026hosted_button_id=HK2KGH6QVA992"  -->
+											<!-- \u0026 unicode definition for ampersand -->
+			</Preference>
+		</PreferenceCategory>
+	</PreferenceScreen>
 
 </PreferenceScreen>
