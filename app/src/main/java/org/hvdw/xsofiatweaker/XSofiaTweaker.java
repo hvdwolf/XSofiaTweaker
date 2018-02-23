@@ -15,6 +15,10 @@ import android.preference.PreferenceManager;
 import android.app.AndroidAppHelper;
 import android.widget.Toast;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
 
 import de.robv.android.xposed.XposedBridge;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
@@ -416,17 +420,113 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 
 	private static void executeSystemCall(String input) {
-		//String cmd = "/system/bin/sh -c \"" + input + "\"";
-		//String[] cmd = { "/system/bin/sh", "-c", input};
-		String cmd = input;
+		/*String cmd = input;
 		try {
 			Process p = Runtime.getRuntime().exec(cmd);
 			Log.d(TAG, cmd);
 			XposedBridge.log(TAG + ": " + cmd);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
+		String[] cmd = input.split(";");
+		shellExec(cmd);
 	};
+
+	public static void shellExec(String...strings) {
+		try{
+			Process sh = Runtime.getRuntime().exec("sh");
+			DataOutputStream outputStream = new DataOutputStream(sh.getOutputStream());
+
+			for (String s : strings) {
+				s = s.trim();
+				outputStream.writeBytes(s+"\n");
+				outputStream.flush();
+			}
+
+			outputStream.writeBytes("exit\n");
+			outputStream.flush();
+			try {
+				sh.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			outputStream.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
+/* Simple version
+	public static void rootExec(String...strings) {
+		try{
+			Process su = Runtime.getRuntime().exec("su");
+			DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
+
+			for (String s : strings) {
+				s = s.trim();
+				outputStream.writeBytes(s+"\n");
+				outputStream.flush();
+			}
+
+			outputStream.writeBytes("exit\n");
+			outputStream.flush();
+			try {
+				su.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			outputStream.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+*/
+
+/*  More complicated version of above. As I want to run multiple commands I also need to look at that. 
+    copied from https://stackoverflow.com/questions/20932102/execute-shell-command-from-android/26654728
+    from the code of CarloCannas
+*/
+	public static String rootExec(String... strings) {
+		String res = "";
+		DataOutputStream outputStream = null;
+		InputStream response = null;
+		try {
+			Process su = Runtime.getRuntime().exec("su");
+			outputStream = new DataOutputStream(su.getOutputStream());
+			response = su.getInputStream();
+
+			for (String s : strings) {
+				s = s.trim();
+				outputStream.writeBytes(s + "\n");
+				outputStream.flush();
+			}
+
+			outputStream.writeBytes("exit\n");
+			outputStream.flush();
+			try {
+				su.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			res = readFully(response);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			Closer.closeSilently(outputStream, response);
+		}
+		return res;
+	}
+
+	public static String readFully(InputStream is) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		int length = 0;
+		while ((length = is.read(buffer)) != -1) {
+			baos.write(buffer, 0, length);
+		}
+		return baos.toString("UTF-8");
+	}
+
 
 	private static void executeScript(String input) {
 		String cmd = input;
