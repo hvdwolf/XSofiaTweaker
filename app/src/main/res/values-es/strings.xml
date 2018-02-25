@@ -1,0 +1,86 @@
+<resources>
+	<string name="app_settings">Preferencias de la aplicación</string>
+	<string name="misc_settings">Otras configuraciones</string>
+	<string name="nokill_title">Activar o desactivar la opción NoKill</string>
+	<string name="nokill_sum_on">ON: las aplicaciones NO se matarán al entrar en modo de sueño profundo</string>
+	<string name="nokill_sum_off">OFF: : Comportamiento predeterminado: todas las aplicaciones se matarán al entrar en modo de sueño profundo</string>
+	<string name="skip_ch_four_title">Activar o desactivar Canal 4 (alarma)</string>
+	<string name="skip_ch_four_sum_on">ON: el canal 4 NO se silenciará. Esto permitirá escuchar las respuestas a los comandos de voz de Google Voice. También generará ruidos cuando no haya otro canal activo.</string>
+	<string name="skip_ch_four_sum_off">OFF: canal 4 silenciado. No se escucharán las respuestas a los comandos de voz de Google Voice. Tampoco habrá ruido cuando ningún otro canal esté activo.</string>
+	<string name="disable_airhelper_title">Disable canbus overlay on airconditioning change</string>
+	<string name="disable_airhelper_sum_on">ON: The Canbus overlay will not be displayed upon a change in the airconditioning.</string>
+	<string name="disable_airhelper_sum_off">OFF: The Canbus overlay will be displayed upon a change in the airconditioning.</string>
+	<string name="disable_doorhelper_title">Disable canbus overlay when a door is opened</string>
+	<string name="disable_doorhelper_sum_on">ON: When a door is open, the Canbus overlay will not be displayed.</string>
+	<string name="disable_doorhelper_sum_off">OFF: When a door is open, the Canbus overlay will be displayed.</string>
+
+	<string name="app_keymod_settings">Asignar app o acción a los botones físicos</string>
+	<string name="band_key_settings">Ajustes del botón BAND</string>
+	<string name="band_key_call_title">Botón BAND: Método de llamada</string>
+	<string name="band_key_text_title">Botón BAND: Cadena a usar</string>
+	<string name="bt_phone_key_settings">Ajustes del botón BT_PHONE</string>
+	<string name="bt_phone_key_call_title">Botón BT_PHONE: Método de llamada</string>
+	<string name="bt_phone_key_text_title">Botón BT_PHONE: Cadena a usar</string>
+	<string name="dvd_key_settings">Ajustes del botón DVD</string>
+	<string name="dvd_key_call_title">Botón DVD: Método de llamada</string>
+	<string name="dvd_key_text_title">Botón DVD: Cadena a usar</string>
+	<string name="eject_key_settings">Ajustes del botón EJECT</string>
+	<string name="eject_key_call_title">Botón EJECT: Método de llamada</string>
+	<string name="eject_key_text_title">Botón EJECT: Cadena a usar</string>
+	<string name="eq_key_settings">Ajustes del botón EQ</string>
+	<string name="eq_key_call_title">Botón EQ: Método de llamada</string>
+	<string name="eq_key_text_title">Botón EQ: Cadena a usar</string>
+	<string name="media_key_settings">Ajustes del botón MEDIA</string>
+	<string name="media_key_call_title">Botón MEDIA: Método de llamada</string>
+	<string name="media_key_text_title">Botón MEDIA: Cadena a usar</string>
+	<string name="mode_src_key_settings">Ajustes del botón MODE_SRC</string>
+	<string name="mode_src_key_call_title">Botón MODE_SRC: Método de llamada</string>
+	<string name="mode_src_key_text_title">Botón MODE_SRC: Cadena a usar</string>
+	<string name="navi_key_settings">Ajustes del botón NAVI</string>
+	<string name="navi_key_call_title">Botón NAVI: Método de llamada</string>
+	<string name="navi_key_text_title">Botón NAVI: Cadena a usar</string>
+	<string name="key_summary">Método de llamada</string>
+	<string name="key_text_title">Cadena a usar</string>
+
+	<string name="acc_on_off_settings">Asignar app o acción cuando el contacto/la unidad se encienda o se apague; o al volver de la suspensión.</string>
+	<string name="acc_on_settings">Qué hacer cuando se enciende el contacto (ACC_ON)</string>
+	<string name="acc_on_call_title">ACC_ON: Método de llamada</string>
+	<string name="acc_on_text_title">ACC_ON: Cadena a usar</string>
+	<string name="acc_off_settings">Qué hacer cuando se apaga el contacto (ACC_OFF)</string>
+	<string name="acc_off_call_title">ACC_OFF: Método de llamada</string>
+	<string name="acc_off_text_title">ACC_OFF: Cadena a usar</string>
+	<string name="resume_settings">Qué hacer cuando la unidad vuelva de suspensión</string>
+	<string name="resume_call_title">Suspensión: Método de llamada</string>
+	<string name="resume_text_title">Suspensión: Cadena a usar</string>
+
+
+	<string name="sys_keymod_settings">Asignar app o acción al botón HOME/MUTE (¡TEN CUIDADO!); Requiere un reinicio suave.</string>
+	<string name="home_key_capture_enabled_title">Activar la captura del botón HOME</string>
+	<string name="home_key_capture_summary_enabled">Activado: Asignar app u otra acción al botón HOME.</string>
+	<string name="home_key_capture_summary_disabled">Desactivado: Comportamiento por defecto del botón HOME.</string>
+	<string name="home_key_settings">Ajustes del botón HOME</string>
+	<string name="home_key_call_title">Botón HOME: Método de llamada</string>
+	<string name="home_key_text_title">Botón HOME: Cadena a usar</string>
+	<string name="back_key_capture_enabled_title">Activar la captura del botón BACK</string>
+	<string name="back_key_capture_summary_enabled">Activado: Ten cuidado(!) ya que esto anula la función onBackPressed() de android para todas (!) las aplicaciones</string>
+	<string name="back_key_capture_summary_disabled">Desactivado: Comportamiento por defecto del botón BACK.</string>
+	<string name="back_key_settings">Ajustes del botón BACK</string>
+	<string name="back_key_call_title">Botón BACK: Método de llamada</string>
+	<string name="back_key_text_title">Botón BACK: Cadena a usar</string>
+	<string name="mute_key_capture_enabled_title">Activar la captura del botón MUTE</string>
+	<string name="mute_key_capture_summary_enabled">Activado: Asignar app u otra acción al botón MUTE.</string>
+	<string name="mute_key_capture_summary_disabled">Desactivado: Comportamiento por defecto del botón MUTE: silencia los 5 canales de sonido (4 de Android y el sonido de la radio).</string>
+	<string name="mute_key_settings">Ajustes para el botón MUTE</string>
+	<string name="mute_key_call_title">Botón MUTE: Método de llamada</string>
+	<string name="mute_key_text_title">Botón MUTE: Cadena a usar</string>
+
+	<string name="about_info_screen">Pantalla de información</string>
+	<string name="donation">Donaciones</string>
+	<string name="paypal_donation_title">Donar via PayPal</string>
+	<string name="paypal_donation_summary">No es necesario ya que puedo vivir sin ello, pero puedes pagarme un vaso de vino</string>
+	<string name="about">Acerca de</string>
+	<string name="xda_discussion_title">Hilo de debate en XDA</string>
+	<string name="xda_discussion_summary">Debate o haz preguntas acerca de éste módulo en XDA</string>
+	<string name="github_title">Código fuente</string>
+	<string name="github_summary">Explora el código fuente de XSofiaTweaker en Github</string>
+</resources>
