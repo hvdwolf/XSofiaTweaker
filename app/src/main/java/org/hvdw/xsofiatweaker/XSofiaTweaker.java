@@ -37,6 +37,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 	private boolean noKillEnabled;
 	private boolean skip_ch_four;
+	private boolean disable_airhelper;
+	private boolean disable_doorhelper;
 	private String band_call_option;
 	private String band_call_entry;
 	private String bt_phone_call_option;
@@ -78,6 +80,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 		noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
 		skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
+		disable_airhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, false);
+		disable_doorhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, false);
 		band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
 		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
 		bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
@@ -112,9 +116,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 
 	public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-		XposedBridge.log(TAG + " Loaded app: " + lpparam.packageName);
+	   XposedBridge.log(TAG + " Loaded app: " + lpparam.packageName);
 
-		if (!lpparam.packageName.equals("com.syu.ms")) return;
+//	   if (!lpparam.packageName.equals("com.syu.ms")) return;
+	   if (lpparam.packageName.equals("com.syu.ms")) {
 
 /**********************************************************************************************************************************************/
 		/* This is the No Kill function */
@@ -385,8 +390,42 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				}
 			});
 		}
+	   /* End of the part where the SofiaServer hooks are taking place
+	   *  Now starts the part where the keys of the Canbus apk are captured
+	   */ 
+	   } else if (lpparam.packageName.equals("com.syu.canbus")) {
+		if (disable_airhelper == true) {
+			findAndHookMethod("com.syu.ui.air.AirHelper", lpparam.classLoader, "showAndRefresh", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, true);
+					XposedBridge.log(TAG + " prevent canbus airconditiong change popup");
+					param.setResult(null);
+				}
+			});
+		}
 
 
+		if (disable_doorhelper == true) {
+			findAndHookMethod("com.syu.ui.door.DoorHelper", lpparam.classLoader, "showAndRefresh", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, true);
+					XposedBridge.log(TAG + " prevent canbus door open popup");
+					param.setResult(null);
+				}
+			});
+		}
+	   /* End of the part where the SofiaServer hooks are taking place
+	   *  simply return out of the module if no sofiaserver or vanbus are detected
+	   */
+	   } else return;
 	}
 	/* End of the handleLoadPackage function doing the capture key functions */
 /**********************************************************************************************************************************************/

@@ -11,6 +11,14 @@ class MySettings {
     public static final String ACTION_PREF_SKIP_CH_FOUR_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_SKIP_CH_FOUR_CHANGED";
     public static final String EXTRA_PREF_SKIP_CH_FOUR_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_SKIP_CH_FOUR_ENABLED";
 
+    public static final String PREF_DISABLE_AIRHELPER = "pref_disable_airhelper";
+    public static final String ACTION_PREF_DISABLE_AIRHELPER_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_DISABLE_AIRHELPER_CHANGED";
+    public static final String EXTRA_PREF_DISABLE_AIRHELPER_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_DISABLE_AIRHELPER_ENABLED";
+
+    public static final String PREF_DISABLE_DOORHELPER = "pref_disable_doorhelper";
+    public static final String ACTION_PREF_DISABLE_DOORHELPER_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_DISABLE_DOORHELPER_CHANGED";
+    public static final String EXTRA_PREF_DISABLE_DOORHELPER_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_DISABLE_DOORHELPER_ENABLED";
+
     public static final String NAVI_CALL_OPTION = "navi_key_call_option";
     public static final String ACTION_NAVI_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_OPTION_CHANGED";
     public static final String EXTRA_NAVI_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_OPTION_STRING";

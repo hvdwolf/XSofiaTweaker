@@ -79,6 +79,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	String toastText = "";
 
         switch (key) {
+            /* All the settings belonging to the SofiaServer */
             case MySettings.PREF_NO_KILL:
                 intent.setAction(MySettings.ACTION_PREF_NO_KILL_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_NO_KILL_ENABLED, sharedPreferences.getBoolean(key, false));
@@ -216,15 +217,53 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_MUTE_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MUTE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-        }
+            /* The keys from the CANbus apk */
+            case MySettings.PREF_DISABLE_AIRHELPER:
+                intent.setAction(MySettings.ACTION_PREF_DISABLE_AIRHELPER_CHANGED);
+                intent.putExtra(MySettings.EXTRA_PREF_DISABLE_AIRHELPER_ENABLED, sharedPreferences.getBoolean(key, false));
+		toastText = "PREF_DISABLE_AIRHELPER";
+                break;
+            case MySettings.PREF_DISABLE_DOORHELPER:
+                intent.setAction(MySettings.ACTION_PREF_DISABLE_DOORHELPER_CHANGED);
+                intent.putExtra(MySettings.EXTRA_PREF_DISABLE_DOORHELPER_ENABLED, sharedPreferences.getBoolean(key, false));
+		toastText = "PREF_DISABLE_DOORHELPER";
+                break;
+            default:
+                Log.d(TAG, "Invalid setting encountered");
+                break;
+       }
 
 	Log.d(TAG, "updated key is " + key);
-	if ((toastText.equals("PREF_NO_KILL")) || (toastText.equals("PREF_SKIP_CH_FOUR")) || (toastText.equals("HOME_KEY_CAPTURE")) || (toastText.equals("MUTE_KEY_CAPTURE"))) {
+/*	if ((toastText.equals("PREF_NO_KILL")) || (toastText.equals("PREF_SKIP_CH_FOUR")) || (toastText.equals("HOME_KEY_CAPTURE")) || (toastText.equals("MUTE_KEY_CAPTURE"))) {
 		toastText = "You updated boolean key \"" + toastText + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
 	} else {
 		Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
 		toastText = "You updated key \"" + key + "\" with \"" + sharedPreferences.getString(key, "") + "\"";
-	}
+	} */
+	switch (toastText) {
+		case "PREF_NO_KILL":
+			toastText = "You updated boolean key \"" + toastText + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+			break;
+		case "PREF_SKIP_CH_FOUR":
+			toastText = "You updated boolean key \"" + toastText + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+			break;
+		case "HOME_KEY_CAPTURE":
+			toastText = "You updated boolean key \"" + toastText + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+			break;
+		case "MUTE_KEY_CAPTURE":
+			toastText = "You updated boolean key \"" + toastText + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+			break;
+		case "PREF_DISABLE_AIRHELPER":
+			toastText = "You updated boolean key \"" + toastText + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+			break;
+		case "PREF_DISABLE_DOORHELPER":
+			toastText = "You updated boolean key \"" + toastText + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+			break;
+		default:
+			Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
+			toastText = "You updated key \"" + key + "\" with \"" + sharedPreferences.getString(key, "") + "\"";
+			break;
+        }
 	Toast mToast = Toast.makeText(mContext, toastText, Toast.LENGTH_LONG);
 	mToast.show();
 
