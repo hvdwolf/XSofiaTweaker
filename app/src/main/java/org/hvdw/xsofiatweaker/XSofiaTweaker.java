@@ -68,6 +68,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private String mute_call_option;
 	private String mute_call_entry;
 
+	private String test_call_option;
+	private String test_entry;
+
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
 		XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
@@ -171,7 +174,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 
 		if ((bt_phone_call_option != "") && (bt_phone_call_entry != "")) {
-			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyBtPhone", new XC_MethodHook() {
+//			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyBtPhone", new XC_MethodHook() {  Is not correct one ??
+			findAndHookMethod("util.JumpPage", lpparam.classLoader, "btPageDialByKey", new XC_MethodHook() { 
 				@Override
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 					Context context = (Context) AndroidAppHelper.currentApplication();
@@ -387,17 +391,6 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	/* End of the handleLoadPackage function doing the capture key functions */
 /**********************************************************************************************************************************************/
 
-	private static void onItemSelectedp(int input) {
-		StringBuffer output = new StringBuffer();
-		String cmd = "/data/launcher.sh " + input + " ";
-		try {
-			Process p = Runtime.getRuntime().exec(cmd);
-			Log.d("MCUKEY", cmd);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	};
-
 	public void whichActionToPerform (Context context, String callMethod, String actionString) {
 		XposedBridge.log(TAG + " WhichActionToPerform: Call method: " + callMethod + " actionString: " + actionString);
 		if (callMethod.equals("pkgname")) {
@@ -408,31 +401,27 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			startActivityByIntentName(context, actionString);
 		}
 		if (callMethod.equals("sys_call")) {
-			executeSystemCall(actionString);
+			//executeSystemCall(actionString);
+			String[] cmd = actionString.split(";");
+			shellExec(cmd);
 		}
-		/*if (callMethod.equals("broad_cast")) {
-			executeBroadcast(actionString);
-		} 
-		if (callMethod.equals("script")) {
-			executeScript(actionString);
-		} */
 	};
 
 
-	private static void executeSystemCall(String input) {
-		/*String cmd = input;
+/*	private static void executeSystemCall(String input) {
+		String cmd = input;
 		try {
 			Process p = Runtime.getRuntime().exec(cmd);
 			Log.d(TAG, cmd);
 			XposedBridge.log(TAG + ": " + cmd);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
-		String[] cmd = input.split(";");
-		shellExec(cmd);
+		}
 	};
+*/
 
-	public static void shellExec(String...strings) {
+// Simple versions: a normal shell version and an su version
+/*	public static void shellExec(String...strings) {
 		try{
 			Process sh = Runtime.getRuntime().exec("sh");
 			DataOutputStream outputStream = new DataOutputStream(sh.getOutputStream());
@@ -456,7 +445,6 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		}
 	}
 
-/* Simple version
 	public static void rootExec(String...strings) {
 		try{
 			Process su = Runtime.getRuntime().exec("su");
@@ -482,10 +470,42 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	}
 */
 
-/*  More complicated version of above. As I want to run multiple commands I also need to look at that. 
+/*  More complicated versions of above shell and su call. As I want to run multiple commands I also need to look at that. 
     copied from https://stackoverflow.com/questions/20932102/execute-shell-command-from-android/26654728
     from the code of CarloCannas
 */
+	public static String shellExec(String... strings) {
+		String res = "";
+		DataOutputStream outputStream = null;
+		InputStream response = null;
+		try {
+			Process sh = Runtime.getRuntime().exec("sh");
+			outputStream = new DataOutputStream(sh.getOutputStream());
+			response = sh.getInputStream();
+
+			for (String s : strings) {
+				s = s.trim();
+				outputStream.writeBytes(s + "\n");
+				outputStream.flush();
+			}
+
+			outputStream.writeBytes("exit\n");
+			outputStream.flush();
+			try {
+				sh.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			res = readFully(response);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			Closer.closeSilently(outputStream, response);
+		}
+		return res;
+	}
+
+
 	public static String rootExec(String... strings) {
 		String res = "";
 		DataOutputStream outputStream = null;

@@ -289,7 +289,7 @@
 					android:data="https://github.com/hvdwolf/XSofiaTweaker" />
 			</Preference>
 		</PreferenceCategory>
-		<PreferenceCategory
+<!--		<PreferenceCategory
 			android:title="@string/donation"
 			android:key="DONATION">
 			<Preference
@@ -299,10 +299,14 @@
 				<intent
 					android:action="android.intent.action.VIEW"
 					android:data="@string/paypal_url" />
-					<!-- android:data="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick\u0026hosted_button_id=HK2KGH6QVA992"  -->
-											<!-- \u0026 unicode definition for ampersand -->
 			</Preference>
-		</PreferenceCategory>
+		</PreferenceCategory> -->
+<!--		<PreferenceCategory android:title="Apps List">
+
+			<ListPreference android:key="app_selector"
+			android:title="Select other app" android:summary="Dynamic categories summary"
+			android:defaultValue="0" />
+		</PreferenceCategory> -->
 	</PreferenceScreen>
 
 </PreferenceScreen>
