@@ -43,18 +43,22 @@ Please help to translate in your own language: see bottom of this page.
 ![Image of Miscellaneous Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/02-Settings-Miscellaneous.png)
 
 **Application Key Mod Settings**
-![Image of app key mods settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/03-Settings-AppKeyMods.png)
+![Image of app key mods settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/03-00-Settings-AppKeyMods.png)
 **Call Method**
 ![Image of app key call method](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/03-01-Settings-AppKeyMods.png)
 **String to be used**
 ![Image of app key mods text string](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/03-02-Settings-AppKeyMods.png)
 
 **What to do when the contact/unit is switched ON or OFF**
-![Image of acc_on_off_resume text string](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/Settings-acc_on_of.png)
+![Image of acc_on_off_resume text string](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/04-Settings-AccOnOff.png)
 
 **System Key Mod Settings**
-![Image of System Key Mod Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/04-Settings-SysKeyMods.png)
+![Image of System Key Mod Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/05-00-systemkeys.png)
+**System Key Mod Settings modified**
+![Image of System Key Mod Settings modified](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/05-01-systemkeys.png)
 
+**Info screen**
+![Image of System Key Mod Settings](https://github.com/hvdwolf/XSofiaTweaker/blob/master/images/06-00-info.png)
 
 ## Translations
 You can help to translate this app into your own language.
