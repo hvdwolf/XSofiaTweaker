@@ -1,10 +1,13 @@
 # XSofiaTweaker
 
 This xposed module:
-* captures the hardware keys from the Joying unit and allows you to reprogram them. This must/can be configured from the Settings (sub)screen.
+* captures the hardware keys from the Joying unit and allows you to reprogram them.
+* allows you to reprogram the steering wheel keys.
 * allows you to switch on/off the nokill.
 * allows you to unmute channel 4, which is used for Google voice feedback.
 * can act on the ACC_ON, ACC_OFF and Resume events.
+
+This must/can be configured from the Settings (sub)screen.
 
 This module can replace the custom key mod mod from Gustden.
 
@@ -22,12 +25,16 @@ Please help to translate in your own language: see bottom of this page.
 * Eject (key 32) (confirmed by gtx(aspec))
 * MEDIA (key 33)
 * SRC/Mode (key 37) (confirmed by gtx(aspec))
+* EQ button (with side effects: see below)
 * HOME (key 3)
-* Settings page => page works and settings are used.
+* double tap/triple tap of keys, meaning that you can "rotate" keys. For example: Your steering wheel BT or Mode/SRC button, can start the radio app on 1 tap, start a media player on 2 taps, or start the phone app on 3 taps.
 
 
-**Works with has strange side effects:**
+**Works with strange side effects:**
 * EQ(ualizer) button: hardware keys disabled for 1-2 minutes, unit mutes and 1-2 seconds later unmutes andhardware keys work again.
+
+**Untested**
+* The EJECT button is completely untested (I don't have that one)
 
 **ToDo list:**
 
@@ -35,6 +42,8 @@ Please help to translate in your own language: see bottom of this page.
 * Dimmer key
 * ....
 
+**Note w.r.t. the NoKill function:**
+Some apps prevent the unit from going into deep-sleep. The old SofiaServer simply killed these apps. This module doesn't do that if you enable the skipping/bypassing of that "kill" function. The MCU detects the apps keeping the CPU cores at higher frequency and can completely switch off the unit, resulting in a cold-boot upon switching on the contact. That is not the fault of this module. It is the fault of these bad behaving apps. A way to overcome this is to kill this specific bad behaving app(s) on ACC_OFF event (key 98), and to start them again on the ACC_ON event (key 97).
 
 ## Some preliminary images
 **Main settings screen**
