@@ -14,11 +14,16 @@ import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.app.AndroidAppHelper;
 import android.widget.Toast;
-
+/* shellExec and rootExec methods */
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
+/* assets filecopy */
+import android.content.res.AssetManager;
+import java.io.OutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 import de.robv.android.xposed.XposedBridge;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
@@ -112,6 +117,12 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		mute_key_capture_enabled = sharedPreferences.getBoolean(MySettings.MUTE_KEY_CAPTURE, true);
 		mute_call_option = sharedPreferences.getString(MySettings.MUTE_CALL_OPTION, "");
 		mute_call_entry = sharedPreferences.getString(MySettings.MUTE_CALL_ENTRY, "");
+
+		// check our assest file and copy to /sdcard/XSofiaTweaker if necessary
+		/*Log.d(TAG, "copying navi_app.txt");
+		CheckCopyAssetFile("navi_app.txt");
+		Log.d(TAG, "copying player_app.txt");
+		CheckCopyAssetFile("player_app.txt");*/
 	}
 
 
@@ -189,7 +200,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 					bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
 					bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
 					XposedBridge.log(TAG + " mcuKeyBtPhone pressed; bt_phone_call_option: " + bt_phone_call_option + " bt_phone_call_entry : " + bt_phone_call_entry);
-					whichActionToPerform(context, navi_call_option, navi_call_entry);
+					whichActionToPerform(context, bt_phone_call_option, bt_phone_call_entry);
 
 					param.setResult(null);
 				}
@@ -627,5 +638,46 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			context.startActivity(intent);
 		}
 	}
+/* Copy the navi_app.txt and player_app.txt to /sdcard/XSofiaTweaker
+*  but only if they do not exist yet
+*/
+	private void CheckCopyAssetFile(String fileName) {
+		Context context = (Context) AndroidAppHelper.currentApplication();
+		AssetManager assetManager = context.getAssets();
+		String[] files = null;
+		InputStream in = null;
+		OutputStream out = null;
+		// Check if folder exists
+		File folder = new File("/sdcard/XSofiaTweaker");
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
+		// Check if file exists
+		File file = new File("/sdcard/XSofiaTweaker/" + fileName);
+		if (!file.exists()) {
+			try
+			{
+				in = assetManager.open(fileName);
+				out = new FileOutputStream("/sdcard/XSofiaTweaker/" + fileName);
+				copyFile(in, out);
+				in.close();
+				in = null;
+				out.flush();
+				out.close();
+				out = null;
+			}
+			catch(IOException e)
+			{
+				Log.e(TAG, "Failed to copy asset file: " + fileName, e);
+			}
+		}
+	}
 
+	private void copyFile(InputStream in, OutputStream out) throws IOException {
+		byte[] buffer = new byte[1024];
+		int read;
+		while((read = in.read(buffer)) != -1) {
+			out.write(buffer, 0, read);
+		}
+	}
 }
