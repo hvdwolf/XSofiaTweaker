@@ -23,7 +23,6 @@ local.properties
 proguard/
 
 #android studio files
-.idea
-
-
+.idea/
+SofiaTweaker.iml
 

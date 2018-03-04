@@ -1,7 +1,9 @@
 package org.hvdw.xsofiatweaker;
 
 import android.app.Activity;
+import android.app.AndroidAppHelper;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 
 /*import java.util.ArrayList;
@@ -18,10 +20,18 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceActivity;
 
 import android.content.SharedPreferences;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 //import android.categories.Category;
 
 
 public class SettingsActivity extends PreferenceActivity {
+	public static final String TAG = "XSofiaTweaker-SettingsActivity";
 
 	Context mContext;
 	AttributeSet attrs;
@@ -34,6 +44,59 @@ public class SettingsActivity extends PreferenceActivity {
 				.replace(android.R.id.content, new SettingsFragment(), "settings")
 				.commit();
 		}
+
+		//check our assets file and copy to /sdcard/XSofiaTweaker if necessary
+		//Context mContext = (Context) AndroidAppHelper.currentApplication();
+/*		Log.d(TAG, "copying navi_app.txt");
+		CheckCopyAssetFile( "navi_app.txt");
+		Log.d(TAG, "copying player_app.txt");
+		CheckCopyAssetFile( "player_app.txt"); */
+
+
+	}
+
+	/* Copy the navi_app.txt and player_app.txt to /sdcard/XSofiaTweaker
+	*  but only if they do not exist yet, which means on first run or ifthe user
+	*  deleted them, or they are missing for whatever reason
+	*/
+	//    public static void CheckCopyAssetFile(Context mContext, String fileName) {
+	public static void CheckCopyAssetFile(String fileName) {
+		Context mContext = (Context) AndroidAppHelper.currentApplication();
+		AssetManager assetManager = mContext.getAssets();
+		String[] files = null;
+		InputStream in = null;
+		OutputStream out = null;
+		// Check if folder exists
+		File folder = new File("/sdcard/XSofiaTweaker");
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
+		// Check if file exists
+		File file = new File("/sdcard/XSofiaTweaker/" + fileName);
+		if (!file.exists()) {
+			try {
+				in = assetManager.open(fileName);
+				out = new FileOutputStream("/sdcard/XSofiaTweaker/" + fileName);
+				copyFile(in, out);
+				in.close();
+				in = null;
+				out.flush();
+				out.close();
+				out = null;
+			} catch (IOException e) {
+				Log.e(TAG, "Failed to copy asset file: " + fileName, e);
+			}
+		}
+	}
+
+	public static void copyFile(InputStream in, OutputStream out) throws IOException {
+		byte[] buffer = new byte[1024];
+		int read;
+		while ((read = in.read(buffer)) != -1) {
+			out.write(buffer, 0, read);
+		}
+	}
+    /* End of the assets file copy */
 
 //	AppsList MyAppsList = new AppsList(mContext, attrs);
 //	MyAppsList = AppsList();
@@ -51,8 +114,5 @@ public class SettingsActivity extends PreferenceActivity {
 			}
 			listPreferenceCategory.setEntries(entries);
 			listPreferenceCategory.setEntryValues(entryValues);
-		} */
-
-	}
-
+		}*/
 }

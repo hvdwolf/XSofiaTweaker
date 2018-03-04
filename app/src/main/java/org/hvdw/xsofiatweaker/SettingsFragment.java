@@ -76,7 +76,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Intent intent = new Intent();
-	String toastText = "";
+	    String toastText = "";
 
         switch (key) {
             /* All the settings belonging to the SofiaServer */
@@ -233,14 +233,15 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 break;
        }
 
-	Log.d(TAG, "updated key is " + key);
-	if (toastText.equals("BOOLEAN_KEY")) {
-		toastText = "You updated boolean key \"" + (String)key + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
-	} else {
-		Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
-		toastText = "You updated key \"" + key + "\" with \"" + sharedPreferences.getString(key, "") + "\"";
-	Toast mToast = Toast.makeText(mContext, toastText, Toast.LENGTH_LONG);
-	mToast.show();
+	    Log.d(TAG, "updated key is " + key);
+	    if (toastText.equals("BOOLEAN_KEY")) {
+		    toastText = "You updated boolean key \"" + (String)key + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+	    } else {
+            Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
+            toastText = "You updated key \"" + key + "\" with \"" + sharedPreferences.getString(key, "") + "\"";
+        }
+        Toast mToast = Toast.makeText(mContext, toastText, Toast.LENGTH_LONG);
+	    mToast.show();
 
 
         if (intent.getAction() != null) {

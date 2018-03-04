@@ -4,14 +4,14 @@ import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.SharedPreferences;
+/*import android.content.SharedPreferences;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.ActivityManager.RunningTaskInfo;
+import android.app.ActivityManager.RunningTaskInfo; */
 import android.content.ComponentName;
-import android.content.SharedPreferences;
+/*import android.content.SharedPreferences;
 import android.preference.Preference;
-import android.preference.PreferenceManager;
+import android.preference.PreferenceManager; */
 import android.app.AndroidAppHelper;
 import android.widget.Toast;
 /* shellExec and rootExec methods */
@@ -20,10 +20,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 /* assets filecopy */
-import android.content.res.AssetManager;
+/*import android.content.res.AssetManager;
 import java.io.OutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileOutputStream; */
 
 import de.robv.android.xposed.XposedBridge;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
@@ -32,6 +32,7 @@ import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
+
 
 
 public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPackage {
@@ -80,6 +81,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
+		Context mContext = (Context) AndroidAppHelper.currentApplication();
 		XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
 		sharedPreferences.makeWorldReadable();
 
@@ -118,11 +120,12 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		mute_call_option = sharedPreferences.getString(MySettings.MUTE_CALL_OPTION, "");
 		mute_call_entry = sharedPreferences.getString(MySettings.MUTE_CALL_ENTRY, "");
 
-		// check our assest file and copy to /sdcard/XSofiaTweaker if necessary
-		/*Log.d(TAG, "copying navi_app.txt");
-		CheckCopyAssetFile("navi_app.txt");
-		Log.d(TAG, "copying player_app.txt");
-		CheckCopyAssetFile("player_app.txt");*/
+		// check our assets file and copy to /sdcard/XSofiaTweaker if necessary
+        /*Log.d(TAG, "copying navi_app.txt");
+        UtilsActivity.CheckCopyAssetFile(mContext, "navi_app.txt");
+        Log.d(TAG, "copying player_app.txt");
+        UtilsActivity.CheckCopyAssetFile(mContext, "player_app.txt"); */
+
 	}
 
 
@@ -636,48 +639,6 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		XposedBridge.log(TAG + " startActivityByPackageName: " + packageName);
 		if (intent != null) {
 			context.startActivity(intent);
-		}
-	}
-/* Copy the navi_app.txt and player_app.txt to /sdcard/XSofiaTweaker
-*  but only if they do not exist yet
-*/
-	private void CheckCopyAssetFile(String fileName) {
-		Context context = (Context) AndroidAppHelper.currentApplication();
-		AssetManager assetManager = context.getAssets();
-		String[] files = null;
-		InputStream in = null;
-		OutputStream out = null;
-		// Check if folder exists
-		File folder = new File("/sdcard/XSofiaTweaker");
-		if (!folder.exists()) {
-			folder.mkdirs();
-		}
-		// Check if file exists
-		File file = new File("/sdcard/XSofiaTweaker/" + fileName);
-		if (!file.exists()) {
-			try
-			{
-				in = assetManager.open(fileName);
-				out = new FileOutputStream("/sdcard/XSofiaTweaker/" + fileName);
-				copyFile(in, out);
-				in.close();
-				in = null;
-				out.flush();
-				out.close();
-				out = null;
-			}
-			catch(IOException e)
-			{
-				Log.e(TAG, "Failed to copy asset file: " + fileName, e);
-			}
-		}
-	}
-
-	private void copyFile(InputStream in, OutputStream out) throws IOException {
-		byte[] buffer = new byte[1024];
-		int read;
-		while((read = in.read(buffer)) != -1) {
-			out.write(buffer, 0, read);
 		}
 	}
 }
