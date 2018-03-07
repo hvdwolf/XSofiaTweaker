@@ -32,7 +32,9 @@ import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
+import de.robv.android.xposed.XposedHelpers;
+//import de.robv.android.xposed.XC_MethodReplacement;
+//import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 
 public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPackage {
@@ -129,7 +131,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	}
 
 
-	public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+	public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
 	   XposedBridge.log(TAG + " Loaded app: " + lpparam.packageName);
 
 //	   if (!lpparam.packageName.equals("com.syu.ms")) return;
@@ -175,6 +177,41 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				}
 			});
 		}
+
+		/* Correct the mediaKey function in app/ToolkitApp.java
+		*  Gustdens modified code only sends media keys to the active media player
+		*  The original code uses an intent and "every" media player listening will react. */
+//		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "mediaKey", int.class, new XC_MethodReplacement() {
+		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "mediaKey", int.class, new XC_MethodHook() {
+			@Override
+			//protected void replaceHookedMethod(XC_MethodHook.MethodHookParam param) {
+			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+				int onKey1 = (int) param.args[0];
+				XposedBridge.log(TAG + " Do not call mediaKey(int, int) but call onKey with parameter 1");
+				Log.d(TAG, "Do not call mediaKey(int, int) but call onKey with parameter 1");
+				Class<?> classstart = XposedHelpers.findClass("app.ToolkitApp", lpparam.classLoader);
+				Object class2Instance = XposedHelpers.newInstance(classstart, onKey1);
+				XposedHelpers.callMethod(class2Instance, "onKey");
+				XposedBridge.log(TAG + " onKey should be done instead of mediaKey" );
+
+				param.setResult(null);
+			}
+		});
+
+		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "mediaKey", int.class, int.class, new XC_MethodHook() {
+			@Override
+			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+				int onKey2 = (int) param.args[1];
+				XposedBridge.log(TAG + " Do not call mediaKey(int, int) but call onKey with parameter 2");
+				Log.d(TAG, "Do not call mediaKey(int, int) but call onKey with parameter 2");
+				Class<?> classstart = XposedHelpers.findClass("app.ToolkitApp", lpparam.classLoader);
+				Object class2Instance = XposedHelpers.newInstance(classstart, onKey2);
+				XposedHelpers.callMethod(class2Instance, "onKey");
+				XposedBridge.log(TAG + " onKey should be done instead of mediaKey" );
+
+				param.setResult(null);
+			}
+		});
 
 /**********************************************************************************************************************************************/
 		/* Below are the captured key functions */
