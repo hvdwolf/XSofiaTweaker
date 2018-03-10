@@ -106,6 +106,14 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
+	    case MySettings.BT_HANG_CALL_OPTION:
+                intent.setAction(MySettings.ACTION_BT_HANG_CALL_OPTION_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BT_HANG_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BT_HANG_CALL_ENTRY:
+                intent.setAction(MySettings.ACTION_BT_HANG_CALL_ENTRY_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BT_HANG_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
 	    case MySettings.DVD_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_DVD_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_DVD_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));

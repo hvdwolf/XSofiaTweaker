@@ -22,6 +22,9 @@
 	<string name="bt_phone_key_settings">Settings for the BT_PHONE key</string>
 	<string name="bt_phone_key_call_title">BT_PHONE Key: Call method</string>
 	<string name="bt_phone_key_text_title">BT_PHONE Key: String to be used</string>
+	<string name="bt_hang_key_settings">Settings for the BT_HANG key</string>
+	<string name="bt_hang_key_call_title">BT_HANG Key: Call method</string>
+	<string name="bt_hang_key_text_title">BT_HANG Key: String to be used</string>
 	<string name="dvd_key_settings">Settings for the DVD key</string>
 	<string name="dvd_key_call_title">DVD Key: Call method</string>
 	<string name="dvd_key_text_title">DVD Key: String to be used</string>

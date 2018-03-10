@@ -64,6 +64,21 @@
 				android:title="@string/bt_phone_key_text_title"
 				android:defaultValue="com.syu.bt/.act.ActBt" />
 		</PreferenceCategory>
+<!--		<PreferenceCategory
+			android:title="@string/bt_hang_key_settings"
+			android:key="bt_hang_key_settings">
+			<ListPreference
+			        android:key="bt_hang_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgintent"
+			        android:title="@string/bt_hang_key_call_title" />
+			<EditTextPreference
+				android:dependency="bt_hang_key_call_option"
+				android:key="bt_hang_key_entry"
+				android:title="@string/bt_hang_key_text_title"
+				android:defaultValue="com.syu.bt/.act.ActBt" />
+		</PreferenceCategory> -->
 		<PreferenceCategory
 			android:title="@string/dvd_key_settings"
 			android:key="dvd_key_settings">

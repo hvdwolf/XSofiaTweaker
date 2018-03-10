@@ -51,6 +51,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private String band_call_entry;
 	private String bt_phone_call_option;
 	private String bt_phone_call_entry;
+	private String bt_hang_call_option;
+	private String bt_hang_call_entry;
 	private String dvd_call_option;
 	private String dvd_call_entry;
 	private String eject_call_option;
@@ -95,6 +97,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
 		bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
 		bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
+		bt_hang_call_option = sharedPreferences.getString(MySettings.BT_HANG_CALL_OPTION, "");
+		bt_hang_call_entry = sharedPreferences.getString(MySettings.BT_HANG_CALL_ENTRY, "");
 		dvd_call_option = sharedPreferences.getString(MySettings.DVD_CALL_OPTION, "");
 		dvd_call_entry = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY, "");
 		eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
@@ -182,7 +186,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		*  Gustdens modified code only sends media keys to the active media player
 		*  The original code uses an intent and "every" media player listening will react. */
 //		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "mediaKey", int.class, new XC_MethodReplacement() {
-		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "mediaKey", int.class, new XC_MethodHook() {
+/*		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "mediaKey", int.class, new XC_MethodHook() {
 			@Override
 			//protected void replaceHookedMethod(XC_MethodHook.MethodHookParam param) {
 			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -210,6 +214,19 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				XposedBridge.log(TAG + " onKey should be done instead of mediaKey" );
 
 				param.setResult(null);
+			}
+		}); */
+
+		/* Prevent the BT app from staying on top */
+		findAndHookMethod("util.JumpPage", lpparam.classLoader, "activityByIntentName", String.class, new XC_MethodHook() {
+			@Override
+			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+				String actionName = (String) param.args[0];
+				if (actionName == "com.syu.bt") {
+					Log.d(TAG, "bt intent received");
+					XposedBridge.log(TAG + " skipped com.syu.bt force launch");
+					param.setResult(null);
+				}
 			}
 		});
 
@@ -370,6 +387,31 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				}
 			}
 		});
+
+		if ((bt_hang_call_option != "") && (bt_hang_call_entry != "")) {
+			findAndHookMethod("dev.ReceiverMcu", lpparam.classLoader, "onHandleBt", byte[].class, int.class, int.class, new XC_MethodHook() { 
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					byte[] data =  (byte[]) param.args[0];
+					int start = (int) param.args[1];
+					byte b = data[start];
+					byte c = data[start + 1];
+
+					if ((b == 16) && (c == 0)) {
+						Context context = (Context) AndroidAppHelper.currentApplication();
+						XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+						sharedPreferences.makeWorldReadable();
+						bt_hang_call_option = sharedPreferences.getString(MySettings.BT_HANG_CALL_OPTION, "");
+						bt_hang_call_entry = sharedPreferences.getString(MySettings.BT_HANG_CALL_ENTRY, "");
+						XposedBridge.log(TAG + " BT_Hang pressed; bt_hang_call_option: " + bt_hang_call_option + " bt_hang_call_entry : " + bt_hang_call_entry);
+						whichActionToPerform(context, bt_hang_call_option, bt_hang_call_entry);
+
+						param.setResult(null);
+					}
+				}
+			});
+		}
+
 
 		findAndHookMethod("util.JumpPage", lpparam.classLoader, "broadcastByIntentName", String.class, new XC_MethodHook() {
 			@Override

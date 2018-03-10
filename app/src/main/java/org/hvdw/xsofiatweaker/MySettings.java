@@ -47,6 +47,13 @@ class MySettings {
     public static final String ACTION_BT_PHONE_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_ENTRY_CHANGED";
     public static final String EXTRA_BT_PHONE_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_ENTRY_STRING";
 
+    public static final String BT_HANG_CALL_OPTION = "bt_hang_key_call_option";
+    public static final String ACTION_BT_HANG_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_HANG_CALL_OPTION_CHANGED";
+    public static final String EXTRA_BT_HANG_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_HANG_CALL_OPTION_STRING";
+    public static final String BT_HANG_CALL_ENTRY = "bt_hang_key_entry";
+    public static final String ACTION_BT_HANG_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_HANG_CALL_ENTRY_CHANGED";
+    public static final String EXTRA_BT_HANG_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_HANG_CALL_ENTRY_STRING";
+
     public static final String BAND_CALL_OPTION = "band_key_call_option";
     public static final String ACTION_BAND_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BAND_CALL_OPTION_CHANGED";
     public static final String EXTRA_BAND_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BAND_CALL_OPTION_STRING";
