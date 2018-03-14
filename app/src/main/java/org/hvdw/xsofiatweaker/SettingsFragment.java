@@ -228,6 +228,11 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.putExtra(MySettings.EXTRA_PREF_DISABLE_DOORHELPER_ENABLED, sharedPreferences.getBoolean(key, false));
 		toastText = "BOOLEAN_KEY";
                 break;
+            case MySettings.PREF_DISABLE_BTPHONETOP:
+                intent.setAction(MySettings.ACTION_PREF_DISABLE_BTPHONETOP_CHANGED);
+                intent.putExtra(MySettings.EXTRA_PREF_DISABLE_BTPHONETOP_ENABLED, sharedPreferences.getBoolean(key, false));
+        toastText = "BOOLEAN_KEY";
+                break;
             default:
                 Log.d(TAG, "Invalid setting encountered");
                 break;
