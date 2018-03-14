@@ -47,6 +47,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private boolean skip_ch_four;
 	private boolean disable_airhelper;
 	private boolean disable_doorhelper;
+	private boolean disable_btphonetop;
+
 	private String band_call_option;
 	private String band_call_entry;
 	private String bt_phone_call_option;
@@ -93,6 +95,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
 		disable_airhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, false);
 		disable_doorhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, false);
+		disable_btphonetop = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
+
 		band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
 		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
 		bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
@@ -179,6 +183,21 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 						param.setResult(null);
 					}
 				}
+			});
+		}
+
+		if (disable_btphonetop == true) {
+			Class<?> ProfileInfoClass = XposedHelpers.findClass("module.bt.HandlerBt$3", lpparam.classLoader);
+			   XposedBridge.hookAllMethods(ProfileInfoClass, "topChanged", new XC_MethodHook() {
+				   @Override
+				   protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+					   Context context = (Context) AndroidAppHelper.currentApplication();
+					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					   sharedPreferences.makeWorldReadable();
+					   disable_btphonetop = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
+					   XposedBridge.log(TAG + " prevent bt phone app from forcing always on top during call");
+					   param.setResult(null);
+				   }
 			});
 		}
 
@@ -483,6 +502,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				}
 			});
 		}
+
 	   /* End of the part where the SofiaServer hooks are taking place
 	   *  Now starts the part where the keys of the Canbus apk are captured
 	   */ 
@@ -515,6 +535,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				}
 			});
 		}
+
 	   /* End of the part where the SofiaServer hooks are taking place
 	   *  simply return out of the module if no sofiaserver or vanbus are detected
 	   */

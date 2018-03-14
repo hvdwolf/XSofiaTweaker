@@ -14,6 +14,10 @@
 	<string name="disable_doorhelper_title">Disable canbus overlay when a door is opened</string>
 	<string name="disable_doorhelper_sum_on">ON: When a door is open, the Canbus overlay will not be displayed.</string>
 	<string name="disable_doorhelper_sum_off">OFF: When a door is open, the Canbus overlay will be displayed.</string>
+	<string name="disable_btphonetop_title">Disable the Phone App from being Always On Top</string>
+	<string name="disable_btphonetop_sum_on">ON: Bluetooth Phone App will not force Always On Top during a call</string>
+	<string name="disable_btphonetop_sum_off">OFF: Bluetooth Phone App will always be on top during a call</string>
+
 
 	<string name="app_keymod_settings">Assign app or action to hardware buttons</string>
 	<string name="band_key_settings">Settings for the BAND key</string>
