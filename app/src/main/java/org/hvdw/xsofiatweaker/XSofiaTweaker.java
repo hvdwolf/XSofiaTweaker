@@ -213,8 +213,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				XposedBridge.log(TAG + " Do not call mediaKey(int, int) but call onKey with parameter 1");
 				Log.d(TAG, "Do not call mediaKey(int, int) but call onKey with parameter 1");
 				Class<?> classstart = XposedHelpers.findClass("app.ToolkitApp", lpparam.classLoader);
-				Object class2Instance = XposedHelpers.newInstance(classstart, onKey1);
-				XposedHelpers.callMethod(class2Instance, "onKey");
+				//Object class2Instance = XposedHelpers.newInstance(classstart, onKey1);
+				//XposedHelpers.callMethod(class2Instance, "onKey");
+				XposedHelpers.callMethod(onKey1, "onKey");
 				XposedBridge.log(TAG + " onKey should be done instead of mediaKey" );
 
 				param.setResult(null);
@@ -228,26 +229,14 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 				XposedBridge.log(TAG + " Do not call mediaKey(int, int) but call onKey with parameter 2");
 				Log.d(TAG, "Do not call mediaKey(int, int) but call onKey with parameter 2");
 				Class<?> classstart = XposedHelpers.findClass("app.ToolkitApp", lpparam.classLoader);
-				Object class2Instance = XposedHelpers.newInstance(classstart, onKey2);
-				XposedHelpers.callMethod(class2Instance, "onKey");
+				//Object class2Instance = XposedHelpers.newInstance(classstart, onKey2);
+				//XposedHelpers.callMethod(class2Instance, "onKey");
+				XposedHelpers.callMethod(onKey2, "onKey");
 				XposedBridge.log(TAG + " onKey should be done instead of mediaKey" );
-
 				param.setResult(null);
 			}
 		}); */
 
-		/* Prevent the BT app from staying on top */
-		findAndHookMethod("util.JumpPage", lpparam.classLoader, "activityByIntentName", String.class, new XC_MethodHook() {
-			@Override
-			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-				String actionName = (String) param.args[0];
-				if (actionName == "com.syu.bt") {
-					Log.d(TAG, "bt intent received");
-					XposedBridge.log(TAG + " skipped com.syu.bt force launch");
-					param.setResult(null);
-				}
-			}
-		});
 
 /**********************************************************************************************************************************************/
 		/* Below are the captured key functions */
