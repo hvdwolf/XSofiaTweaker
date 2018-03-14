@@ -18,7 +18,6 @@
 	<string name="disable_btphonetop_sum_on">ON: Bluetooth Phone App will not force Always On Top during a call</string>
 	<string name="disable_btphonetop_sum_off">OFF: Bluetooth Phone App will always be on top during a call</string>
 
-
 	<string name="app_keymod_settings">Assign app or action to hardware buttons</string>
 	<string name="band_key_settings">Settings for the BAND key</string>
 	<string name="band_key_call_title">BAND Key: Call method</string>
@@ -60,7 +59,6 @@
 	<string name="resume_settings">What to do when the unit is coming out of resume</string>
 	<string name="resume_call_title">Resume: Call method</string>
 	<string name="resume_text_title">Resume: String to be used</string>
-
 
 	<string name="sys_keymod_settings">Assign app or action to HOME/MUTE hardware button (BE CAREFUL!); Requires soft reboot.</string>
 	<string name="home_key_capture_enabled_title">Enable HOME key capture</string>

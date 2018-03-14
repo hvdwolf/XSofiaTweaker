@@ -13,6 +13,9 @@
 	<string name="disable_doorhelper_title">Schakel canbus overlay uit wanneer een deur open staat</string>
 	<string name="disable_doorhelper_sum_on">AAN: Bij een geopende deur wordt de Canbus overlay niet getoond.</string>
 	<string name="disable_doorhelper_sum_off">UIT: Bij een geopende deur wordt de Canbus overlay wel getoond.</string>
+	<string name="disable_btphonetop_title">Voorkom dat de BT telefoon app altijd op de voorgrond blijft tijdens bellen.</string>
+	<string name="disable_btphonetop_sum_on">AAN: Bluetooth Telefoon App blijft niet op de voorgrond tijdens bellen.</string>
+	<string name="disable_btphonetop_sum_off">OFF: Bluetooth Telefoon App blijft op de voorgrond tijdens bellen.</string>
 
 	<string name="app_keymod_settings">Koppel andere apk of actie aan een hardware knop</string>
 	<string name="band_key_settings">Instelling voor de BAND knop</string>
@@ -52,7 +55,6 @@
 	<string name="resume_settings">Wat te doen als de unit uit sluimer stand komt</string>
 	<string name="resume_call_title">Resume: Aanroep methode</string>
 	<string name="resume_text_title">Resume: Te gebruiken commandoregel</string>
-
 
 	<string name="sys_keymod_settings">Definieer apks of acties aan de HOME/MUTE hardware knop (Wees voorzichtig!); Vereist soft reboot.</string>
 	<string name="home_key_capture_enabled_title">Afvangen HOME knop functie</string>

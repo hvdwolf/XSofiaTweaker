@@ -13,6 +13,9 @@
 	<string name="disable_doorhelper_title">Desactivar el cartel Canbus cuando se abra una puerta</string>
 	<string name="disable_doorhelper_sum_on">ON: Cuando se abra una puerta, el cartel Canbus no se mostrará.</string>
 	<string name="disable_doorhelper_sum_off">OFF: Cuando se abra una puerta, el cartel Canbus se mostrará.</string>
+	<string name="disable_btphonetop_title">Disable the Phone App from being Always On Top</string>
+	<string name="disable_btphonetop_sum_on">ON: Bluetooth Phone App will not force Always On Top during a call</string>
+	<string name="disable_btphonetop_sum_off">OFF: Bluetooth Phone App will always be on top during a call</string>
 
 	<string name="app_keymod_settings">Asignar app o acción a los botones físicos</string>
 	<string name="band_key_settings">Ajustes del botón BAND</string>
