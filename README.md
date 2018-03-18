@@ -1,11 +1,15 @@
 # XSofiaTweaker
 
+For releases see the "[Xposed Module Repository](http://repo.xposed.info/module/org.hvdw.xsofiatweaker) or use the Xposed Installer on your Joying unit.
+
 This xposed module:
 * captures the hardware keys from the Joying unit and allows you to reprogram them.
 * allows you to reprogram the steering wheel keys.
 * allows you to switch on/off the nokill.
 * allows you to unmute channel 4, which is used for Google voice feedback.
 * can act on the ACC_ON, ACC_OFF and Resume events.
+* can prevent the Bluetooth apk to stay full screen on top during a call
+* can prevent the CANbus overlay from displaying when changing temp/heat/airco and can prevent the "doors opened" popup overlay.
 
 This must/can be configured from the Settings (sub)screen.
 
