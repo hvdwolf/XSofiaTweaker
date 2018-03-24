@@ -34,6 +34,12 @@
 			android:summaryOn="@string/disable_btphonetop_sum_on"
 			android:summaryOff="@string/disable_btphonetop_sum_off"
 			android:title="@string/disable_btphonetop_title" />
+		<SwitchPreference
+			android:defaultValue="true"
+			android:key="use_root_access"
+			android:summaryOn="@string/use_root_access_sum_on"
+			android:summaryOff="@string/use_root_access_sum_off"
+			android:title="@string/use_root_access_title" />
 	</PreferenceScreen>
 
 

@@ -16,6 +16,9 @@
 	<string name="disable_btphonetop_title">Disable the Phone App from being Always On Top</string>
 	<string name="disable_btphonetop_sum_on">ON: Bluetooth Phone App will not force Always On Top during a call</string>
 	<string name="disable_btphonetop_sum_off">OFF: Bluetooth Phone App will always be on top during a call</string>
+	<string name="use_root_access_title">Use root access for the system call</string>
+	<string name="use_root_access_sum_on">ON: the system call is executed as root</string>
+	<string name="use_root_access_sum_off">OFF: the system call is executed as normal user</string>
 
 	<string name="app_keymod_settings">Asignar app o acción a los botones físicos</string>
 	<string name="band_key_settings">Ajustes del botón BAND</string>

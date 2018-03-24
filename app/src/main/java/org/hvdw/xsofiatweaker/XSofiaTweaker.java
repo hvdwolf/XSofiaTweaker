@@ -48,6 +48,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private boolean disable_airhelper;
 	private boolean disable_doorhelper;
 	private boolean disable_btphonetop;
+	private boolean use_root_access;
 
 	private String band_call_option;
 	private String band_call_entry;
@@ -96,6 +97,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		disable_airhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, false);
 		disable_doorhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, false);
 		disable_btphonetop = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
+		use_root_access = sharedPreferences.getBoolean(MySettings.USE_ROOT_ACCESS, true);
 
 		band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
 		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
@@ -543,9 +545,16 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			startActivityByIntentName(context, actionString);
 		}
 		if (callMethod.equals("sys_call")) {
+			XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+			sharedPreferences.makeWorldReadable();
+			use_root_access = sharedPreferences.getBoolean(MySettings.USE_ROOT_ACCESS, true);
 			//executeSystemCall(actionString);
 			String[] cmd = actionString.split(";");
-			shellExec(cmd);
+			if (use_root_access == true) {
+				rootExec(cmd);
+			} else {
+				shellExec(cmd);
+			}
 		}
 	};
 

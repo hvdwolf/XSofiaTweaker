@@ -241,6 +241,11 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.putExtra(MySettings.EXTRA_PREF_DISABLE_BTPHONETOP_ENABLED, sharedPreferences.getBoolean(key, false));
         	toastText = "BOOLEAN_KEY";
                 break;
+            case MySettings.USE_ROOT_ACCESS:
+                intent.setAction(MySettings.ACTION_USE_ROOT_ACCESS_CHANGED);
+                intent.putExtra(MySettings.EXTRA_USE_ROOT_ACCESS_ENABLED, sharedPreferences.getBoolean(key, true));
+        	toastText = "BOOLEAN_KEY";
+                break;
             default:
                 Log.d(TAG, "Invalid setting encountered");
                 break;
