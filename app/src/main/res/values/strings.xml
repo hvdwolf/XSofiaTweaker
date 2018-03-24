@@ -1,7 +1,7 @@
 <resources>
 	<string name="app_name" translatable="false">XSofiaTweaker</string>
 	<string name="app_settings">Application preferences</string>
-	<string name="misc_settings">Miscellaneous Settings</string>
+	<string name="misc_settings">Miscellaneous ON/OFF Settings</string>
 	<string name="nokill_title">Switch NoKill option on or off</string>
 	<string name="nokill_sum_on">ON: apps will NOT be killed on going into deep-sleep</string>
 	<string name="nokill_sum_off">OFF: Default behavior: All apps are killed on going into deep-sleep</string>

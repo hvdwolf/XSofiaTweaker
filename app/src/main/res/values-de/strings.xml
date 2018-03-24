@@ -1,6 +1,6 @@
 <resources>
 	<string name="app_settings">Programmeinstellungen</string>
-	<string name="misc_settings">Verschiedene Einstellungen</string>
+	<string name="misc_settings">Verschiedene AN/AUS Einstellungen</string>
 	<string name="nokill_title">Schaltet die "NoKill"-Option an oder aus</string>
 	<string name="nokill_sum_on">AN: Anwendungen werden im deep-sleep-Modus NICHT geschlossen</string>
 	<string name="nokill_sum_off">AUS: Standardeinstellung: Alle Anwendungen werden im deep-sleep-Modus geschlossen</string>
