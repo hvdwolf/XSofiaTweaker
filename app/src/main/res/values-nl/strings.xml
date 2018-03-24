@@ -24,9 +24,6 @@
 	<string name="band_key_settings">Instelling voor de BAND knop</string>
 	<string name="band_key_call_title">BAND Knop: Aanroep methode</string>
 	<string name="band_key_text_title">BAND Knop: Te gebruiken commandoregel</string>
-	<string name="bt_phone_key_settings">Instelling voor de BT_PHONE knop</string>
-	<string name="bt_phone_key_call_title">BT_PHONE Knop: Aanroep methode</string>
-	<string name="bt_phone_key_text_title">BT_PHONE Knop: Te gebruiken commandoregel</string>
 	<string name="dvd_key_settings">Instelling voor de DVD knop</string>
 	<string name="dvd_key_call_title">DVD Knop: Aanroep methode</string>
 	<string name="dvd_key_text_title">DVD Knop: Te gebruiken commandoregel</string>
@@ -39,14 +36,19 @@
 	<string name="media_key_settings">Instelling voor de MEDIA knop</string>
 	<string name="media_key_call_title">MEDIA Knop: Aanroep methode</string>
 	<string name="media_key_text_title">MEDIA Knop: Te gebruiken commandoregel</string>
-	<string name="mode_src_key_settings">Instelling voor de MODE_SRC knop</string>
-	<string name="mode_src_key_call_title">MODE_SRC Knop: Aanroep methode</string>
-	<string name="mode_src_key_text_title">MODE_SRC Knop: Te gebruiken commandoregel</string>
 	<string name="navi_key_settings">Instelling voor de NAVI knop</string>
 	<string name="navi_key_call_title">NAVI Knop: Aanroep methode</string>
 	<string name="navi_key_text_title">NAVI Knop: Te gebruiken commandoregel</string>
 	<string name="key_summary">Aanroep methode</string>
 	<string name="key_text_title">Te gebruiken commandoregel</string>
+
+	<string name="sw_keymod_settings">Koppel andere apk of actie aan een stuurwiel knop</string>
+	<string name="bt_phone_key_settings">Instelling voor de BT_PHONE knop</string>
+	<string name="bt_phone_key_call_title">BT_PHONE Knop: Aanroep methode</string>
+	<string name="bt_phone_key_text_title">BT_PHONE Knop: Te gebruiken commandoregel</string>
+	<string name="mode_src_key_settings">Instelling voor de MODE_SRC knop</string>
+	<string name="mode_src_key_call_title">MODE_SRC Knop: Aanroep methode</string>
+	<string name="mode_src_key_text_title">MODE_SRC Knop: Te gebruiken commandoregel</string>
 
 	<string name="acc_on_off_settings">Definieer apks of acties wanneer het contact AAN of UIT geschakeld wordt; of uit sluimer toestand komend.</string>
 	<string name="acc_on_settings">Wat doen aks contact wordt ingeschakeld (ACC_ON)</string>

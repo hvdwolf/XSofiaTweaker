@@ -24,12 +24,6 @@
 	<string name="band_key_settings">Einstellungen für BAND-Taste</string>
 	<string name="band_key_call_title">BAND-Taste: Funktion auswählen</string>
 	<string name="band_key_text_title">BAND-Taste: Paketname als Text eingeben</string>
-	<string name="bt_phone_key_settings">Einstellungen für BT_Phone-Taste</string>
-	<string name="bt_phone_key_call_title">BT_Phone-Taste: Funktion auswählen</string>
-	<string name="bt_phone_key_text_title">BT_Phone-Taste: Paketname als Text eingeben</string>
-	<string name="bt_hang_key_settings">Einstellungen für BT_HANG-Taste</string>
-	<string name="bt_hang_key_call_title">BT_HANG-Taste: Funktion auswählen</string>
-	<string name="bt_hang_key_text_title">BT_HANG-Taste: Paketname als Text eingeben</string>
 	<string name="dvd_key_settings">Einstellungen für DVD-Taste</string>
 	<string name="dvd_key_call_title">DVD-Taste: Funktion auswählen</string>
 	<string name="dvd_key_text_title">DVD-Taste: Paketname als Text eingeben</string>
@@ -42,14 +36,22 @@
 	<string name="media_key_settings">Einstellungen für MEDIA-Taste</string>
 	<string name="media_key_call_title">MEDIA-Taste: Funktion auswählen</string>
 	<string name="media_key_text_title">MEDIA-Taste: Paketname als Text eingeben</string>
-	<string name="mode_src_key_settings">Einstellungen für MODE_SRC-Taste</string>
-	<string name="mode_src_key_call_title">MODE_SRC-Taste: Funktion auswählen</string>
-	<string name="mode_src_key_text_title">MODE_SRC-Taste: Paketname als Text eingeben</string>
 	<string name="navi_key_settings">Einstellungen für NAVI-Taste</string>
 	<string name="navi_key_call_title">NAVI-Taste: Funktion auswählen</string>
 	<string name="navi_key_text_title">NAVI-Taste: Paketname als Text eingeben</string>
 	<string name="key_summary">Funktion auswählen</string>
 	<string name="key_text_title">Paketname als Text eingeben</string>
+
+	<string name="sw_keymod_settings">Zuordnung von Anwendungen/Aktionen zu Lenkrad-Tasten</string>
+	<string name="bt_phone_key_settings">Einstellungen für BT_Phone-Taste</string>
+	<string name="bt_phone_key_call_title">BT_Phone-Taste: Funktion auswählen</string>
+	<string name="bt_phone_key_text_title">BT_Phone-Taste: Paketname als Text eingeben</string>
+	<string name="bt_hang_key_settings">Einstellungen für BT_HANG-Taste</string>
+	<string name="bt_hang_key_call_title">BT_HANG-Taste: Funktion auswählen</string>
+	<string name="bt_hang_key_text_title">BT_HANG-Taste: Paketname als Text eingeben</string>
+	<string name="mode_src_key_settings">Einstellungen für MODE_SRC-Taste</string>
+	<string name="mode_src_key_call_title">MODE_SRC-Taste: Funktion auswählen</string>
+	<string name="mode_src_key_text_title">MODE_SRC-Taste: Paketname als Text eingeben</string>
 
 	<string name="acc_on_off_settings">Auswahl von Anwendungen/Aktionen wenn Zündung/Radio an oder aus ist, oder beim Aufwachen.</string>
 	<string name="acc_on_settings">Wenn die Zündung an ist (ACC_ON)</string>

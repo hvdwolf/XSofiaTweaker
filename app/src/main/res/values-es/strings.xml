@@ -24,9 +24,6 @@
 	<string name="band_key_settings">Ajustes del botón BAND</string>
 	<string name="band_key_call_title">Botón BAND: Método de llamada</string>
 	<string name="band_key_text_title">Botón BAND: Cadena a usar</string>
-	<string name="bt_phone_key_settings">Ajustes del botón BT_PHONE</string>
-	<string name="bt_phone_key_call_title">Botón BT_PHONE: Método de llamada</string>
-	<string name="bt_phone_key_text_title">Botón BT_PHONE: Cadena a usar</string>
 	<string name="dvd_key_settings">Ajustes del botón DVD</string>
 	<string name="dvd_key_call_title">Botón DVD: Método de llamada</string>
 	<string name="dvd_key_text_title">Botón DVD: Cadena a usar</string>
@@ -39,14 +36,19 @@
 	<string name="media_key_settings">Ajustes del botón MEDIA</string>
 	<string name="media_key_call_title">Botón MEDIA: Método de llamada</string>
 	<string name="media_key_text_title">Botón MEDIA: Cadena a usar</string>
-	<string name="mode_src_key_settings">Ajustes del botón MODE_SRC</string>
-	<string name="mode_src_key_call_title">Botón MODE_SRC: Método de llamada</string>
-	<string name="mode_src_key_text_title">Botón MODE_SRC: Cadena a usar</string>
 	<string name="navi_key_settings">Ajustes del botón NAVI</string>
 	<string name="navi_key_call_title">Botón NAVI: Método de llamada</string>
 	<string name="navi_key_text_title">Botón NAVI: Cadena a usar</string>
 	<string name="key_summary">Método de llamada</string>
 	<string name="key_text_title">Cadena a usar</string>
+
+	<string name="sw_keymod_settings">Asignar app o acción a los botones del volante</string>
+	<string name="bt_phone_key_settings">Ajustes del botón BT_PHONE</string>
+	<string name="bt_phone_key_call_title">Botón BT_PHONE: Método de llamada</string>
+	<string name="bt_phone_key_text_title">Botón BT_PHONE: Cadena a usar</string>
+	<string name="mode_src_key_settings">Ajustes del botón MODE_SRC</string>
+	<string name="mode_src_key_call_title">Botón MODE_SRC: Método de llamada</string>
+	<string name="mode_src_key_text_title">Botón MODE_SRC: Cadena a usar</string>
 
 	<string name="acc_on_off_settings">Asignar app o acción cuando el contacto/la unidad se encienda o se apague; o al volver de la suspensión.</string>
 	<string name="acc_on_settings">Qué hacer cuando se enciende el contacto (ACC_ON)</string>

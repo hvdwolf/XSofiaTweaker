@@ -62,36 +62,6 @@
 				android:defaultValue="com.syu.radio" />
 		</PreferenceCategory>
 		<PreferenceCategory
-			android:title="@string/bt_phone_key_settings"
-			android:key="bt_phone_key_settings">
-			<ListPreference
-			        android:key="bt_phone_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgintent"
-			        android:title="@string/bt_phone_key_call_title" />
-			<EditTextPreference
-				android:dependency="bt_phone_key_call_option"
-				android:key="bt_phone_key_entry"
-				android:title="@string/bt_phone_key_text_title"
-				android:defaultValue="com.syu.bt/.act.ActBt" />
-		</PreferenceCategory>
-<!--		<PreferenceCategory
-			android:title="@string/bt_hang_key_settings"
-			android:key="bt_hang_key_settings">
-			<ListPreference
-			        android:key="bt_hang_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgintent"
-			        android:title="@string/bt_hang_key_call_title" />
-			<EditTextPreference
-				android:dependency="bt_hang_key_call_option"
-				android:key="bt_hang_key_entry"
-				android:title="@string/bt_hang_key_text_title"
-				android:defaultValue="com.syu.bt/.act.ActBt" />
-		</PreferenceCategory> -->
-		<PreferenceCategory
 			android:title="@string/dvd_key_settings"
 			android:key="dvd_key_settings">
 			<ListPreference
@@ -152,21 +122,6 @@
 				android:defaultValue="com.syu.music" />
 		</PreferenceCategory>
 		<PreferenceCategory
-			android:title="@string/mode_src_key_settings"
-			android:key="mode_src_key_settings">
-			<ListPreference
-			        android:key="mode_src_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkg_intent"
-			        android:title="@string/mode_src_key_call_title" />
-			<EditTextPreference
-				android:dependency="mode_src_key_call_option"
-				android:key="mode_src_key_entry"
-				android:title="@string/mode_src_key_text_title"
-				android:defaultValue="com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.VoiceSearchActivity" />
-		</PreferenceCategory>
-		<PreferenceCategory
 			android:title="@string/navi_key_settings"
 			android:key="navi_key_settings">
 			<ListPreference
@@ -183,6 +138,55 @@
 		</PreferenceCategory>
 	</PreferenceScreen>
 
+	<PreferenceScreen
+		android:title="@string/sw_keymod_settings"
+		android:key="sw_keymod_settings">
+		<PreferenceCategory
+			android:title="@string/bt_phone_key_settings"
+			android:key="bt_phone_key_settings">
+			<ListPreference
+			        android:key="bt_phone_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgintent"
+			        android:title="@string/bt_phone_key_call_title" />
+			<EditTextPreference
+				android:dependency="bt_phone_key_call_option"
+				android:key="bt_phone_key_entry"
+				android:title="@string/bt_phone_key_text_title"
+				android:defaultValue="com.syu.bt/.act.ActBt" />
+		</PreferenceCategory>
+<!--		<PreferenceCategory
+			android:title="@string/bt_hang_key_settings"
+			android:key="bt_hang_key_settings">
+			<ListPreference
+			        android:key="bt_hang_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkgintent"
+			        android:title="@string/bt_hang_key_call_title" />
+			<EditTextPreference
+				android:dependency="bt_hang_key_call_option"
+				android:key="bt_hang_key_entry"
+				android:title="@string/bt_hang_key_text_title"
+				android:defaultValue="com.syu.bt/.act.ActBt" />
+		</PreferenceCategory> -->
+		<PreferenceCategory
+			android:title="@string/mode_src_key_settings"
+			android:key="mode_src_key_settings">
+			<ListPreference
+			        android:key="mode_src_key_call_option"
+				android:entries="@array/key_call_entries"
+				android:entryValues="@array/key_call_values"
+				android:defaultValue="pkg_intent"
+			        android:title="@string/mode_src_key_call_title" />
+			<EditTextPreference
+				android:dependency="mode_src_key_call_option"
+				android:key="mode_src_key_entry"
+				android:title="@string/mode_src_key_text_title"
+				android:defaultValue="com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.VoiceSearchActivity" />
+		</PreferenceCategory>
+	</PreferenceScreen>
 
 	<PreferenceScreen
 		android:title="@string/acc_on_off_settings"
@@ -305,6 +309,7 @@
 				android:defaultValue="am start -a android.intent.action.MAIN -c android.intent.category.HOME" />
 		</PreferenceCategory>
 	</PreferenceScreen>
+
 	<PreferenceScreen
 		android:title="@string/about_info_screen"
 		android:key="about_info">
