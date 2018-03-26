@@ -29,6 +29,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 //import android.categories.Category;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import java.util.List;
+import android.app.Application;
+
+
 
 public class SettingsActivity extends PreferenceActivity {
 	public static final String TAG = "XSofiaTweaker-SettingsActivity";
@@ -44,6 +50,8 @@ public class SettingsActivity extends PreferenceActivity {
 				.replace(android.R.id.content, new SettingsFragment(), "settings")
 				.commit();
 		}
+
+		//buildAppsList(mContext, attrs);
 
 		//check our assets file and copy to /sdcard/XSofiaTweaker if necessary
 		//Context mContext = (Context) AndroidAppHelper.currentApplication();
@@ -98,9 +106,10 @@ public class SettingsActivity extends PreferenceActivity {
 	}
     /* End of the assets file copy */
 
-//	AppsList MyAppsList = new AppsList(mContext, attrs);
-//	MyAppsList = AppsList();
-/*		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+	public static void buildAppsList(Context mContext, AttributeSet attrs) {
+		//AppsList MyAppsList = new AppsList(mContext, attrs);
+		//MyAppsList = AppsList.AppsList();
+		/*SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 		ListPreference listPreferenceCategory = (ListPreference) findPreference("app_selector");
 		if (listPreferenceCategory != null) {
 			ArrayList<Category> categoryList = getCategories();
@@ -114,5 +123,6 @@ public class SettingsActivity extends PreferenceActivity {
 			}
 			listPreferenceCategory.setEntries(entries);
 			listPreferenceCategory.setEntryValues(entryValues);
-		}*/
+		} */
+	}
 }

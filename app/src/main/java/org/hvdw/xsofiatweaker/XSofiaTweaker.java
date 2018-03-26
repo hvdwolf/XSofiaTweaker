@@ -25,6 +25,12 @@ import java.io.OutputStream;
 import java.io.File;
 import java.io.FileOutputStream; */
 
+//CPUTemp
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import android.widget.TextView;
+import android.graphics.Color;
+
 import de.robv.android.xposed.XposedBridge;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -49,6 +55,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private boolean disable_doorhelper;
 	private boolean disable_btphonetop;
 	private boolean use_root_access;
+	private boolean show_cpu_temp;
 
 	private String band_call_option;
 	private String band_call_entry;
@@ -98,6 +105,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		disable_doorhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, false);
 		disable_btphonetop = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
 		use_root_access = sharedPreferences.getBoolean(MySettings.USE_ROOT_ACCESS, true);
+		show_cpu_temp = sharedPreferences.getBoolean(MySettings.SHOW_CPU_TEMP, false);
 
 		band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
 		band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
@@ -527,8 +535,28 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			});
 		}
 
-	   /* End of the part where the SofiaServer hooks are taking place
-	   *  simply return out of the module if no sofiaserver or vanbus are detected
+	   /* End of the part where the CANbus apk hooks are taking place
+	   *  Nowstarts the part where the SystemUI clock display is captured to display the CPU temp.
+	   */
+	   } else if (lpparam.packageName.equals("com.android.systemui")) {
+		if (show_cpu_temp == true) {
+			findAndHookMethod("com.android.systemui.statusbar.policy.Clock", lpparam.classLoader, "updateClock", new XC_MethodHook() {
+				@Override
+				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+					TextView tv = (TextView) param.thisObject;
+					String text = tv.getText().toString();
+					String temp = String.valueOf(getCpuTemp());
+					//remove + in front of string
+					temp = temp.replace("+", "");
+					tv.setText("CPU: +" + temp + " °C  " + text);
+					//tv.setTextColor(Color.YELLOW);
+					//tv.setTextColor(Color.parseColor("#F06D2F")); // orange
+					//tv.setTextColor(Color.RED);
+				}
+			});
+		}
+	   /*
+	   *  simply return out of the module if no sofiaser or no CANbus or no SystemUI (would be very strange) is detected
 	   */
 	   } else return;
 	}
@@ -737,6 +765,29 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		XposedBridge.log(TAG + " startActivityByPackageName: " + packageName);
 		if (intent != null) {
 			context.startActivity(intent);
+		}
+	}
+
+	public float getCpuTemp() {
+		Process p;
+		float temp = 0;
+		try {
+			for (int i=1; i<5; i++) {
+				p = Runtime.getRuntime().exec("cat sys/class/thermal/thermal_zone" + Integer.toString(i) + "/temp");
+				p.waitFor();
+				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+				String line = reader.readLine();
+				float tmptemp = Float.parseFloat(line) / 1000.0f;
+				if (tmptemp > temp) temp = tmptemp;
+			}
+			// round to 1 decimal like 45.3
+			int scale = (int) Math.pow(10, 1);
+			return (float) Math.round(temp *scale)/scale;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0.0f;
 		}
 	}
 }

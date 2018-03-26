@@ -246,6 +246,11 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.putExtra(MySettings.EXTRA_USE_ROOT_ACCESS_ENABLED, sharedPreferences.getBoolean(key, true));
         	toastText = "BOOLEAN_KEY";
                 break;
+            case MySettings.SHOW_CPU_TEMP:
+                intent.setAction(MySettings.ACTION_SHOW_CPU_TEMP_CHANGED);
+                intent.putExtra(MySettings.EXTRA_SHOW_CPU_TEMP_ENABLED, sharedPreferences.getBoolean(key, false));
+		toastText = "BOOLEAN_KEY";
+                break;
             default:
                 Log.d(TAG, "Invalid setting encountered");
                 break;

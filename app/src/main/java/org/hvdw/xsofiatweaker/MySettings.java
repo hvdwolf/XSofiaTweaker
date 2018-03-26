@@ -27,6 +27,10 @@ class MySettings {
     public static final String ACTION_USE_ROOT_ACCESS_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_USE_ROOT_ACCESS_CHANGED";
     public static final String EXTRA_USE_ROOT_ACCESS_ENABLED = "org.hvdw.xsofiatweaker.extra.USE_ROOT_ACCESS_ENABLED";
 
+    public static final String SHOW_CPU_TEMP = "show_cpu_temp";
+    public static final String ACTION_SHOW_CPU_TEMP_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_SHOW_CPU_TEMP_CHANGED";
+    public static final String EXTRA_SHOW_CPU_TEMP_ENABLED = "org.hvdw.xsofiatweaker.extra.SHOW_CPU_TEMP_ENABLED";
+
     public static final String NAVI_CALL_OPTION = "navi_key_call_option";
     public static final String ACTION_NAVI_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_OPTION_CHANGED";
     public static final String EXTRA_NAVI_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_OPTION_STRING";

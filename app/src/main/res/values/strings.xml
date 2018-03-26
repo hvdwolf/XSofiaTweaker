@@ -20,6 +20,9 @@
 	<string name="use_root_access_title">Use root access for the system call</string>
 	<string name="use_root_access_sum_on">ON: the system call is executed as root</string>
 	<string name="use_root_access_sum_off">OFF: the system call is executed as normal user</string>
+	<string name="show_cpu_temp_title">Option to display CPU temperature in the status bar</string>
+	<string name="show_cpu_temp_sum_on">ON: CPU temperature is displayed in the status bar</string>
+	<string name="show_cpu_temp_sum_off">OFF: CPU temperature is NOT displayed in status bar</string>
 
 	<string name="app_keymod_settings">Assign app or action to hardware buttons</string>
 	<string name="band_key_settings">Settings for the BAND key</string>

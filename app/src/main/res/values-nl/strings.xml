@@ -19,6 +19,9 @@
 	<string name="use_root_access_title">Use root access for the system call</string>
 	<string name="use_root_access_sum_on">ON: the system call is executed as root</string>
 	<string name="use_root_access_sum_off">OFF: the system call is executed as normal user</string>
+	<string name="show_cpu_temp_title">Optie om de CPU temperatuur te tonen in de statusbalk</string>
+	<string name="show_cpu_temp_sum_on">ON: CPU temperatuur wordt getoond in de statusbalk</string>
+	<string name="show_cpu_temp_sum_off">OFF: CPU temperatuur wordt NIET getoond in de statusbalk</string>
 
 	<string name="app_keymod_settings">Koppel andere apk of actie aan een hardware knop</string>
 	<string name="band_key_settings">Instelling voor de BAND knop</string>

@@ -35,11 +35,17 @@
 			android:summaryOff="@string/disable_btphonetop_sum_off"
 			android:title="@string/disable_btphonetop_title" />
 		<SwitchPreference
-			android:defaultValue="true"
+			android:defaultValue="false"
 			android:key="use_root_access"
 			android:summaryOn="@string/use_root_access_sum_on"
 			android:summaryOff="@string/use_root_access_sum_off"
 			android:title="@string/use_root_access_title" />
+		<SwitchPreference
+			android:defaultValue="false"
+			android:key="show_cpu_temp"
+			android:summaryOn="@string/show_cpu_temp_sum_on"
+			android:summaryOff="@string/show_cpu_temp_sum_off"
+			android:title="@string/show_cpu_temp_title" />
 	</PreferenceScreen>
 
 
