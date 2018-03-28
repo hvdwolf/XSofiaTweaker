@@ -98,4 +98,9 @@
 	<string name="xda_discussion_summary">Discuss or ask questions about this module on XDA</string>
 	<string name="github_title">Source code</string>
 	<string name="github_summary">Explore the source code of XSofiaTweaker on Github</string>
+
+	<string name="zygote_reboot_title">This change requires a soft reboot</string>
+	<string name="zygote_reboot_message">This change requires a soft reboot. Do you want to do that now?</string>
+	<string name="zygote_reboot_soft_reboot">Soft Reboot</string>
+	<string name="zygote_reboot_cancel">Cancel</string>
 </resources>

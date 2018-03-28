@@ -45,7 +45,7 @@
 	<string name="key_summary">Método de llamada</string>
 	<string name="key_text_title">Cadena a usar</string>
 
-	<string name="sw_keysw_keymod_settings">Asignar app o acción a los botones del volante</string>
+	<string name="sw_keymod_settings">Asignar app o acción a los botones del volante</string>
 	<string name="bt_phone_key_settings">Ajustes del botón BT_PHONE</string>
 	<string name="bt_phone_key_call_title">Botón BT_PHONE: Método de llamada</string>
 	<string name="bt_phone_key_text_title">Botón BT_PHONE: Cadena a usar</string>
@@ -93,4 +93,9 @@
 	<string name="xda_discussion_summary">Debate o haz preguntas acerca de éste módulo en XDA</string>
 	<string name="github_title">Código fuente</string>
 	<string name="github_summary">Explora el código fuente de XSofiaTweaker en Github</string>
+
+	<string name="zygote_reboot_title">This change requires a soft reboot</string>
+	<string name="zygote_reboot_message">This change requires a soft reboot. Do you want to do that now?</string>
+	<string name="zygote_reboot_soft_reboot">Soft Reboot</string>
+	<string name="zygote_reboot_cancel">Cancel</string>
 </resources>

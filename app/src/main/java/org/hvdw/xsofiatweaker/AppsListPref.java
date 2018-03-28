@@ -14,12 +14,12 @@ import android.preference.ListPreference;
 import android.util.AttributeSet;
 import android.util.Log;
 
-public class AppsList extends ListPreference {
+public class AppsListPref extends ListPreference {
 
 	private static String TAG = "XSofiaTweaker-AppsListPref";
 	private Intent localintent;
 
-	public AppsList(Context context, AttributeSet attrs) {
+	public AppsListPref(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		final PackageManager pm = context.getPackageManager();
         	final String[] pk1 = new String[1];

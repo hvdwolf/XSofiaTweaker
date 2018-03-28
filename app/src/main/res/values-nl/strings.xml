@@ -15,13 +15,13 @@
 	<string name="disable_doorhelper_sum_off">UIT: Bij een geopende deur wordt de Canbus overlay wel getoond.</string>
 	<string name="disable_btphonetop_title">Voorkom dat de BT telefoon app altijd op de voorgrond blijft tijdens bellen.</string>
 	<string name="disable_btphonetop_sum_on">AAN: Bluetooth Telefoon App blijft niet op de voorgrond tijdens bellen.</string>
-	<string name="disable_btphonetop_sum_off">OFF: Bluetooth Telefoon App blijft op de voorgrond tijdens bellen.</string>
-	<string name="use_root_access_title">Use root access for the system call</string>
-	<string name="use_root_access_sum_on">ON: the system call is executed as root</string>
-	<string name="use_root_access_sum_off">OFF: the system call is executed as normal user</string>
+	<string name="disable_btphonetop_sum_off">UIT: Bluetooth Telefoon App blijft op de voorgrond tijdens bellen.</string>
+	<string name="use_root_access_title">Gebruik root toegang voor het systeem commando</string>
+	<string name="use_root_access_sum_on">AAN: het systeem commando wordt uitgevoerd als root</string>
+	<string name="use_root_access_sum_off">UIT: het systeem commando wordt uitgevoerd als gewone gebruiker</string>
 	<string name="show_cpu_temp_title">Optie om de CPU temperatuur te tonen in de statusbalk</string>
-	<string name="show_cpu_temp_sum_on">ON: CPU temperatuur wordt getoond in de statusbalk</string>
-	<string name="show_cpu_temp_sum_off">OFF: CPU temperatuur wordt NIET getoond in de statusbalk</string>
+	<string name="show_cpu_temp_sum_on">AAN: CPU temperatuur wordt getoond in de statusbalk</string>
+	<string name="show_cpu_temp_sum_off">UIT: CPU temperatuur wordt NIET getoond in de statusbalk</string>
 
 	<string name="app_keymod_settings">Koppel andere apk of actie aan een hardware knop</string>
 	<string name="band_key_settings">Instelling voor de BAND knop</string>
@@ -93,4 +93,9 @@
 	<string name="xda_discussion_summary">Discussieer of stel vragen over deze module op XDA</string>
 	<string name="github_title">Bron code</string>
 	<string name="github_summary">Bekijk de bron code van de XSofiaTweaker op Github</string>
+
+	<string name="zygote_reboot_title">Deze wijziging vereist een grafische herstart</string>
+	<string name="zygote_reboot_message">Deze wijziging vereist een herstart van de grafische schil. Wilt u dat nu doen?</string>
+	<string name="zygote_reboot_soft_reboot">Grafische herstart</string>
+	<string name="zygote_reboot_cancel">Annuleren</string>
 </resources>

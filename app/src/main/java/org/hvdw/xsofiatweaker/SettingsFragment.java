@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-//import android.content.pm.PackageInfo;
-//import android.content.pm.PackageManager;
 import android.os.Bundle;
 //import android.net.Uri;
 import android.preference.Preference;
@@ -20,9 +18,29 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.widget.ProgressBar;
+import android.util.AttributeSet;
+
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import java.util.List;
+import java.util.ArrayList;
+import android.app.Application;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
+
 
 public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
     Context mContext;
+    AttributeSet attrs;
+
+    private ProgressBar pb;
+    static Runnable myRunnable;
+    private static Handler myHandler;
+    private boolean zygote_reboot;
 
     private BroadcastReceiver broadcastReceiver;
     IntentFilter intentFilter = new IntentFilter();
@@ -33,9 +51,30 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 //    public void onAttach(Context mContext) {
 //        super.onAttach(mContext);
 	super.onAttach(activity);
-        mContext = activity;
+        mContext = getActivity();
+	//attrs = getAttributeSet();
+
+        //Toast mToast = Toast.makeText(mContext, "Retrieving installed apps", Toast.LENGTH_LONG);
+	//mToast.show();
 
 	//getPackages(mContext);
+	AsyncTask<Void, Void, Void> doAppsList = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                //AppsListPref.AppsListPref(mContext, attrs);
+		//new AppsList.AppsListPref(mContext, attrs);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                //pd.dismiss();
+            }
+
+	};
+
+
+	doAppsList.execute((Void[])null);
     }
 
     public static final String TAG = "XSofiaTweaker-SettingsFragment";
@@ -230,11 +269,13 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_PREF_DISABLE_AIRHELPER_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_DISABLE_AIRHELPER_ENABLED, sharedPreferences.getBoolean(key, false));
 		toastText = "BOOLEAN_KEY";
+		zygote_reboot = true;
                 break;
             case MySettings.PREF_DISABLE_DOORHELPER:
                 intent.setAction(MySettings.ACTION_PREF_DISABLE_DOORHELPER_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_DISABLE_DOORHELPER_ENABLED, sharedPreferences.getBoolean(key, false));
 		toastText = "BOOLEAN_KEY";
+		zygote_reboot = true;
                 break;
             case MySettings.PREF_DISABLE_BTPHONETOP:
                 intent.setAction(MySettings.ACTION_PREF_DISABLE_BTPHONETOP_CHANGED);
@@ -250,6 +291,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_SHOW_CPU_TEMP_CHANGED);
                 intent.putExtra(MySettings.EXTRA_SHOW_CPU_TEMP_ENABLED, sharedPreferences.getBoolean(key, false));
 		toastText = "BOOLEAN_KEY";
+		zygote_reboot = true;
                 break;
             default:
                 Log.d(TAG, "Invalid setting encountered");
@@ -258,19 +300,64 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
 	    Log.d(TAG, "updated key is " + key);
 	    if (toastText.equals("BOOLEAN_KEY")) {
-		    toastText = "You updated boolean key \"" + (String)key + "\" to value \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+		    toastText = "You updated boolean key \"" + (String)key + "\" to \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
 	    } else {
             Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
-            toastText = "You updated key \"" + key + "\" with \"" + sharedPreferences.getString(key, "") + "\"";
+            toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";
         }
         Toast mToast = Toast.makeText(mContext, toastText, Toast.LENGTH_LONG);
-	    mToast.show();
+	mToast.show();
 
 
         if (intent.getAction() != null) {
 		getActivity().sendBroadcast(intent);
         }
 
+	if (zygote_reboot == true) {
+		zygote_reboot = false;
+		Utils.rebootZygote(getContext());
+	}
+
     }
+
+	class ApkInfo {
+	    private String appname = "";
+	    private String pname = "";
+	    private String versionName = "";
+	    private int versionCode = 0;
+	    //private Drawable icon;
+	    /*private void prettyPrint() {
+	        Log.v(appname + "\t" + pname + "\t" + versionName + "\t" + versionCode);
+	    } */
+	}
+
+	private ArrayList<ApkInfo> getPackages() {
+	    ArrayList<ApkInfo> apps = getInstalledApps(false); /* false = no system packages */
+	    final int max = apps.size();
+	    /*for (int i=0; i<max; i++) {
+	        apps.get(i).prettyPrint();
+	    }*/
+	    return apps;
+	}
+
+	private ArrayList<ApkInfo> getInstalledApps(boolean getSysPackages) {
+	    ArrayList<ApkInfo> res = new ArrayList<ApkInfo>();
+	    // PackageManager pManager = context.getPackageManager();
+	    List<PackageInfo> packs = mContext.getPackageManager().getInstalledPackages(0);
+	    for(int i=0;i<packs.size();i++) {
+	        PackageInfo p = packs.get(i);
+	        if ((!getSysPackages) && (p.versionName == null)) {
+	            continue ;
+	        }
+	        ApkInfo newInfo = new ApkInfo();
+	        newInfo.appname = p.applicationInfo.loadLabel(mContext.getPackageManager()).toString();
+	        newInfo.pname = p.packageName;
+	        //newInfo.versionName = p.versionName;
+	        //newInfo.versionCode = p.versionCode;
+	        //newInfo.icon = p.applicationInfo.loadIcon(getPackageManager());
+	        res.add(newInfo);
+	    }
+	    return res; 
+	}
 
 }

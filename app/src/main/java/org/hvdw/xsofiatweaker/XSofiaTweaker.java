@@ -56,6 +56,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private boolean disable_btphonetop;
 	private boolean use_root_access;
 	private boolean show_cpu_temp;
+	private boolean display_org_clock = false; // just a helper boolean for show_cpu_temp, not a setting.
 
 	private String band_call_option;
 	private String band_call_entry;
@@ -538,23 +539,22 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	   /* End of the part where the CANbus apk hooks are taking place
 	   *  Nowstarts the part where the SystemUI clock display is captured to display the CPU temp.
 	   */
-	   } else if (lpparam.packageName.equals("com.android.systemui")) {
-		if (show_cpu_temp == true) {
-			findAndHookMethod("com.android.systemui.statusbar.policy.Clock", lpparam.classLoader, "updateClock", new XC_MethodHook() {
-				@Override
-				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-					TextView tv = (TextView) param.thisObject;
-					String text = tv.getText().toString();
-					String temp = String.valueOf(getCpuTemp());
-					//remove + in front of string
-					temp = temp.replace("+", "");
-					tv.setText("CPU: " + temp + " °C  " + text);
-					//tv.setTextColor(Color.YELLOW);
-					//tv.setTextColor(Color.parseColor("#F06D2F")); // orange
-					//tv.setTextColor(Color.RED);
-				}
-			});
-		}
+	   } else if ((lpparam.packageName.equals("com.android.systemui")) && (show_cpu_temp == true)) {
+		findAndHookMethod("com.android.systemui.statusbar.policy.Clock", lpparam.classLoader, "updateClock", new XC_MethodHook() {
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+				TextView tv = (TextView) param.thisObject;
+				String text = tv.getText().toString();
+				String temp = String.valueOf(getCpuTemp());
+				//remove + in front of string
+				temp = temp.replace("+", "");
+				tv.setText("CPU: " + temp + " °C  " + text);
+				//tv.setTextColor(Color.YELLOW);
+				//tv.setTextColor(Color.parseColor("#F06D2F")); // orange
+				//tv.setTextColor(Color.RED);
+			}
+
+		});
 	   /*
 	   *  simply return out of the module if no sofiaser or no CANbus or no SystemUI (would be very strange) is detected
 	   */

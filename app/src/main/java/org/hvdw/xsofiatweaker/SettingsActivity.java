@@ -32,6 +32,7 @@ import java.io.OutputStream;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import java.util.List;
+import java.util.ArrayList;
 import android.app.Application;
 
 
@@ -125,4 +126,6 @@ public class SettingsActivity extends PreferenceActivity {
 			listPreferenceCategory.setEntryValues(entryValues);
 		} */
 	}
+
+
 }
