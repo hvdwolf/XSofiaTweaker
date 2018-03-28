@@ -548,7 +548,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 					String temp = String.valueOf(getCpuTemp());
 					//remove + in front of string
 					temp = temp.replace("+", "");
-					tv.setText("CPU: +" + temp + " °C  " + text);
+					tv.setText("CPU: " + temp + " °C  " + text);
 					//tv.setTextColor(Color.YELLOW);
 					//tv.setTextColor(Color.parseColor("#F06D2F")); // orange
 					//tv.setTextColor(Color.RED);
