@@ -5,6 +5,9 @@
 	<string name="nokill_title">Switch NoKill option on or off</string>
 	<string name="nokill_sum_on">ON: apps will NOT be killed on going into deep-sleep</string>
 	<string name="nokill_sum_off">OFF: Default behavior: All apps are killed on going into deep-sleep</string>
+	<string name="noMcuErrors_title">Switch display yellow Mcu Errors overlay on or off (when applicable)</string>
+	<string name="noMcuErrors_sum_on">ON: The yellow overlay mcu errors overlay is not displayed</string>
+	<string name="noMcuErrors_sum_off">OFF: The yellow overlay mcu errors overlay is displayed</string>
 	<string name="skip_ch_four_title">Switch Channel 4 (alarm) option on or off</string>
 	<string name="skip_ch_four_sum_on">ON: Channel 4 will NOT be muted. This will enable voice feedback from Google Voice. It will also generate noise when no other channel is active.</string>
 	<string name="skip_ch_four_sum_off">OFF: channel 4 muted. No voice feedback from Google Voice. No noise either when no other channel is active.</string>

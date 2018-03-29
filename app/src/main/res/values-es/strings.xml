@@ -4,6 +4,9 @@
 	<string name="nokill_title">Activar o desactivar la opción NoKill</string>
 	<string name="nokill_sum_on">ON: las aplicaciones NO se matarán al entrar en modo de sueño profundo</string>
 	<string name="nokill_sum_off">OFF: : Comportamiento predeterminado: todas las aplicaciones se matarán al entrar en modo de sueño profundo</string>
+	<string name="noMcuErrors_title">Switch display yellow Mcu Errors overlay on or off (when applicable)</string>
+	<string name="noMcuErrors_sum_on">ON: The yellow overlay mcu errors overlay is not displayed</string>
+	<string name="noMcuErrors_sum_off">OFF: The yellow overlay mcu errors overlay is displayed</string>
 	<string name="skip_ch_four_title">Activar o desactivar Canal 4 (alarma)</string>
 	<string name="skip_ch_four_sum_on">ON: el canal 4 NO se silenciará. Esto permitirá escuchar las respuestas a los comandos de voz de Google Voice. También generará ruidos cuando no haya otro canal activo.</string>
 	<string name="skip_ch_four_sum_off">OFF: canal 4 silenciado. No se escucharán las respuestas a los comandos de voz de Google Voice. Tampoco habrá ruido cuando ningún otro canal esté activo.</string>

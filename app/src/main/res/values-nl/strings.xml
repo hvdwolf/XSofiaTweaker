@@ -4,6 +4,9 @@
 	<string name="nokill_title">Schakel NoKill optie in of uit</string>
 	<string name="nokill_sum_on">AAN: applicaties worden niet ge-killed bij het in deep-sleep gaan</string>
 	<string name="nokill_sum_off">UIT: Standaard gedrag: Alle apps worden ge-killed bij het in deep-sleep gaan</string>
+	<string name="noMcuErrors_title">Schakel tonen van gele MCU errors aan of uit (wanneer relevant)</string>
+	<string name="noMcuErrors_sum_on">AAN: gele mcu errors overlay wordt niet getoond</string>
+	<string name="noMcuErrors_sum_off">UIT: gele mcu errors overlay wordt getoond</string>
 	<string name="skip_ch_four_title">Schakel audio kanaal 4 (alarm) aan of uit</string>
 	<string name="skip_ch_four_sum_on">AAN: Kanaal 4 wordt niet op stil gezet. Dit maakt Google voice terugkoppeling mogelijk. Dit genereert ook ruis als geen ander kanaal actief is.</string>
 	<string name="skip_ch_four_sum_off">UIT: Kanaal 4 stil. Geen stem terugkoppeling van Google Voice. Maar ook geen ruis als geen enkel kanaal actief is.</string>

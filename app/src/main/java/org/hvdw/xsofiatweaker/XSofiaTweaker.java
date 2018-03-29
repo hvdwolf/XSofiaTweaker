@@ -50,6 +50,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	public static XSharedPreferences pref;
 
 	private boolean noKillEnabled;
+	private boolean noMcuErrors;
 	private boolean skip_ch_four;
 	private boolean disable_airhelper;
 	private boolean disable_doorhelper;
@@ -101,6 +102,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		sharedPreferences.makeWorldReadable();
 
 		noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
+		noMcuErrors = sharedPreferences.getBoolean(MySettings.PREF_NO_MCU_ERRORS, false);
 		skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
 		disable_airhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, false);
 		disable_doorhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, false);
@@ -173,6 +175,22 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		} else {
 			XposedBridge.log(TAG + " nokill disabled");
 		}
+
+		   if (noMcuErrors == true) {
+			   findAndHookMethod("ui.InfoView", lpparam.classLoader, "addSelfToWindow", new XC_MethodHook() {
+				   @Override
+				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					   Context context = (Context) AndroidAppHelper.currentApplication();
+					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					   sharedPreferences.makeWorldReadable();
+					   noMcuErrors = sharedPreferences.getBoolean(MySettings.PREF_NO_MCU_ERRORS, true);
+					   XposedBridge.log(TAG + " noMcuErrors enabled");
+					   param.setResult(null);
+				   }
+			   });
+		   } else {
+			   XposedBridge.log(TAG + " noMcuErrors disabled");
+		   }
 
 
 		/* This should prevent the mute of audio channel 4 (alarm) which is used by Google voice for voice feedback 
