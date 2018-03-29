@@ -4,9 +4,9 @@
 	<string name="nokill_title">Activar o desactivar la opción NoKill</string>
 	<string name="nokill_sum_on">ON: las aplicaciones NO se matarán al entrar en modo de sueño profundo</string>
 	<string name="nokill_sum_off">OFF: : Comportamiento predeterminado: todas las aplicaciones se matarán al entrar en modo de sueño profundo</string>
-	<string name="noMcuErrors_title">Switch display yellow Mcu Errors overlay on or off (when applicable)</string>
-	<string name="noMcuErrors_sum_on">ON: The yellow overlay mcu errors overlay is not displayed</string>
-	<string name="noMcuErrors_sum_off">OFF: The yellow overlay mcu errors overlay is displayed</string>
+	<string name="noMcuErrors_title">Activar o desactivar el cartel amarillo de errores de Mcu (si se aplica)</string>
+	<string name="noMcuErrors_sum_on">ON: El cartel amarillo de errrores de mcu no se mostrará</string>
+	<string name="noMcuErrors_sum_off">OFF: El cartel amarillo de errrores de mcu si se mostrará</string>
 	<string name="skip_ch_four_title">Activar o desactivar Canal 4 (alarma)</string>
 	<string name="skip_ch_four_sum_on">ON: el canal 4 NO se silenciará. Esto permitirá escuchar las respuestas a los comandos de voz de Google Voice. También generará ruidos cuando no haya otro canal activo.</string>
 	<string name="skip_ch_four_sum_off">OFF: canal 4 silenciado. No se escucharán las respuestas a los comandos de voz de Google Voice. Tampoco habrá ruido cuando ningún otro canal esté activo.</string>
@@ -22,9 +22,9 @@
 	<string name="use_root_access_title">Usar acceso root para la llamada al sistema</string>
 	<string name="use_root_access_sum_on">ON: la llamada al sistema se ejecuta como root</string>
 	<string name="use_root_access_sum_off">OFF: la llamada al sistema se ejecuta como el usuario normal</string>
-	<string name="show_cpu_temp_title">Option to display CPU temperature in status bar</string>
-	<string name="show_cpu_temp_sum_on">ON: CPU temperature is displayed in status bar</string>
-	<string name="show_cpu_temp_sum_off">OFF: CPU temperature is NOT displayed in status bar</string>
+	<string name="show_cpu_temp_title">Opción para mostrar la temperatura de la CPU en la barra de estado</string>
+	<string name="show_cpu_temp_sum_on">ON: La temperatura de la CPU se muestra en la barra de estado</string>
+	<string name="show_cpu_temp_sum_off">OFF: La temperatura de la CPU NO se mostrará en la barra de estado</string>
 
 	<string name="app_keymod_settings">Asignar app o acción a los botones físicos</string>
 	<string name="band_key_settings">Ajustes del botón BAND</string>
@@ -52,6 +52,9 @@
 	<string name="bt_phone_key_settings">Ajustes del botón BT_PHONE</string>
 	<string name="bt_phone_key_call_title">Botón BT_PHONE: Método de llamada</string>
 	<string name="bt_phone_key_text_title">Botón BT_PHONE: Cadena a usar</string>
+	<string name="bt_hang_key_settings">Ajustes del botón BT_HANG</string>
+	<string name="bt_hang_key_call_title">Botón BT_HANG: Método de llamada</string>
+	<string name="bt_hang_key_text_title">Botón BT_HANG: Cadena a usar</string>
 	<string name="mode_src_key_settings">Ajustes del botón MODE_SRC</string>
 	<string name="mode_src_key_call_title">Botón MODE_SRC: Método de llamada</string>
 	<string name="mode_src_key_text_title">Botón MODE_SRC: Cadena a usar</string>
@@ -97,8 +100,8 @@
 	<string name="github_title">Código fuente</string>
 	<string name="github_summary">Explora el código fuente de XSofiaTweaker en Github</string>
 
-	<string name="zygote_reboot_title">This change requires a soft reboot</string>
-	<string name="zygote_reboot_message">This change requires a soft reboot. Do you want to do that now?</string>
-	<string name="zygote_reboot_soft_reboot">Soft Reboot</string>
-	<string name="zygote_reboot_cancel">Cancel</string>
+	<string name="zygote_reboot_title">Este cambio necesita de un reinicio suave</string>
+	<string name="zygote_reboot_message">Este cambio necesita de un reinicio suave. ¿Quieres reiniciar ahora?</string>
+	<string name="zygote_reboot_soft_reboot">Reinicio Suave</string>
+	<string name="zygote_reboot_cancel">Cancelar</string>
 </resources>
