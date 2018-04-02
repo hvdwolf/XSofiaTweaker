@@ -4,12 +4,12 @@
 	<string name="nokill_title">Activar o desactivar la opción NoKill</string>
 	<string name="nokill_sum_on">ON: las aplicaciones NO se matarán al entrar en modo de sueño profundo</string>
 	<string name="nokill_sum_off">OFF: : Comportamiento predeterminado: todas las aplicaciones se matarán al entrar en modo de sueño profundo</string>
-	<string name="UsbDac_title">Switch UsbDac option on or off</string>
-	<string name="UsbDac_sum_on">ON: Control volume via stock android volume bar for dac support</string>
-	<string name="UsbDac_sum_off">OFF: Control volume via Joying volume bar</string>
+	<string name="UsbDac_title">Activar o desactivar la opción UsbDac</string>
+	<string name="UsbDac_sum_on">ON: Controlar el volumen mediante la barra de volumen estándar de android con soporte dac</string>
+	<string name="UsbDac_sum_off">OFF: Controlar el volumen mediante la barra de volumen de Joying</string>
 	<string name="noMcuErrors_title">Activar o desactivar el cartel amarillo de errores de Mcu (si se aplica)</string>
-	<string name="noMcuErrors_sum_on">ON: El cartel amarillo de errrores de mcu no se mostrará</string>
-	<string name="noMcuErrors_sum_off">OFF: El cartel amarillo de errrores de mcu si se mostrará</string>
+	<string name="noMcuErrors_sum_on">ON: El cartel amarillo de errores de mcu no se mostrará</string>
+	<string name="noMcuErrors_sum_off">OFF: El cartel amarillo de errores de mcu si se mostrará</string>
 	<string name="skip_ch_four_title">Activar o desactivar Canal 4 (alarma)</string>
 	<string name="skip_ch_four_sum_on">ON: el canal 4 NO se silenciará. Esto permitirá escuchar las respuestas a los comandos de voz de Google Voice. También generará ruidos cuando no haya otro canal activo.</string>
 	<string name="skip_ch_four_sum_off">OFF: canal 4 silenciado. No se escucharán las respuestas a los comandos de voz de Google Voice. Tampoco habrá ruido cuando ningún otro canal esté activo.</string>
@@ -23,7 +23,7 @@
 	<string name="show_cpu_temp_sum_on">ON: La temperatura de la CPU se muestra en la barra de estado</string>
 	<string name="show_cpu_temp_sum_off">OFF: La temperatura de la CPU NO se mostrará en la barra de estado</string>
 
-	<string name="canbus_settings">Settings for users with CAN bus</string>
+	<string name="canbus_settings">Ajustes para usuarios con CAN Bus</string>
 	<string name="disable_airhelper_title">Desactivar el cartel Canbus cuando haya un cambio en el climatizador</string>
 	<string name="disable_airhelper_sum_on">ON: El cartel Canbus no se mostrará cuando haya un cambio en el climatizador.</string>
 	<string name="disable_airhelper_sum_off">OFF: El cartel Canbus se mostrará cuando haya un cambio en el climatizador.</string>
