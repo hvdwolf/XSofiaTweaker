@@ -4,18 +4,15 @@
 	<string name="nokill_title">Schaltet die "NoKill"-Option an oder aus</string>
 	<string name="nokill_sum_on">AN: Anwendungen werden im deep-sleep-Modus NICHT geschlossen</string>
 	<string name="nokill_sum_off">AUS: Standardeinstellung: Alle Anwendungen werden im deep-sleep-Modus geschlossen</string>
+	<string name="UsbDac_title">Schaltet UsbDac Option an oder aus</string>
+	<string name="UsbDac_sum_on">AN: Die Lautstärke wird über Android Volume Bar gesteuert für dac Unterstützung</string>
+	<string name="UsbDac_sum_off">AUS: Die Lautstärke wird über Joying Volume Bar gesteuert</string>
 	<string name="noMcuErrors_title">Option zur Unterdrückung von MCU-Fehlern</string>
 	<string name="noMcuErrors_sum_on">AN: gelben MCU-Fehler in der Statuszeile wird nicht gezeigt</string>
 	<string name="noMcuErrors_sum_off">AUS: gelben MCU-Fehler in der Statuszeile wird gezeigt</string>
 	<string name="skip_ch_four_title">Schaltet Kanal 4 (Alarm) an oder aus</string>
 	<string name="skip_ch_four_sum_on">AN: Kanal 4 wird NICHT stumm geschalten. Sprachausgabe über Google Voice möglich. Es erzeugt auch Rauschen wenn kein anderer Kanal aktiv ist.</string>
 	<string name="skip_ch_four_sum_off">AUS: Kanal 4 ist stumm geschalten. Keine Sprachausgabe über Google Voice möglich. Auch kein Rauschen wenn kein anderer Kanal aktiv ist.</string>
-	<string name="disable_airhelper_title">Deaktivierung das CAN-Bus-Symbol bei Veränderungen an der Klimaanlage</string>
-	<string name="disable_airhelper_sum_on">AN: Das CAN-Bus-Zeichen wird bei einer Veränderung an der Klimaanlage nicht angezeigt.</string>
-	<string name="disable_airhelper_sum_off">AUS: Das CAN-Bus-Symbol wird bei einer Veränderung an der Klimaanlage angezeigt.</string>
-	<string name="disable_doorhelper_title">Deaktivierung das CAN-Bus-Symbols wenn eine Tür geöffnet ist</string>
-	<string name="disable_doorhelper_sum_on">AN: Bei geöffneter Tür wird das CAN-Bus-Symbol nicht angezeigt.</string>
-	<string name="disable_doorhelper_sum_off">AUS: Bei geöffneter Tür wird das CAN-Bus-Symbol angezeigt.</string>
 	<string name="disable_btphonetop_title">Deaktivierung des Vordergrund-Modus der Phone App</string>
 	<string name="disable_btphonetop_sum_on">AN: Bluetooth-Phone App kann während eines Anrufs auch in den Hintergrund verschoben werden</string>
 	<string name="disable_btphonetop_sum_off">AUS: BluetoothPhone App bleibt während des Anrufs immer im Vordergrund</string>
@@ -25,6 +22,14 @@
 	<string name="show_cpu_temp_title">Option zum Anzeigen der CPU-Temperatur in der Statuszeile</string>
 	<string name="show_cpu_temp_sum_on">AN: Die CPU-Temperatur wird in der Statuszeile angezeigt</string>
 	<string name="show_cpu_temp_sum_off">AUS: Die CPU-Temperatur wird nicht in der Statuszeile angezeigt</string>
+
+	<string name="canbus_settings">Einstellungen für Benutzer mit CAN bus</string>
+	<string name="disable_airhelper_title">Deaktivierung das CAN-Bus-Symbol bei Veränderungen an der Klimaanlage</string>
+	<string name="disable_airhelper_sum_on">AN: Das CAN-Bus-Zeichen wird bei einer Veränderung an der Klimaanlage nicht angezeigt.</string>
+	<string name="disable_airhelper_sum_off">AUS: Das CAN-Bus-Symbol wird bei einer Veränderung an der Klimaanlage angezeigt.</string>
+	<string name="disable_doorhelper_title">Deaktivierung das CAN-Bus-Symbols wenn eine Tür geöffnet ist</string>
+	<string name="disable_doorhelper_sum_on">AN: Bei geöffneter Tür wird das CAN-Bus-Symbol nicht angezeigt.</string>
+	<string name="disable_doorhelper_sum_off">AUS: Bei geöffneter Tür wird das CAN-Bus-Symbol angezeigt.</string>
 
 	<string name="app_keymod_settings">Zuordnung von Anwendungen/Aktionen zu Hardware-Tasten</string>
 	<string name="band_key_settings">Einstellungen für BAND-Taste</string>

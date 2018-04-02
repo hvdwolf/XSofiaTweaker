@@ -124,6 +124,11 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.putExtra(MySettings.EXTRA_PREF_NO_KILL_ENABLED, sharedPreferences.getBoolean(key, false));
 		toastText = "BOOLEAN_KEY";
                 break;
+            case MySettings.PREF_UsbDac:
+                intent.setAction(MySettings.ACTION_PREF_UsbDac_CHANGED);
+                intent.putExtra(MySettings.EXTRA_PREF_UsbDac_ENABLED, sharedPreferences.getBoolean(key, false));
+                toastText = "BOOLEAN_KEY";
+                break;
             case MySettings.PREF_NO_MCU_ERRORS:
                 intent.setAction(MySettings.ACTION_PREF_NO_MCU_ERRORS_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_NO_MCU_ERRORS_ENABLED, sharedPreferences.getBoolean(key, false));

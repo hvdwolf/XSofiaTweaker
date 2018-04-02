@@ -5,18 +5,15 @@
 	<string name="nokill_title">Switch NoKill option on or off</string>
 	<string name="nokill_sum_on">ON: apps will NOT be killed on going into deep-sleep</string>
 	<string name="nokill_sum_off">OFF: Default behavior: All apps are killed on going into deep-sleep</string>
+	<string name="UsbDac_title">Switch UsbDac option on or off</string>
+	<string name="UsbDac_sum_on">ON: Control volume via android stock volume bar for dac support</string>
+	<string name="UsbDac_sum_off">OFF: Control volume via Joying volume bar</string>
 	<string name="noMcuErrors_title">Switch display yellow Mcu Errors overlay on or off (when applicable)</string>
 	<string name="noMcuErrors_sum_on">ON: The yellow overlay mcu errors overlay is not displayed</string>
 	<string name="noMcuErrors_sum_off">OFF: The yellow overlay mcu errors overlay is displayed</string>
 	<string name="skip_ch_four_title">Switch Channel 4 (alarm) option on or off</string>
 	<string name="skip_ch_four_sum_on">ON: Channel 4 will NOT be muted. This will enable voice feedback from Google Voice. It will also generate noise when no other channel is active.</string>
 	<string name="skip_ch_four_sum_off">OFF: channel 4 muted. No voice feedback from Google Voice. No noise either when no other channel is active.</string>
-	<string name="disable_airhelper_title">Disable canbus overlay on airconditioning change</string>
-	<string name="disable_airhelper_sum_on">ON: The Canbus overlay will not be displayed upon a change in the airconditioning.</string>
-	<string name="disable_airhelper_sum_off">OFF: The Canbus overlay will be displayed upon a change in the airconditioning.</string>
-	<string name="disable_doorhelper_title">Disable canbus overlay when a door is opened</string>
-	<string name="disable_doorhelper_sum_on">ON: When a door is open, the Canbus overlay will not be displayed.</string>
-	<string name="disable_doorhelper_sum_off">OFF: When a door is open, the Canbus overlay will be displayed.</string>
 	<string name="disable_btphonetop_title">Disable the Phone App from being Always On Top</string>
 	<string name="disable_btphonetop_sum_on">ON: Bluetooth Phone App will not force Always On Top during a call</string>
 	<string name="disable_btphonetop_sum_off">OFF: Bluetooth Phone App will always be on top during a call</string>
@@ -26,6 +23,14 @@
 	<string name="show_cpu_temp_title">Option to display CPU temperature in the status bar</string>
 	<string name="show_cpu_temp_sum_on">ON: CPU temperature is displayed in the status bar</string>
 	<string name="show_cpu_temp_sum_off">OFF: CPU temperature is NOT displayed in status bar</string>
+
+	<string name="canbus_settings">Settings for users with CAN bus</string>
+	<string name="disable_airhelper_title">Disable canbus overlay on airconditioning change</string>
+	<string name="disable_airhelper_sum_on">ON: The Canbus overlay will not be displayed upon a change in the airconditioning.</string>
+	<string name="disable_airhelper_sum_off">OFF: The Canbus overlay will be displayed upon a change in the airconditioning.</string>
+	<string name="disable_doorhelper_title">Disable canbus overlay when a door is opened</string>
+	<string name="disable_doorhelper_sum_on">ON: When a door is open, the Canbus overlay will not be displayed.</string>
+	<string name="disable_doorhelper_sum_off">OFF: When a door is open, the Canbus overlay will be displayed.</string>
 
 	<string name="app_keymod_settings">Assign app or action to hardware buttons</string>
 	<string name="band_key_settings">Settings for the BAND key</string>

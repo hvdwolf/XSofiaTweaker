@@ -4,18 +4,15 @@
 	<string name="nokill_title">Schakel NoKill optie in of uit</string>
 	<string name="nokill_sum_on">AAN: applicaties worden niet ge-killed bij het in deep-sleep gaan</string>
 	<string name="nokill_sum_off">UIT: Standaard gedrag: Alle apps worden ge-killed bij het in deep-sleep gaan</string>
+	<string name="UsbDac_title">Schakel UsbDac optie aan of uit</string>
+	<string name="UsbDac_sum_on">AAN: Volume controle via standaard Android voor UsbDac ondersteuning</string>
+	<string name="UsbDac_sum_off">UIT: Volume controle via Joying volume regeling</string>
 	<string name="noMcuErrors_title">Schakel tonen van gele MCU errors aan of uit (wanneer relevant)</string>
 	<string name="noMcuErrors_sum_on">AAN: gele mcu errors overlay wordt niet getoond</string>
 	<string name="noMcuErrors_sum_off">UIT: gele mcu errors overlay wordt getoond</string>
 	<string name="skip_ch_four_title">Schakel audio kanaal 4 (alarm) aan of uit</string>
 	<string name="skip_ch_four_sum_on">AAN: Kanaal 4 wordt niet op stil gezet. Dit maakt Google voice terugkoppeling mogelijk. Dit genereert ook ruis als geen ander kanaal actief is.</string>
 	<string name="skip_ch_four_sum_off">UIT: Kanaal 4 stil. Geen stem terugkoppeling van Google Voice. Maar ook geen ruis als geen enkel kanaal actief is.</string>
-	<string name="disable_airhelper_title">Schakel Canbus overlay uit bij een aircondition wijziging</string>
-	<string name="disable_airhelper_sum_on">AAN: De Canbus overlay wordt niet getoond bij een wijziging aan de airconditioning.</string>
-	<string name="disable_airhelper_sum_off">UIT: De Canbus overlay wordt wel getoond bij een wijziging aan de airconditioning.</string>
-	<string name="disable_doorhelper_title">Schakel canbus overlay uit wanneer een deur open staat</string>
-	<string name="disable_doorhelper_sum_on">AAN: Bij een geopende deur wordt de Canbus overlay niet getoond.</string>
-	<string name="disable_doorhelper_sum_off">UIT: Bij een geopende deur wordt de Canbus overlay wel getoond.</string>
 	<string name="disable_btphonetop_title">Voorkom dat de BT telefoon app altijd op de voorgrond blijft tijdens bellen.</string>
 	<string name="disable_btphonetop_sum_on">AAN: Bluetooth Telefoon App blijft niet op de voorgrond tijdens bellen.</string>
 	<string name="disable_btphonetop_sum_off">UIT: Bluetooth Telefoon App blijft op de voorgrond tijdens bellen.</string>
@@ -25,6 +22,14 @@
 	<string name="show_cpu_temp_title">Optie om de CPU temperatuur te tonen in de statusbalk</string>
 	<string name="show_cpu_temp_sum_on">AAN: CPU temperatuur wordt getoond in de statusbalk</string>
 	<string name="show_cpu_temp_sum_off">UIT: CPU temperatuur wordt NIET getoond in de statusbalk</string>
+
+	<string name="canbus_settings">Instellingen voor gebruikers met een CAN bus</string>
+	<string name="disable_airhelper_title">Schakel Canbus overlay uit bij een aircondition wijziging</string>
+	<string name="disable_airhelper_sum_on">AAN: De Canbus overlay wordt niet getoond bij een wijziging aan de airconditioning.</string>
+	<string name="disable_airhelper_sum_off">UIT: De Canbus overlay wordt wel getoond bij een wijziging aan de airconditioning.</string>
+	<string name="disable_doorhelper_title">Schakel canbus overlay uit wanneer een deur open staat</string>
+	<string name="disable_doorhelper_sum_on">AAN: Bij een geopende deur wordt de Canbus overlay niet getoond.</string>
+	<string name="disable_doorhelper_sum_off">UIT: Bij een geopende deur wordt de Canbus overlay wel getoond.</string>
 
 	<string name="app_keymod_settings">Koppel andere apk of actie aan een hardware knop</string>
 	<string name="band_key_settings">Instelling voor de BAND knop</string>

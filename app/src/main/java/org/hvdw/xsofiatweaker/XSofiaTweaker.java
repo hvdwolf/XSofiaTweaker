@@ -31,6 +31,8 @@ import java.io.BufferedReader;
 import android.widget.TextView;
 import android.graphics.Color;
 
+import android.media.AudioManager;  //USB-DAC
+
 import de.robv.android.xposed.XposedBridge;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -49,7 +51,11 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private static PackageManager pm;
 	public static XSharedPreferences pref;
 
+	private AudioManager audioManager; //USB-DAC
+	private int CurrentVolume; //USB-DAC
+
 	private boolean noKillEnabled;
+	private boolean UsbDac;  //USB-DAC
 	private boolean noMcuErrors;
 	private boolean skip_ch_four;
 	private boolean disable_airhelper;
@@ -102,6 +108,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		sharedPreferences.makeWorldReadable();
 
 		noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
+		UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, false); //USB-DAC
 		noMcuErrors = sharedPreferences.getBoolean(MySettings.PREF_NO_MCU_ERRORS, false);
 		skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
 		disable_airhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, false);
@@ -176,6 +183,84 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			XposedBridge.log(TAG + " nokill disabled");
 		}
 
+		   //USB-DAC-START
+		   if (UsbDac == true) {
+			   findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolUp", new XC_MethodHook() {
+				   @Override
+				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					   Context context = (Context) AndroidAppHelper.currentApplication();
+					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					   sharedPreferences.makeWorldReadable();
+					   UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+					   AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+					   CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+					   audioManager.setStreamVolume(3, CurrentVolume + 1, 1);
+					   audioManager.setStreamVolume(5, CurrentVolume + 1, 0);
+					   //XposedBridge.log(TAG + " VolUp");
+					   param.setResult(null);
+				   }
+			   });
+
+			   findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolDown", new XC_MethodHook() {
+				   @Override
+				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					   Context context = (Context) AndroidAppHelper.currentApplication();
+					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					   sharedPreferences.makeWorldReadable();
+					   UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+					   AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+					   CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+					   audioManager.setStreamVolume(3, CurrentVolume + -1, 1);
+					   audioManager.setStreamVolume(5, CurrentVolume + -1, 0);
+					   //XposedBridge.log(TAG + " VolDown");
+					   param.setResult(null);
+				   }
+			   });
+
+			   findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolMute", new XC_MethodHook() {
+				   @Override
+				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					   Context context = (Context) AndroidAppHelper.currentApplication();
+					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					   sharedPreferences.makeWorldReadable();
+					   UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+					   AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+					   if (audioManager.isStreamMute(AudioManager.STREAM_MUSIC)) {
+						   audioManager.adjustStreamVolume(0, 100, 0);
+						   audioManager.adjustStreamVolume(1, 100, 0);
+						   audioManager.adjustStreamVolume(2, 100, 0);
+						   audioManager.adjustStreamVolume(3, 100, 1);
+						   audioManager.adjustStreamVolume(4, 100, 0);
+						   audioManager.adjustStreamVolume(5, 100, 0);
+						   audioManager.adjustStreamVolume(6, 100, 0);
+					   } else {
+						   audioManager.adjustStreamVolume(0, 101, 0);
+						   audioManager.adjustStreamVolume(1, 101, 0);
+						   audioManager.adjustStreamVolume(2, 101, 0);
+						   audioManager.adjustStreamVolume(3, 101, 1);
+						   audioManager.adjustStreamVolume(4, 101, 0);
+						   audioManager.adjustStreamVolume(5, 101, 0);
+						   audioManager.adjustStreamVolume(6, 101, 0);
+					   }
+					   //XposedBridge.log(TAG + " Mute");
+					   param.setResult(null);
+				   }
+			   });
+
+			   findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "setStreamVol", int.class, int.class, new XC_MethodHook() {
+				   @Override
+				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					   Context context = (Context) AndroidAppHelper.currentApplication();
+					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					   sharedPreferences.makeWorldReadable();
+					   UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+					   //XposedBridge.log(TAG + " Stop setStreamVol");
+					   param.setResult(null);
+				   }
+			   });
+		   }
+		   //USB-DAC-END
+
 		   if (noMcuErrors == true) {
 			   findAndHookMethod("ui.InfoView", lpparam.classLoader, "addSelfToWindow", new XC_MethodHook() {
 				   @Override
@@ -196,7 +281,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		/* This should prevent the mute of audio channel 4 (alarm) which is used by Google voice for voice feedback 
 		*  This seems like a must-do switch on setting, but when no other channel is used it will give noise, although 
 		*  you won't hear that with the engine on */
-		if (skip_ch_four == true) {
+		if (skip_ch_four == true && UsbDac == false) { //USB-DAC find and replace if (skip_ch_four == true)
 			findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "setStreamVol", int.class, int.class, new XC_MethodHook() {
 				@Override
 				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -808,4 +893,5 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			return 0.0f;
 		}
 	}
+
 }

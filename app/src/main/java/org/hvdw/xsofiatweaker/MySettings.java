@@ -7,10 +7,13 @@ class MySettings {
     public static final String ACTION_PREF_NO_KILL_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_NO_KILL_CHANGED";
     public static final String EXTRA_PREF_NO_KILL_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_NO_KILL_ENABLED";
 
+    public static final String PREF_UsbDac = "pref_UsbDac";
+    public static final String ACTION_PREF_UsbDac_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_UsbDac_CHANGED";
+    public static final String EXTRA_PREF_UsbDac_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_UsbDac_ENABLED";
+
     public static final String PREF_NO_MCU_ERRORS = "pref_no_mcu_errors";
     public static final String ACTION_PREF_NO_MCU_ERRORS_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_NO_MCU_ERRORS_CHANGED";
     public static final String EXTRA_PREF_NO_MCU_ERRORS_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_NO_MCU_ERRORS_ENABLED";
-
 
     public static final String PREF_SKIP_CH_FOUR = "pref_skip_channel_four";
     public static final String ACTION_PREF_SKIP_CH_FOUR_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_SKIP_CH_FOUR_CHANGED";
