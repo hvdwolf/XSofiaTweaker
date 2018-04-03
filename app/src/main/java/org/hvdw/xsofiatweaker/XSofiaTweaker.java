@@ -167,6 +167,34 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	   if (lpparam.packageName.equals("com.syu.ms")) {
 
 /**********************************************************************************************************************************************/
+
+		// Hook for the "eliminate feedback during the call if you have OK Google anywhere enabled"
+		Class<?> ProfileInfoClass = XposedHelpers.findClass("module.bt.HandlerBt", lpparam.classLoader);
+			XposedBridge.hookAllMethods(ProfileInfoClass, "btPhoneState", new XC_MethodHook() {
+			public void beforeHookedMethod(MethodHookParam param) throws Throwable {
+				int phonestate = (int) param.args[0];
+				//5 is in call
+				//4 is ringing?
+				//3 is dialing
+				//2 is idle?
+				//1 is ?
+				//0 is n/c?
+
+				//XposedBridge.log("BTTEST " + "phonestate:" + phonestate);
+				if (phonestate == 3 || phonestate == 4) {
+					firstCall = true;
+					sudoVoiceKill();
+				}
+				if ((phonestate == 2) && (firstCall == true)) {
+					//XposedBridge.log("BTTEST CALL WAS HUNG UP");
+					firstCall = false;
+					sudoVoiceRestart();
+				}
+				}
+			});
+		// End of the hook for the "eliminate feedback during the call if you have OK Google anywhere enabled"
+
+
 		/* This is the No Kill function */
 		if (noKillEnabled == true) {
 			findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "killAppWhenSleep", new XC_MethodHook() {
@@ -184,7 +212,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			XposedBridge.log(TAG + " nokill disabled");
 		}
 
-		   //USB-DAC-START
+		//USB-DAC-START
 		if (UsbDac == true) {
 			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolUp", new XC_MethodHook() {
 				@Override
@@ -302,7 +330,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		}
 
 		if (disable_btphonetop == true) {
-			Class<?> ProfileInfoClass = XposedHelpers.findClass("module.bt.HandlerBt$3", lpparam.classLoader);
+			//Class<?> ProfileInfoClass = XposedHelpers.findClass("module.bt.HandlerBt$3", lpparam.classLoader);
+			//No lo nger necessary to declare as it is declared on top in the OK Google function
+			ProfileInfoClass = XposedHelpers.findClass("module.bt.HandlerBt$3", lpparam.classLoader);
 			   XposedBridge.hookAllMethods(ProfileInfoClass, "topChanged", new XC_MethodHook() {
 				   @Override
 				   protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -896,6 +926,38 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	}
 
 	// Methods for the "eliminate feedback during the call if you have OK Google anywhere enabled"
+	public void sudoVoiceKill(){
+		try {
+			Process suProcess = Runtime.getRuntime().exec("su");
+			DataOutputStream os = new DataOutputStream(suProcess.getOutputStream());
+			//XposedBridge.log("BTTEST new su kill");
+			os.writeBytes("am force-stop com.google.android.googlequicksearchbox" + "\n");
+			os.flush();
+			os.writeBytes("pm revoke com.google.android.googlequicksearchbox android.permission.RECORD_AUDIO" + "\n");
+			os.flush();
+		}
+		catch (Exception e) {
+			RuntimeException ex = new RuntimeException("Unable to kill Google Voice Search: " + e.getMessage());
+			throw ex;
+		}
+	}
+
+
+	public void sudoVoiceRestart(){
+		try {
+			Process suProcess = Runtime.getRuntime().exec("su");
+			DataOutputStream os = new DataOutputStream(suProcess.getOutputStream());
+			//XposedBridge.log("BTTEST new su start");
+			os.writeBytes("pm grant com.google.android.googlequicksearchbox android.permission.RECORD_AUDIO" + "\n");
+			os.flush();
+			os.writeBytes("am start com.google.android.googlequicksearchbox" + "\n");
+			os.flush();
+		}
+		catch (Exception e) {
+			RuntimeException ex = new RuntimeException("Unable to start Google Voice Search: " + e.getMessage());
+			throw ex;
+		}
+	}
 	// End of methods for the "eliminate feedback during the call if you have OK Google anywhere enabled"
 
 }
