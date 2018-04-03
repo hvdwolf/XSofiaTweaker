@@ -64,6 +64,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private boolean use_root_access;
 	private boolean show_cpu_temp;
 	private boolean display_org_clock = false; // just a helper boolean for show_cpu_temp, not a setting.
+	public boolean firstCall = false; // For the "eliminate feedback during the call if you have OK Google anywhere enabled"
 
 	private String band_call_option;
 	private String band_call_entry;
@@ -184,98 +185,98 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		}
 
 		   //USB-DAC-START
-		   if (UsbDac == true) {
-			   findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolUp", new XC_MethodHook() {
-				   @Override
-				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-					   Context context = (Context) AndroidAppHelper.currentApplication();
-					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-					   sharedPreferences.makeWorldReadable();
-					   UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
-					   AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-					   CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-					   audioManager.setStreamVolume(3, CurrentVolume + 1, 1);
-					   audioManager.setStreamVolume(5, CurrentVolume + 1, 0);
-					   //XposedBridge.log(TAG + " VolUp");
-					   param.setResult(null);
-				   }
-			   });
+		if (UsbDac == true) {
+			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolUp", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+					AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+					CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+					audioManager.setStreamVolume(3, CurrentVolume + 1, 1);
+					audioManager.setStreamVolume(5, CurrentVolume + 1, 0);
+					//XposedBridge.log(TAG + " VolUp");
+					param.setResult(null);
+				}
+			});
 
-			   findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolDown", new XC_MethodHook() {
-				   @Override
-				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-					   Context context = (Context) AndroidAppHelper.currentApplication();
-					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-					   sharedPreferences.makeWorldReadable();
-					   UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
-					   AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-					   CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-					   audioManager.setStreamVolume(3, CurrentVolume + -1, 1);
-					   audioManager.setStreamVolume(5, CurrentVolume + -1, 0);
-					   //XposedBridge.log(TAG + " VolDown");
-					   param.setResult(null);
-				   }
-			   });
+			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolDown", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+					AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+					CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+					audioManager.setStreamVolume(3, CurrentVolume + -1, 1);
+					audioManager.setStreamVolume(5, CurrentVolume + -1, 0);
+					//XposedBridge.log(TAG + " VolDown");
+					param.setResult(null);
+				}
+			});
 
-			   findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolMute", new XC_MethodHook() {
-				   @Override
-				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-					   Context context = (Context) AndroidAppHelper.currentApplication();
-					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-					   sharedPreferences.makeWorldReadable();
-					   UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
-					   AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-					   if (audioManager.isStreamMute(AudioManager.STREAM_MUSIC)) {
-						   audioManager.adjustStreamVolume(0, 100, 0);
-						   audioManager.adjustStreamVolume(1, 100, 0);
-						   audioManager.adjustStreamVolume(2, 100, 0);
-						   audioManager.adjustStreamVolume(3, 100, 1);
-						   audioManager.adjustStreamVolume(4, 100, 0);
-						   audioManager.adjustStreamVolume(5, 100, 0);
-						   audioManager.adjustStreamVolume(6, 100, 0);
-					   } else {
-						   audioManager.adjustStreamVolume(0, 101, 0);
-						   audioManager.adjustStreamVolume(1, 101, 0);
-						   audioManager.adjustStreamVolume(2, 101, 0);
-						   audioManager.adjustStreamVolume(3, 101, 1);
-						   audioManager.adjustStreamVolume(4, 101, 0);
-						   audioManager.adjustStreamVolume(5, 101, 0);
-						   audioManager.adjustStreamVolume(6, 101, 0);
-					   }
-					   //XposedBridge.log(TAG + " Mute");
-					   param.setResult(null);
-				   }
-			   });
+			findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyVolMute", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+					AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+					if (audioManager.isStreamMute(AudioManager.STREAM_MUSIC)) {
+						audioManager.adjustStreamVolume(0, 100, 0);
+						audioManager.adjustStreamVolume(1, 100, 0);
+						audioManager.adjustStreamVolume(2, 100, 0);
+						audioManager.adjustStreamVolume(3, 100, 1);
+						audioManager.adjustStreamVolume(4, 100, 0);
+						audioManager.adjustStreamVolume(5, 100, 0);
+						audioManager.adjustStreamVolume(6, 100, 0);
+					} else {
+						audioManager.adjustStreamVolume(0, 101, 0);
+						audioManager.adjustStreamVolume(1, 101, 0);
+						audioManager.adjustStreamVolume(2, 101, 0);
+						audioManager.adjustStreamVolume(3, 101, 1);
+						audioManager.adjustStreamVolume(4, 101, 0);
+						audioManager.adjustStreamVolume(5, 101, 0);
+						audioManager.adjustStreamVolume(6, 101, 0);
+					}
+					//XposedBridge.log(TAG + " Mute");
+					param.setResult(null);
+				}
+			});
 
-			   findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "setStreamVol", int.class, int.class, new XC_MethodHook() {
-				   @Override
-				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-					   Context context = (Context) AndroidAppHelper.currentApplication();
-					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-					   sharedPreferences.makeWorldReadable();
-					   UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
-					   //XposedBridge.log(TAG + " Stop setStreamVol");
-					   param.setResult(null);
-				   }
-			   });
-		   }
-		   //USB-DAC-END
+			findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "setStreamVol", int.class, int.class, new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+					//XposedBridge.log(TAG + " Stop setStreamVol");
+					param.setResult(null);
+				}
+			});
+		}
+		//USB-DAC-END
 
-		   if (noMcuErrors == true) {
-			   findAndHookMethod("ui.InfoView", lpparam.classLoader, "addSelfToWindow", new XC_MethodHook() {
-				   @Override
-				   protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-					   Context context = (Context) AndroidAppHelper.currentApplication();
-					   XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-					   sharedPreferences.makeWorldReadable();
-					   noMcuErrors = sharedPreferences.getBoolean(MySettings.PREF_NO_MCU_ERRORS, true);
-					   XposedBridge.log(TAG + " noMcuErrors enabled");
-					   param.setResult(null);
-				   }
-			   });
-		   } else {
-			   XposedBridge.log(TAG + " noMcuErrors disabled");
-		   }
+		if (noMcuErrors == true) {
+			findAndHookMethod("ui.InfoView", lpparam.classLoader, "addSelfToWindow", new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+					Context context = (Context) AndroidAppHelper.currentApplication();
+					XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
+					sharedPreferences.makeWorldReadable();
+					noMcuErrors = sharedPreferences.getBoolean(MySettings.PREF_NO_MCU_ERRORS, true);
+					XposedBridge.log(TAG + " noMcuErrors enabled");
+					param.setResult(null);
+				}
+			});
+		} else {
+			XposedBridge.log(TAG + " noMcuErrors disabled");
+		}
 
 
 		/* This should prevent the mute of audio channel 4 (alarm) which is used by Google voice for voice feedback 
@@ -893,5 +894,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			return 0.0f;
 		}
 	}
+
+	// Methods for the "eliminate feedback during the call if you have OK Google anywhere enabled"
+	// End of methods for the "eliminate feedback during the call if you have OK Google anywhere enabled"
 
 }
