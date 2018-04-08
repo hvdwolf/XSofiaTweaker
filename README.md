@@ -3,14 +3,17 @@
 For releases see the "[Xposed Module Repository](http://repo.xposed.info/module/org.hvdw.xsofiatweaker) or use the Xposed Installer on your Joying unit.
 
 This xposed module:
-* captures the hardware keys from the Joying unit and allows you to reprogram them.
-* allows you to reprogram the steering wheel keys.
+* captures the hardware keys from the Joying unit and allows you to reprogram them. This must/can be configured from the Settings (sub)screen.
 * allows you to switch on/off the nokill.
 * allows you to unmute channel 4, which is used for Google voice feedback.
 * can act on the ACC_ON, ACC_OFF and Resume events.
-* can prevent the Bluetooth apk to stay full screen on top during a call
-* can prevent the CANbus overlay from displaying when changing temp/heat/airco and can prevent the "doors opened" popup overlay.
-
+* has an option to prevent the Bluetooth app from staying full screen on top (thanks to @gtxaspec)
+* has an option to prevent the CANbus overlays popping up on heat/airco change or door(s) opening
+* has an option to run system calls as root (Know what you do!)
+* has an option to display the CPU temperature in the status bar next to the time
+* has an option to disable the yellow MCU errors overlay (in case this happens to you) (thanks to @RoNeReR)
+* supports a usb dac where volume control will be rerouted to stock android volume control (thanks to @RoNeReR)
+* eliminates feedback during the call if you have OK Google anywhere enabled (thanks to @gtxaspec)
 This must/can be configured from the Settings (sub)screen.
 
 This module can replace the custom key mod mod from Gustden.
