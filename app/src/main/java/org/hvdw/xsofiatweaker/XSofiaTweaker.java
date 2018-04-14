@@ -224,7 +224,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 					AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
 					CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 					audioManager.setStreamVolume(3, CurrentVolume + 1, 1);
-					audioManager.setStreamVolume(5, CurrentVolume + 1, 0);
+					int MaxVolume3 = audioManager.getStreamMaxVolume(3);
+					int MaxVolume5 = audioManager.getStreamMaxVolume(5);
+					audioManager.setStreamVolume(5, (int) Math.ceil((((double) MaxVolume5) / ((double) MaxVolume3)) * ((double) CurrentVolume)) , 0);
 					//XposedBridge.log(TAG + " VolUp");
 					param.setResult(null);
 				}
@@ -240,7 +242,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 					AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
 					CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 					audioManager.setStreamVolume(3, CurrentVolume + -1, 1);
-					audioManager.setStreamVolume(5, CurrentVolume + -1, 0);
+					int MaxVolume3 = audioManager.getStreamMaxVolume(3);
+					int MaxVolume5 = audioManager.getStreamMaxVolume(5);
+					audioManager.setStreamVolume(5, (int) Math.ceil((((double) MaxVolume5) / ((double) MaxVolume3)) * ((double) CurrentVolume)) , 0);
 					//XposedBridge.log(TAG + " VolDown");
 					param.setResult(null);
 				}
