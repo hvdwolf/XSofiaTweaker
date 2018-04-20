@@ -147,6 +147,22 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
+	    case MySettings.BAND_CALL_OPTION_SECOND:
+                intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BAND_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BAND_CALL_ENTRY_SECOND:
+                intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BAND_CALL_OPTION_THIRD:
+                intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BAND_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BAND_CALL_ENTRY_THIRD:
+                intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
 	    case MySettings.BT_PHONE_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
@@ -154,6 +170,22 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	    case MySettings.BT_PHONE_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BT_PHONE_CALL_OPTION_SECOND:
+                intent.setAction(MySettings.ACTION_BT_PHONE_CALL_OPTION_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BT_PHONE_CALL_ENTRY_SECOND:
+                intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BT_PHONE_CALL_OPTION_THIRD:
+                intent.setAction(MySettings.ACTION_BT_PHONE_CALL_OPTION_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.BT_PHONE_CALL_ENTRY_THIRD:
+                intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
 	    case MySettings.BT_HANG_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_BT_HANG_CALL_OPTION_CHANGED);
@@ -170,6 +202,22 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	    case MySettings.DVD_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_DVD_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_DVD_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.DVD_CALL_OPTION_SECOND:
+                intent.setAction(MySettings.ACTION_DVD_CALL_OPTION_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_DVD_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.DVD_CALL_ENTRY_SECOND:
+                intent.setAction(MySettings.ACTION_DVD_CALL_ENTRY_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_DVD_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.DVD_CALL_OPTION_THIRD:
+                intent.setAction(MySettings.ACTION_DVD_CALL_OPTION_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_DVD_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.DVD_CALL_ENTRY_THIRD:
+                intent.setAction(MySettings.ACTION_DVD_CALL_ENTRY_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_DVD_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
 	    case MySettings.EJECT_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_EJECT_CALL_OPTION_CHANGED);
@@ -195,6 +243,22 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
+	    case MySettings.MEDIA_CALL_OPTION_SECOND:
+                intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MEDIA_CALL_ENTRY_SECOND:
+                intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MEDIA_CALL_OPTION_THIRD:
+                intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MEDIA_CALL_ENTRY_THIRD:
+                intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
 	    case MySettings.MODE_SRC_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_MODE_SRC_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
@@ -203,6 +267,22 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_MODE_SRC_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
+	    case MySettings.MODE_SRC_CALL_OPTION_SECOND:
+                intent.setAction(MySettings.ACTION_MODE_SRC_CALL_OPTION_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MODE_SRC_CALL_ENTRY_SECOND:
+                intent.setAction(MySettings.ACTION_MODE_SRC_CALL_ENTRY_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MODE_SRC_CALL_OPTION_THIRD:
+                intent.setAction(MySettings.ACTION_MODE_SRC_CALL_OPTION_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.MODE_SRC_CALL_ENTRY_THIRD:
+                intent.setAction(MySettings.ACTION_MODE_SRC_CALL_ENTRY_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
 	    case MySettings.NAVI_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
@@ -210,6 +290,22 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	    case MySettings.NAVI_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.NAVI_CALL_OPTION_SECOND:
+                intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.NAVI_CALL_ENTRY_SECOND:
+                intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.NAVI_CALL_OPTION_THIRD:
+                intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
+	    case MySettings.NAVI_CALL_ENTRY_THIRD:
+                intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
 	    case MySettings.ACC_ON_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_ACC_ON_CALL_OPTION_CHANGED);

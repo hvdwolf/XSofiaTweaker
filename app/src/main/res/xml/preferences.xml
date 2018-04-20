@@ -68,36 +68,104 @@
 	<PreferenceScreen
 		android:title="@string/app_keymod_settings"
 		android:key="app_keymod_settings">
-		<PreferenceCategory
+		<PreferenceScreen
 			android:title="@string/band_key_settings"
 			android:key="band_key_settings">
-			<ListPreference
-			        android:key="band_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgname"
-			        android:title="@string/band_key_call_title" />
-			<EditTextPreference
-				android:dependency="band_key_call_option"
-				android:key="band_key_entry"
-				android:title="@string/band_key_text_title"
-				android:defaultValue="com.syu.radio" />
-		</PreferenceCategory>
-		<PreferenceCategory
+			<PreferenceCategory
+				android:title="@string/band_key_category"
+				android:key="band_key_category">
+				<ListPreference
+				        android:key="band_key_call_option"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/band_key_call_title" />
+				<EditTextPreference
+					android:dependency="band_key_call_option"
+					android:key="band_key_entry"
+					android:title="@string/band_key_text_title"
+					android:defaultValue="com.syu.radio" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/band_key_category_second"
+				android:key="band_key_category_second">
+				<ListPreference
+				        android:key="band_key_call_option_second"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/band_key_call_title_second" />
+				<EditTextPreference
+					android:dependency="band_key_call_option_second"
+					android:key="band_key_entry_second"
+					android:title="@string/band_key_text_title_second"
+					android:defaultValue="" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/band_key_category_third"
+				android:key="band_key_category_third">
+				<ListPreference
+				        android:key="band_key_call_option_third"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/band_key_call_title_third" />
+				<EditTextPreference
+					android:dependency="band_key_call_option_third"
+					android:key="band_key_entry_third"
+					android:title="@string/band_key_text_title_third"
+					android:defaultValue="" />
+			</PreferenceCategory>
+		</PreferenceScreen>
+		<PreferenceScreen
 			android:title="@string/dvd_key_settings"
 			android:key="dvd_key_settings">
-			<ListPreference
-			        android:key="dvd_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgname"
-			        android:title="@string/dvd_key_call_title" />
-			<EditTextPreference
-				android:dependency="dvd_key_call_option"
-				android:key="dvd_key_entry"
-				android:title="@string/dvd_key_text_title"
-				android:defaultValue="com.syu.dvd" />
-		</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/dvd_key_category"
+				android:key="dvd_key_category">
+				<ListPreference
+				        android:key="dvd_key_call_option"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/dvd_key_call_title" />
+				<EditTextPreference
+					android:dependency="dvd_key_call_option"
+					android:key="dvd_key_entry"
+					android:title="@string/dvd_key_text_title"
+					android:defaultValue="com.syu.dvd" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/dvd_key_category_second"
+				android:key="dvd_key_category_second">
+				<ListPreference
+				        android:key="dvd_key_call_option_second"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/dvd_key_call_title_second" />
+				<EditTextPreference
+					android:dependency="dvd_key_call_option_second"
+					android:key="dvd_key_entry_second"
+					android:title="@string/dvd_key_text_title_second"
+					android:defaultValue="" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/dvd_key_category_third"
+				android:key="dvd_key_category_third">
+				<ListPreference
+				        android:key="dvd_key_call_option_third"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/dvd_key_call_title_third" />
+				<EditTextPreference
+					android:dependency="dvd_key_call_option_third"
+					android:key="dvd_key_entry_third"
+					android:title="@string/dvd_key_text_title_third"
+					android:defaultValue="" />
+			</PreferenceCategory>
+		</PreferenceScreen>
 		<PreferenceCategory
 			android:title="@string/eject_key_settings"
 			android:key="eject_key_settings">
@@ -128,56 +196,158 @@
 				android:title="@string/eq_key_text_title"
 				android:defaultValue="com.syu.eq" />
 		</PreferenceCategory>
-		<PreferenceCategory
+		<PreferenceScreen
 			android:title="@string/media_key_settings"
 			android:key="media_key_settings">
-			<ListPreference
-			        android:key="media_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgname"
-			        android:title="@string/media_key_call_title" />
-			<EditTextPreference
-				android:dependency="media_key_call_option"
-				android:key="media_key_entry"
-				android:title="@string/media_key_text_title"
-				android:defaultValue="com.syu.music" />
-		</PreferenceCategory>
-		<PreferenceCategory
+			<PreferenceCategory
+				android:title="@string/media_key_category"
+				android:key="media_key_category">
+				<ListPreference
+				        android:key="media_key_call_option"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/media_key_call_title" />
+				<EditTextPreference
+					android:dependency="media_key_call_option"
+					android:key="media_key_entry"
+					android:title="@string/media_key_text_title"
+					android:defaultValue="com.syu.music" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/media_key_category_second"
+				android:key="media_key_category_second">
+				<ListPreference
+				        android:key="media_key_call_option_second"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/media_key_call_title_second" />
+				<EditTextPreference
+					android:dependency="media_key_call_option_second"
+					android:key="media_key_entry_second"
+					android:title="@string/media_key_text_title_second"
+					android:defaultValue="" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/media_key_category_third"
+				android:key="media_key_category_third">
+				<ListPreference
+				        android:key="media_key_call_option_third"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/media_key_call_title_third" />
+				<EditTextPreference
+					android:dependency="media_key_call_option_third"
+					android:key="media_key_entry_third"
+					android:title="@string/media_key_text_title_third"
+					android:defaultValue="" />
+			</PreferenceCategory>
+		</PreferenceScreen>
+		<PreferenceScreen
 			android:title="@string/navi_key_settings"
 			android:key="navi_key_settings">
-			<ListPreference
-			        android:key="navi_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgname"
-			        android:title="@string/navi_key_call_title" />
-			<EditTextPreference
-				android:dependency="navi_key_call_option"
-				android:key="navi_key_entry"
-				android:title="@string/navi_key_text_title"
-				android:defaultValue="com.syu.onekeynavi" />
-		</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/navi_key_category"
+				android:key="navi_key_category">
+				<ListPreference
+				        android:key="navi_key_call_option"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/navi_key_call_title" />
+				<EditTextPreference
+					android:dependency="navi_key_call_option"
+					android:key="navi_key_entry"
+					android:title="@string/navi_key_text_title"
+					android:defaultValue="com.syu.onekeynavi" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/navi_key_category_second"
+				android:key="navi_key_category_second">
+				<ListPreference
+				        android:key="navi_key_call_option_second"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/navi_key_call_title_second" />
+				<EditTextPreference
+					android:dependency="navi_key_call_option_second"
+					android:key="navi_key_entry_second"
+					android:title="@string/navi_key_text_title_second"
+					android:defaultValue="" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/navi_key_category_third"
+				android:key="navi_key_category_third">
+				<ListPreference
+				        android:key="navi_key_call_option_third"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/navi_key_call_title_third" />
+				<EditTextPreference
+					android:dependency="navi_key_call_option_third"
+					android:key="navi_key_entry_third"
+					android:title="@string/navi_key_text_title_third"
+					android:defaultValue="" />
+			</PreferenceCategory>
+		</PreferenceScreen>
 	</PreferenceScreen>
 
 	<PreferenceScreen
 		android:title="@string/sw_keymod_settings"
 		android:key="sw_keymod_settings">
-		<PreferenceCategory
+		<PreferenceScreen
 			android:title="@string/bt_phone_key_settings"
 			android:key="bt_phone_key_settings">
-			<ListPreference
-			        android:key="bt_phone_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgintent"
-			        android:title="@string/bt_phone_key_call_title" />
-			<EditTextPreference
-				android:dependency="bt_phone_key_call_option"
-				android:key="bt_phone_key_entry"
-				android:title="@string/bt_phone_key_text_title"
-				android:defaultValue="com.syu.bt/.act.ActBt" />
-		</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/bt_phone_key_category"
+				android:key="bt_phone_key_category">
+				<ListPreference
+				        android:key="bt_phone_key_call_option"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/bt_phone_key_call_title" />
+				<EditTextPreference
+					android:dependency="bt_phone_key_call_option"
+					android:key="bt_phone_key_entry"
+					android:title="@string/bt_phone_key_text_title"
+					android:defaultValue="com.syu.bt/.act.ActBt" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/bt_phone_key_category_second"
+				android:key="bt_phone_key_category_second">
+				<ListPreference
+				        android:key="bt_phone_key_call_option_second"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/bt_phone_key_call_title_second" />
+				<EditTextPreference
+					android:dependency="bt_phone_key_call_option_second"
+					android:key="bt_phone_key_entry_second"
+					android:title="@string/bt_phone_key_text_title_second"
+					android:defaultValue="" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/bt_phone_key_category_third"
+				android:key="bt_phone_key_category_third">
+				<ListPreference
+				        android:key="bt_phone_key_call_option_third"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/bt_phone_key_call_title_third" />
+				<EditTextPreference
+					android:dependency="bt_phone_key_call_option_third"
+					android:key="bt_phone_key_entry_third"
+					android:title="@string/bt_phone_key_text_title_third"
+					android:defaultValue="" />
+			</PreferenceCategory>
+		</PreferenceScreen>
 <!--		<PreferenceCategory
 			android:title="@string/bt_hang_key_settings"
 			android:key="bt_hang_key_settings">
@@ -193,21 +363,55 @@
 				android:title="@string/bt_hang_key_text_title"
 				android:defaultValue="com.syu.bt/.act.ActBt" />
 		</PreferenceCategory> -->
-		<PreferenceCategory
+		<PreferenceScreen
 			android:title="@string/mode_src_key_settings"
 			android:key="mode_src_key_settings">
-			<ListPreference
-			        android:key="mode_src_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkg_intent"
-			        android:title="@string/mode_src_key_call_title" />
-			<EditTextPreference
-				android:dependency="mode_src_key_call_option"
-				android:key="mode_src_key_entry"
-				android:title="@string/mode_src_key_text_title"
-				android:defaultValue="com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.VoiceSearchActivity" />
-		</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/mode_src_key_category"
+				android:key="mode_src_key_category">
+				<ListPreference
+				        android:key="mode_src_key_call_option"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/mode_src_key_call_title" />
+				<EditTextPreference
+					android:dependency="mode_src_key_call_option"
+					android:key="mode_src_key_entry"
+					android:title="@string/mode_src_key_text_title"
+					android:defaultValue="com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.VoiceSearchActivity" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/mode_src_key_category_second"
+				android:key="mode_src_key_category_second">
+				<ListPreference
+				        android:key="mode_src_key_call_option_second"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/mode_src_key_call_title_second" />
+				<EditTextPreference
+					android:dependency="mode_src_key_call_option_second"
+					android:key="mode_src_key_entry_second"
+					android:title="@string/mode_src_key_text_title_second"
+					android:defaultValue="" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/mode_src_key_category_third"
+				android:key="mode_src_key_category_third">
+				<ListPreference
+				        android:key="mode_src_key_call_option_third"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/mode_src_key_call_title_third" />
+				<EditTextPreference
+					android:dependency="mode_src_key_call_option_third"
+					android:key="mode_src_key_entry_third"
+					android:title="@string/mode_src_key_text_title_third"
+					android:defaultValue="" />
+			</PreferenceCategory>
+		</PreferenceScreen>
 	</PreferenceScreen>
 
 	<PreferenceScreen
