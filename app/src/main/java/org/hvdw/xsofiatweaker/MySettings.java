@@ -45,6 +45,18 @@ class MySettings {
     public static final String NAVI_CALL_ENTRY = "navi_key_entry";
     public static final String ACTION_NAVI_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_ENTRY_CHANGED";
     public static final String EXTRA_NAVI_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_ENTRY_STRING";
+    public static final String NAVI_CALL_OPTION_SECOND = "navi_key_call_option_second";
+    public static final String ACTION_NAVI_CALL_OPTION_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_OPTION_SECOND_CHANGED";
+    public static final String EXTRA_NAVI_CALL_OPTION_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_OPTION_SECOND_STRING";
+    public static final String NAVI_CALL_ENTRY_SECOND = "navi_key_entry_second";
+    public static final String ACTION_NAVI_CALL_ENTRY_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_ENTRY_SECOND_CHANGED";
+    public static final String EXTRA_NAVI_CALL_ENTRY_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_ENTRY_SECOND_STRING";
+    public static final String NAVI_CALL_OPTION_THIRD = "navi_key_call_option_third";
+    public static final String ACTION_NAVI_CALL_OPTION_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_OPTION_THIRD_CHANGED";
+    public static final String EXTRA_NAVI_CALL_OPTION_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_OPTION_THIRD_STRING";
+    public static final String NAVI_CALL_ENTRY_THIRD = "navi_key_entry_third";
+    public static final String ACTION_NAVI_CALL_ENTRY_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_ENTRY_THIRD_CHANGED";
+    public static final String EXTRA_NAVI_CALL_ENTRY_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_NAVI_CALL_ENTRY_THIRD_STRING";
 
     public static final String MEDIA_CALL_OPTION = "media_key_call_option";
     public static final String ACTION_MEDIA_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_OPTION_CHANGED";
@@ -52,13 +64,37 @@ class MySettings {
     public static final String MEDIA_CALL_ENTRY = "media_key_entry";
     public static final String ACTION_MEDIA_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_ENTRY_CHANGED";
     public static final String EXTRA_MEDIA_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MEDIA_CALL_ENTRY_STRING";
+    public static final String MEDIA_CALL_OPTION_SECOND = "media_key_call_option_second";
+    public static final String ACTION_MEDIA_CALL_OPTION_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_OPTION_SECOND_CHANGED";
+    public static final String EXTRA_MEDIA_CALL_OPTION_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MEDIA_CALL_OPTION_SECOND_STRING";
+    public static final String MEDIA_CALL_ENTRY_SECOND = "media_key_entry_second";
+    public static final String ACTION_MEDIA_CALL_ENTRY_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_ENTRY_SECOND_CHANGED";
+    public static final String EXTRA_MEDIA_CALL_ENTRY_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MEDIA_CALL_ENTRY_SECOND_STRING";
+    public static final String MEDIA_CALL_OPTION_THIRD = "media_key_call_option_third";
+    public static final String ACTION_MEDIA_CALL_OPTION_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_OPTION_THIRD_CHANGED";
+    public static final String EXTRA_MEDIA_CALL_OPTION_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MEDIA_CALL_OPTION_THIRD_STRING";
+    public static final String MEDIA_CALL_ENTRY_THIRD = "media_key_entry_third";
+    public static final String ACTION_MEDIA_CALL_ENTRY_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MEDIA_CALL_ENTRY_THIRD_CHANGED";
+    public static final String EXTRA_MEDIA_CALL_ENTRY_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MEDIA_CALL_ENTRY_THIRD_STRING";
 
     public static final String MODE_SRC_CALL_OPTION = "mode_src_key_call_option";
     public static final String ACTION_MODE_SRC_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_OPTION_CHANGED";
     public static final String EXTRA_MODE_SRC_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_OPTION_STRING";
-    public static final String MODE_SRC_CALL_ENTRY = "mode_src_key_entry";
+    public static final String MODE_SRC_CALL_ENTRY = "mode_src_key_key_entry";
     public static final String ACTION_MODE_SRC_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_ENTRY_CHANGED";
     public static final String EXTRA_MODE_SRC_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_ENTRY_STRING";
+    public static final String MODE_SRC_CALL_OPTION_SECOND = "mode_src_key_call_option_second";
+    public static final String ACTION_MODE_SRC_CALL_OPTION_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_OPTION_SECOND_CHANGED";
+    public static final String EXTRA_MODE_SRC_CALL_OPTION_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_OPTION_SECOND_STRING";
+    public static final String MODE_SRC_CALL_ENTRY_SECOND = "mode_src_key_entry_second";
+    public static final String ACTION_MODE_SRC_CALL_ENTRY_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_ENTRY_SECOND_CHANGED";
+    public static final String EXTRA_MODE_SRC_CALL_ENTRY_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_ENTRY_SECOND_STRING";
+    public static final String MODE_SRC_CALL_OPTION_THIRD = "mode_src_key_call_option_third";
+    public static final String ACTION_MODE_SRC_CALL_OPTION_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_OPTION_THIRD_CHANGED";
+    public static final String EXTRA_MODE_SRC_CALL_OPTION_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_OPTION_THIRD_STRING";
+    public static final String MODE_SRC_CALL_ENTRY_THIRD = "mode_src_key_entry_third";
+    public static final String ACTION_MODE_SRC_CALL_ENTRY_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_ENTRY_THIRD_CHANGED";
+    public static final String EXTRA_MODE_SRC_CALL_ENTRY_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_ENTRY_THIRD_STRING";
 
     public static final String BT_PHONE_CALL_OPTION = "bt_phone_key_call_option";
     public static final String ACTION_BT_PHONE_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_OPTION_CHANGED";
@@ -66,6 +102,18 @@ class MySettings {
     public static final String BT_PHONE_CALL_ENTRY = "bt_phone_key_entry";
     public static final String ACTION_BT_PHONE_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_ENTRY_CHANGED";
     public static final String EXTRA_BT_PHONE_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_ENTRY_STRING";
+    public static final String BT_PHONE_CALL_OPTION_SECOND = "bt_phone_key_call_option_second";
+    public static final String ACTION_BT_PHONE_CALL_OPTION_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_OPTION_SECOND_CHANGED";
+    public static final String EXTRA_BT_PHONE_CALL_OPTION_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_OPTION_SECOND_STRING";
+    public static final String BT_PHONE_CALL_ENTRY_SECOND = "bt_phone_key_entry_second";
+    public static final String ACTION_BT_PHONE_CALL_ENTRY_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_ENTRY_SECOND_CHANGED";
+    public static final String EXTRA_BT_PHONE_CALL_ENTRY_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_ENTRY_SECOND_STRING";
+    public static final String BT_PHONE_CALL_OPTION_THIRD = "bt_phone_key_call_option_third";
+    public static final String ACTION_BT_PHONE_CALL_OPTION_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_OPTION_THIRD_CHANGED";
+    public static final String EXTRA_BT_PHONE_CALL_OPTION_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_OPTION_THIRD_STRING";
+    public static final String BT_PHONE_CALL_ENTRY_THIRD = "bt_phone_key_entry_third";
+    public static final String ACTION_BT_PHONE_CALL_ENTRY_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_PHONE_CALL_ENTRY_THIRD_CHANGED";
+    public static final String EXTRA_BT_PHONE_CALL_ENTRY_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BT_PHONE_CALL_ENTRY_THIRD_STRING";
 
     public static final String BT_HANG_CALL_OPTION = "bt_hang_key_call_option";
     public static final String ACTION_BT_HANG_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BT_HANG_CALL_OPTION_CHANGED";
@@ -80,6 +128,18 @@ class MySettings {
     public static final String BAND_CALL_ENTRY = "band_key_entry";
     public static final String ACTION_BAND_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BAND_CALL_ENTRY_CHANGED";
     public static final String EXTRA_BAND_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BAND_CALL_ENTRY_STRING";
+    public static final String BAND_CALL_OPTION_SECOND = "band_key_call_option_second";
+    public static final String ACTION_BAND_CALL_OPTION_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BAND_CALL_OPTION_SECOND_CHANGED";
+    public static final String EXTRA_BAND_CALL_OPTION_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BAND_CALL_OPTION_SECOND_STRING";
+    public static final String BAND_CALL_ENTRY_SECOND = "band_key_entry_second";
+    public static final String ACTION_BAND_CALL_ENTRY_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BAND_CALL_ENTRY_SECOND_CHANGED";
+    public static final String EXTRA_BAND_CALL_ENTRY_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BAND_CALL_ENTRY_SECOND_STRING";
+    public static final String BAND_CALL_OPTION_THIRD = "band_key_call_option_third";
+    public static final String ACTION_BAND_CALL_OPTION_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BAND_CALL_OPTION_THIRD_CHANGED";
+    public static final String EXTRA_BAND_CALL_OPTION_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BAND_CALL_OPTION_THIRD_STRING";
+    public static final String BAND_CALL_ENTRY_THIRD = "band_key_entry_third";
+    public static final String ACTION_BAND_CALL_ENTRY_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_BAND_CALL_ENTRY_THIRD_CHANGED";
+    public static final String EXTRA_BAND_CALL_ENTRY_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_BAND_CALL_ENTRY_THIRD_STRING";
 
     public static final String DVD_CALL_OPTION = "dvd_key_call_option";
     public static final String ACTION_DVD_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_DVD_CALL_OPTION_CHANGED";
@@ -87,6 +147,18 @@ class MySettings {
     public static final String DVD_CALL_ENTRY = "dvd_key_entry";
     public static final String ACTION_DVD_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_DVD_CALL_ENTRY_CHANGED";
     public static final String EXTRA_DVD_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_DVD_CALL_ENTRY_STRING";
+    public static final String DVD_CALL_OPTION_SECOND = "dvd_key_call_option_second";
+    public static final String ACTION_DVD_CALL_OPTION_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_DVD_CALL_OPTION_SECOND_CHANGED";
+    public static final String EXTRA_DVD_CALL_OPTION_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_DVD_CALL_OPTION_SECOND_STRING";
+    public static final String DVD_CALL_ENTRY_SECOND = "dvd_key_entry_second";
+    public static final String ACTION_DVD_CALL_ENTRY_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_DVD_CALL_ENTRY_SECOND_CHANGED";
+    public static final String EXTRA_DVD_CALL_ENTRY_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_DVD_CALL_ENTRY_SECOND_STRING";
+    public static final String DVD_CALL_OPTION_THIRD = "dvd_key_call_option_third";
+    public static final String ACTION_DVD_CALL_OPTION_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_DVD_CALL_OPTION_THIRD_CHANGED";
+    public static final String EXTRA_DVD_CALL_OPTION_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_DVD_CALL_OPTION_THIRD_STRING";
+    public static final String DVD_CALL_ENTRY_THIRD = "dvd_key_entry_third";
+    public static final String ACTION_DVD_CALL_ENTRY_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_DVD_CALL_ENTRY_THIRD_CHANGED";
+    public static final String EXTRA_DVD_CALL_ENTRY_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_DVD_CALL_ENTRY_THIRD_STRING";
 
     public static final String EJECT_CALL_OPTION = "eject_key_call_option";
     public static final String ACTION_EJECT_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EJECT_CALL_OPTION_CHANGED";
