@@ -166,7 +166,7 @@
 					android:defaultValue="" />
 			</PreferenceCategory>
 		</PreferenceScreen>
-		<PreferenceCategory
+<!--		<PreferenceCategory
 			android:title="@string/eject_key_settings"
 			android:key="eject_key_settings">
 			<ListPreference
@@ -195,7 +195,7 @@
 				android:key="eq_key_entry"
 				android:title="@string/eq_key_text_title"
 				android:defaultValue="com.syu.eq" />
-		</PreferenceCategory>
+		</PreferenceCategory>  -->
 		<PreferenceScreen
 			android:title="@string/media_key_settings"
 			android:key="media_key_settings">
