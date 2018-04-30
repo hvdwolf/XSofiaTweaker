@@ -55,8 +55,16 @@
     <string name="dvd_key_text_title_third">DVD Key: String to be used (triple tap)</string>
 
     <string name="eject_key_settings">Настройки кнопки EJECT (извлечь диск)</string>
+    <string name="eject_key_category">EJECT key Single tap</string>
     <string name="eject_key_call_title">Кнопка EJECT: Метод вызова</string>
     <string name="eject_key_text_title">Кнопка EJECT: Строка, которая будет использоваться</string>
+    <string name="eject_key_category_second">EJECT key Single tap</string>
+    <string name="eject_key_call_title_second">Кнопка EJECT: Метод вызова (double tap)</string>
+    <string name="eject_key_text_title_second">Кнопка EJECT: Строка, которая будет использоваться (double tap)</string>
+    <string name="eject_key_category_third">EJECT key Single tap</string>
+    <string name="eject_key_call_title_third">Кнопка EJECT: Метод вызова (triple tap)</string>
+    <string name="eject_key_text_title_third">Кнопка EJECT: Строка, которая будет использоваться (triple tap)</string>
+
     <string name="eq_key_settings">Накстройки кнопки эквалайзера</string>
     <string name="eq_key_call_title">Кнопка EQ: Метод вызова</string>
     <string name="eq_key_text_title">Кнопка EQ: Строка, которая будет использоваться</string>

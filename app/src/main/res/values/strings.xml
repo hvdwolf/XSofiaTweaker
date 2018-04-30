@@ -56,11 +56,17 @@
     <string name="dvd_key_call_title_third">DVD Key: Call method (triple tap)</string>
     <string name="dvd_key_text_title_third">DVD Key: String to be used (triple tap)</string>
 
-
-
     <string name="eject_key_settings">Settings for the EJECT key</string>
+    <string name="eject_key_category">EJECT key Single tap</string>
     <string name="eject_key_call_title">EJECT Key: Call method</string>
     <string name="eject_key_text_title">EJECT Key: String to be used</string>
+    <string name="eject_key_category_second">EJECT key Double tap</string>
+    <string name="eject_key_call_title_second">EJECT Key: Call method (double tap)</string>
+    <string name="eject_key_text_title_second">EJECT Key: String to be used (double tap)</string>
+    <string name="eject_key_category_third">EJECT key Triple tap</string>
+    <string name="eject_key_call_title_third">EJECT Key: Call method (triple tap)</string>
+    <string name="eject_key_text_title_third">EJECT Key: String to be used (triple tap)</string>
+
     <string name="eq_key_settings">Settings for the EQ key</string>
     <string name="eq_key_call_title">EQ Key: Call method</string>
     <string name="eq_key_text_title">EQ Key: String to be used</string>

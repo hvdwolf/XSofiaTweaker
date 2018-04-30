@@ -55,8 +55,16 @@
     <string name="dvd_key_text_title_third">DVD Knop: Te gebruiken commandoregel (drie keer tikken)</string>
 
     <string name="eject_key_settings">Instelling voor de EJECT knop</string>
+    <string name="eject_key_category">EJECT Knop één keer tikken</string>
     <string name="eject_key_call_title">EJECT Knop: Aanroep methode</string>
     <string name="eject_key_text_title">EJECT Knop: Te gebruiken commandoregel</string>
+    <string name="eject_key_category_second">EJECT Knop twee keer tikken</string>
+    <string name="eject_key_call_title_second">EJECT Knop: Aanroep methode (twee keer tikken)</string>
+    <string name="eject_key_text_title_second">EJECT Knop: Te gebruiken commandoregel (twee keer tikken)</string>
+    <string name="eject_key_category_third">EJECT Knop drie keer tikken</string>
+    <string name="eject_key_call_title_third">EJECT Knop: Aanroep methode (drie keer tikken)</string>
+    <string name="eject_key_text_title_third">EJECT Knop: Te gebruiken commandoregel (drie keer tikken)</string>
+
     <string name="eq_key_settings">Instelling voor de EQ knop</string>
     <string name="eq_key_call_title">EQ Knop: Aanroep methode</string>
     <string name="eq_key_text_title">EQ Knop: Te gebruiken commandoregel</string>
