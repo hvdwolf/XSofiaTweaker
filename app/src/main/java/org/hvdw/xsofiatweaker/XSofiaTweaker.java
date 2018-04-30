@@ -88,6 +88,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 	private String dvd_call_entry_third;
 	private String eject_call_option;
 	private String eject_call_entry;
+	private String eject_call_option_second;
+	private String eject_call_entry_second;
+	private String eject_call_option_third;
+	private String eject_call_entry_third;
 	private String eq_call_option;
 	private String eq_call_entry;
 	private String media_call_option;
@@ -164,6 +168,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 		dvd_call_entry_third = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY_THIRD, "");
 		eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
 		eject_call_entry = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY, "");
+		eject_call_option_second = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION_SECOND, "");
+		eject_call_entry_second = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_SECOND, "");
+		eject_call_option_third = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION_THIRD, "");
+		eject_call_entry_third = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_THIRD, "");
 		eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
 		eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
 		media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");

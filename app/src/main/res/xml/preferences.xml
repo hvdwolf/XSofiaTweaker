@@ -166,22 +166,56 @@
 					android:defaultValue="" />
 			</PreferenceCategory>
 		</PreferenceScreen>
-<!--		<PreferenceCategory
+		<PreferenceScreen
 			android:title="@string/eject_key_settings"
 			android:key="eject_key_settings">
-			<ListPreference
-			        android:key="eject_key_call_option"
-				android:entries="@array/key_call_entries"
-				android:entryValues="@array/key_call_values"
-				android:defaultValue="pkgname"
-			        android:title="@string/eject_key_call_title" />
-			<EditTextPreference
-				android:dependency="eject_key_call_option"
-				android:key="eject_key_entry"
-				android:title="@string/eject_key_text_title"
-				android:defaultValue="com.syu.eject" />
-		</PreferenceCategory>
-		<PreferenceCategory
+			<PreferenceCategory
+				android:title="@string/eject_key_category"
+				android:key="eject_key_category">
+				<ListPreference
+				        android:key="eject_key_call_option"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/eject_key_call_title" />
+				<EditTextPreference
+					android:dependency="eject_key_call_option"
+					android:key="eject_key_entry"
+					android:title="@string/eject_key_text_title"
+					android:defaultValue="com.syu.eject" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/eject_key_category_second"
+				android:key="eject_key_category_second">
+				<ListPreference
+				        android:key="eject_key_call_option_second"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/eject_key_call_title_second" />
+				<EditTextPreference
+					android:dependency="eject_key_call_option_second"
+					android:key="eject_key_entry_second"
+					android:title="@string/eject_key_text_title_second"
+					android:defaultValue="" />
+			</PreferenceCategory>
+			<PreferenceCategory
+				android:title="@string/eject_key_category_third"
+				android:key="eject_key_category_third">
+				<ListPreference
+				        android:key="eject_key_call_option_third"
+					android:entries="@array/key_call_entries"
+					android:entryValues="@array/key_call_values"
+					android:defaultValue="pkgname"
+				        android:title="@string/eject_key_call_title_third" />
+				<EditTextPreference
+					android:dependency="eject_key_call_option_third"
+					android:key="eject_key_entry_third"
+					android:title="@string/eject_key_text_title_third"
+					android:defaultValue="" />
+			</PreferenceCategory>
+		</PreferenceScreen>
+<!--		<PreferenceCategory
 			android:title="@string/eq_key_settings"
 			android:key="eq_key_settings">
 			<ListPreference

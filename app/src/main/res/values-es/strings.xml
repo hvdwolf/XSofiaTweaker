@@ -55,8 +55,16 @@
     <string name="dvd_key_text_title_third">Botón DVD: Cadena a usar (triple tap)</string>
 
     <string name="eject_key_settings">Ajustes del botón EJECT</string>
+    <string name="eject_key_category">Botón EJECT Single tap</string>
     <string name="eject_key_call_title">Botón EJECT: Método de llamada</string>
     <string name="eject_key_text_title">Botón EJECT: Cadena a usar</string>
+    <string name="eject_key_category_second">Botón EJECT Double tap</string>
+    <string name="eject_key_call_title_second">Botón EJECT: Método de llamada (double tap)</string>
+    <string name="eject_key_text_title_second">Botón EJECT: Cadena a usar (double tap)</string>
+    <string name="eject_key_category_third">Botón EJECT Triple tap</string>
+    <string name="eject_key_call_title_third">Botón EJECT: Método de llamada (triple tap)</string>
+    <string name="eject_key_text_title_third">Botón EJECT: Cadena a usar (triple tap)</string>
+
     <string name="eq_key_settings">Ajustes del botón EQ</string>
     <string name="eq_key_call_title">Botón EQ: Método de llamada</string>
     <string name="eq_key_text_title">Botón EQ: Cadena a usar</string>
