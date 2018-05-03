@@ -96,13 +96,13 @@
 
     <string name="sw_keymod_settings">Zuordnung von Anwendungen/Aktionen zu Lenkrad-Tasten</string>
     <string name="bt_phone_key_settings">Einstellungen für BT_Phone-Taste</string>
-    <string name="bt_phone_key_category">NAVI key Single tap</string>
+    <string name="bt_phone_key_category">BT_PHONE key Single tap</string>
     <string name="bt_phone_key_call_title">BT_Phone-Taste: Funktion auswählen</string>
     <string name="bt_phone_key_text_title">BT_Phone-Taste: Paketname als Text eingeben</string>
-    <string name="bt_phone_key_category_second">NAVI key Double tap</string>
+    <string name="bt_phone_key_category_second">BT_PHONE key Double tap</string>
     <string name="bt_phone_key_call_title_second">BT_PHONE Key: Call method (double tap)</string>
     <string name="bt_phone_key_text_title_second">BT_PHONE Key: String to be used (double tap)</string>
-    <string name="bt_phone_key_category_third">NAVI key Triplele tap</string>
+    <string name="bt_phone_key_category_third">BT_PHONE key Triplele tap</string>
     <string name="bt_phone_key_call_title_third">BT_PHONE Key: Call method (triple tap)</string>
     <string name="bt_phone_key_text_title_third">BT_PHONE Key: String to be used (triple tap)</string>
 
