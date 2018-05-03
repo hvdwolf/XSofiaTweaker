@@ -19,6 +19,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
+import android.view.KeyEvent;
 /* assets filecopy */
 /*import android.content.res.AssetManager;
 import java.io.OutputStream;
@@ -250,6 +251,47 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 			});
 		// End of the hook for the "eliminate feedback during the call if you have OK Google anywhere enabled"
 
+		/* Correct the mediaKey function in app/ToolkitApp.java
+		*  Gustdens modified code only sends media keys to the active media player
+		*  The original code uses an intent and "every" media player listening will react. */
+		findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "mediaKey", int.class, new XC_MethodHook() {
+			@Override
+			protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+				int onKey1 = (int) param.args[0];
+				Context context = (Context) AndroidAppHelper.currentApplication();
+				AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+
+				if (onKey1 == KeyEvent.KEYCODE_MEDIA_PREVIOUS) {
+					// same as onKey1 == 88
+					Log.d(TAG, "PREV");
+					KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+					mAudioManager.dispatchMediaKeyEvent(event);
+					KeyEvent event2 = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+					mAudioManager.dispatchMediaKeyEvent(event2);
+				}
+
+				if (onKey1 == KeyEvent.KEYCODE_MEDIA_NEXT) {
+					//same as onKey1 == 87
+					Log.d(TAG, "Next");
+					KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_NEXT);
+					mAudioManager.dispatchMediaKeyEvent(event);
+					KeyEvent event2 = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_MEDIA_NEXT);
+					mAudioManager.dispatchMediaKeyEvent(event2);
+				}
+
+				if (onKey1 == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) {
+					// same as onKey1 == 85
+					Log.d(TAG, "play/pause");
+					KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+					mAudioManager.dispatchMediaKeyEvent(event);
+					KeyEvent event2 = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+					mAudioManager.dispatchMediaKeyEvent(event2);
+				}
+
+				param.setResult(null);
+			}
+		});
+		// End of the hook to correct the media keys.
 
 		/* This is the No Kill function */
 		if (noKillEnabled == true) {
