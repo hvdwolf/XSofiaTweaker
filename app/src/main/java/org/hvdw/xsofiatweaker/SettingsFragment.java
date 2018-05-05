@@ -49,20 +49,20 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
     public void onAttach(Activity activity) {
 //    public void onAttach(Context mContext) {
-//        super.onAttach(mContext);
-	super.onAttach(activity);
+//    super.onAttach(mContext);
+        super.onAttach(activity);
         mContext = getActivity();
-	//attrs = getAttributeSet();
+        //attrs = getAttributeSet();
 
         //Toast mToast = Toast.makeText(mContext, "Retrieving installed apps", Toast.LENGTH_LONG);
-	//mToast.show();
+        //mToast.show();
 
-	//getPackages(mContext);
-	AsyncTask<Void, Void, Void> doAppsList = new AsyncTask<Void, Void, Void>() {
+        //getPackages(mContext);
+        AsyncTask<Void, Void, Void> doAppsList = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 //AppsListPref.AppsListPref(mContext, attrs);
-		//new AppsList.AppsListPref(mContext, attrs);
+                //new AppsList.AppsListPref(mContext, attrs);
                 return null;
             }
 
@@ -71,10 +71,10 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 //pd.dismiss();
             }
 
-	};
+    };
 
 
-	doAppsList.execute((Void[])null);
+    doAppsList.execute((Void[])null);
     }
 
     public static final String TAG = "XSofiaTweaker-SettingsFragment";
@@ -89,15 +89,14 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
         addPreferencesFromResource(R.xml.preferences);
-	getActivity().registerReceiver(broadcastReceiver, intentFilter);
-
-	//getPackages(mContext);
+        getActivity().registerReceiver(broadcastReceiver, intentFilter);
+        //getPackages(mContext);
     }
 
     @Override
     public void onResume() {
         getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-	getActivity().registerReceiver(broadcastReceiver, intentFilter);
+        getActivity().registerReceiver(broadcastReceiver, intentFilter);
         super.onResume();
     }
 
@@ -115,14 +114,14 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Intent intent = new Intent();
-	    String toastText = "";
+        String toastText = "";
 
         switch (key) {
             /* All the settings belonging to the SofiaServer */
             case MySettings.PREF_NO_KILL:
                 intent.setAction(MySettings.ACTION_PREF_NO_KILL_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_NO_KILL_ENABLED, sharedPreferences.getBoolean(key, false));
-		toastText = "BOOLEAN_KEY";
+                toastText = "BOOLEAN_KEY";
                 break;
             case MySettings.PREF_UsbDac:
                 intent.setAction(MySettings.ACTION_PREF_UsbDac_CHANGED);
@@ -137,252 +136,252 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
             case MySettings.PREF_SKIP_CH_FOUR:
                 intent.setAction(MySettings.ACTION_PREF_SKIP_CH_FOUR_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_SKIP_CH_FOUR_ENABLED, sharedPreferences.getBoolean(key, false));
-		toastText = "BOOLEAN_KEY";
+                toastText = "BOOLEAN_KEY";
                 break;
-	    case MySettings.BAND_CALL_OPTION:
+        case MySettings.BAND_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BAND_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BAND_CALL_ENTRY:
+        case MySettings.BAND_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BAND_CALL_OPTION_SECOND:
+        case MySettings.BAND_CALL_OPTION_SECOND:
                 intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BAND_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BAND_CALL_ENTRY_SECOND:
+        case MySettings.BAND_CALL_ENTRY_SECOND:
                 intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BAND_CALL_OPTION_THIRD:
+        case MySettings.BAND_CALL_OPTION_THIRD:
                 intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BAND_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BAND_CALL_ENTRY_THIRD:
+        case MySettings.BAND_CALL_ENTRY_THIRD:
                 intent.setAction(MySettings.ACTION_BAND_CALL_ENTRY_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BAND_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BT_PHONE_CALL_OPTION:
+        case MySettings.BT_PHONE_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BT_PHONE_CALL_ENTRY:
+        case MySettings.BT_PHONE_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BT_PHONE_CALL_OPTION_SECOND:
+        case MySettings.BT_PHONE_CALL_OPTION_SECOND:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_OPTION_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BT_PHONE_CALL_ENTRY_SECOND:
+        case MySettings.BT_PHONE_CALL_ENTRY_SECOND:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BT_PHONE_CALL_OPTION_THIRD:
+        case MySettings.BT_PHONE_CALL_OPTION_THIRD:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_OPTION_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BT_PHONE_CALL_ENTRY_THIRD:
+        case MySettings.BT_PHONE_CALL_ENTRY_THIRD:
                 intent.setAction(MySettings.ACTION_BT_PHONE_CALL_ENTRY_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_PHONE_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BT_HANG_CALL_OPTION:
+        case MySettings.BT_HANG_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_BT_HANG_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_HANG_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BT_HANG_CALL_ENTRY:
+        case MySettings.BT_HANG_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_BT_HANG_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BT_HANG_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.DVD_CALL_OPTION:
+        case MySettings.DVD_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_DVD_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_DVD_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.DVD_CALL_ENTRY:
+        case MySettings.DVD_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_DVD_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_DVD_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.DVD_CALL_OPTION_SECOND:
+        case MySettings.DVD_CALL_OPTION_SECOND:
                 intent.setAction(MySettings.ACTION_DVD_CALL_OPTION_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_DVD_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.DVD_CALL_ENTRY_SECOND:
+        case MySettings.DVD_CALL_ENTRY_SECOND:
                 intent.setAction(MySettings.ACTION_DVD_CALL_ENTRY_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_DVD_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.DVD_CALL_OPTION_THIRD:
+        case MySettings.DVD_CALL_OPTION_THIRD:
                 intent.setAction(MySettings.ACTION_DVD_CALL_OPTION_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_DVD_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.DVD_CALL_ENTRY_THIRD:
+        case MySettings.DVD_CALL_ENTRY_THIRD:
                 intent.setAction(MySettings.ACTION_DVD_CALL_ENTRY_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_DVD_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.EJECT_CALL_OPTION:
+        case MySettings.EJECT_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_EJECT_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EJECT_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.EJECT_CALL_ENTRY:
+        case MySettings.EJECT_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_EJECT_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EJECT_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.EJECT_CALL_OPTION_SECOND:
+        case MySettings.EJECT_CALL_OPTION_SECOND:
                 intent.setAction(MySettings.ACTION_EJECT_CALL_OPTION_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EJECT_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.EJECT_CALL_ENTRY_SECOND:
+        case MySettings.EJECT_CALL_ENTRY_SECOND:
                 intent.setAction(MySettings.ACTION_EJECT_CALL_ENTRY_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EJECT_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.EJECT_CALL_OPTION_THIRD:
+        case MySettings.EJECT_CALL_OPTION_THIRD:
                 intent.setAction(MySettings.ACTION_EJECT_CALL_OPTION_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EJECT_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.EJECT_CALL_ENTRY_THIRD:
+        case MySettings.EJECT_CALL_ENTRY_THIRD:
                 intent.setAction(MySettings.ACTION_EJECT_CALL_ENTRY_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EJECT_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.EQ_CALL_OPTION:
+        case MySettings.EQ_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_EQ_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EQ_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.EQ_CALL_ENTRY:
+        case MySettings.EQ_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_EQ_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EQ_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MEDIA_CALL_OPTION:
+        case MySettings.MEDIA_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MEDIA_CALL_ENTRY:
+        case MySettings.MEDIA_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MEDIA_CALL_OPTION_SECOND:
+        case MySettings.MEDIA_CALL_OPTION_SECOND:
                 intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MEDIA_CALL_ENTRY_SECOND:
+        case MySettings.MEDIA_CALL_ENTRY_SECOND:
                 intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MEDIA_CALL_OPTION_THIRD:
+        case MySettings.MEDIA_CALL_OPTION_THIRD:
                 intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MEDIA_CALL_ENTRY_THIRD:
+        case MySettings.MEDIA_CALL_ENTRY_THIRD:
                 intent.setAction(MySettings.ACTION_MEDIA_CALL_ENTRY_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MEDIA_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MODE_SRC_CALL_OPTION:
+        case MySettings.MODE_SRC_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_MODE_SRC_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MODE_SRC_CALL_ENTRY:
+        case MySettings.MODE_SRC_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_MODE_SRC_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MODE_SRC_CALL_OPTION_SECOND:
+        case MySettings.MODE_SRC_CALL_OPTION_SECOND:
                 intent.setAction(MySettings.ACTION_MODE_SRC_CALL_OPTION_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MODE_SRC_CALL_ENTRY_SECOND:
+        case MySettings.MODE_SRC_CALL_ENTRY_SECOND:
                 intent.setAction(MySettings.ACTION_MODE_SRC_CALL_ENTRY_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MODE_SRC_CALL_OPTION_THIRD:
+        case MySettings.MODE_SRC_CALL_OPTION_THIRD:
                 intent.setAction(MySettings.ACTION_MODE_SRC_CALL_OPTION_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MODE_SRC_CALL_ENTRY_THIRD:
+        case MySettings.MODE_SRC_CALL_ENTRY_THIRD:
                 intent.setAction(MySettings.ACTION_MODE_SRC_CALL_ENTRY_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MODE_SRC_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.NAVI_CALL_OPTION:
+        case MySettings.NAVI_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.NAVI_CALL_ENTRY:
+        case MySettings.NAVI_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.NAVI_CALL_OPTION_SECOND:
+        case MySettings.NAVI_CALL_OPTION_SECOND:
                 intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.NAVI_CALL_ENTRY_SECOND:
+        case MySettings.NAVI_CALL_ENTRY_SECOND:
                 intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_SECOND_CHANGED);
                 intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.NAVI_CALL_OPTION_THIRD:
+        case MySettings.NAVI_CALL_OPTION_THIRD:
                 intent.setAction(MySettings.ACTION_NAVI_CALL_OPTION_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_NAVI_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.NAVI_CALL_ENTRY_THIRD:
+        case MySettings.NAVI_CALL_ENTRY_THIRD:
                 intent.setAction(MySettings.ACTION_NAVI_CALL_ENTRY_THIRD_CHANGED);
                 intent.putExtra(MySettings.EXTRA_NAVI_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.ACC_ON_CALL_OPTION:
+        case MySettings.ACC_ON_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_ACC_ON_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_ACC_ON_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.ACC_ON_CALL_ENTRY:
+        case MySettings.ACC_ON_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_ACC_ON_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_ACC_ON_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.ACC_OFF_CALL_OPTION:
+        case MySettings.ACC_OFF_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_ACC_OFF_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_ACC_OFF_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.ACC_OFF_CALL_ENTRY:
+        case MySettings.ACC_OFF_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_ACC_OFF_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_ACC_OFF_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.RESUME_CALL_OPTION:
+        case MySettings.RESUME_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_RESUME_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_RESUME_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.RESUME_CALL_ENTRY:
+        case MySettings.RESUME_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_RESUME_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_RESUME_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BACK_KEY_CAPTURE:
+        case MySettings.BACK_KEY_CAPTURE:
                 intent.setAction(MySettings.ACTION_BACK_KEY_CAPTURE_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BACK_KEY_CAPTURE_STRING, sharedPreferences.getBoolean(key, true));
-		toastText = "BOOLEAN_KEY";
+        toastText = "BOOLEAN_KEY";
                 break;
-	    case MySettings.BACK_CALL_OPTION:
+        case MySettings.BACK_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_BACK_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BACK_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.BACK_CALL_ENTRY:
+        case MySettings.BACK_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_BACK_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_BACK_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.HOME_KEY_CAPTURE:
+        case MySettings.HOME_KEY_CAPTURE:
                 intent.setAction(MySettings.ACTION_HOME_KEY_CAPTURE_CHANGED);
                 intent.putExtra(MySettings.EXTRA_HOME_KEY_CAPTURE_STRING, sharedPreferences.getBoolean(key, true));
-		toastText = "BOOLEAN_KEY";
+        toastText = "BOOLEAN_KEY";
                 break;
-	    case MySettings.HOME_CALL_OPTION:
+        case MySettings.HOME_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_HOME_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_HOME_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.HOME_CALL_ENTRY:
+        case MySettings.HOME_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_HOME_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_HOME_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MUTE_KEY_CAPTURE:
+        case MySettings.MUTE_KEY_CAPTURE:
                 intent.setAction(MySettings.ACTION_MUTE_KEY_CAPTURE_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MUTE_KEY_CAPTURE_STRING, sharedPreferences.getBoolean(key, true));
-		toastText = "BOOLEAN_KEY";
+                toastText = "BOOLEAN_KEY";
                 break;
-	    case MySettings.MUTE_CALL_OPTION:
+        case MySettings.MUTE_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_MUTE_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MUTE_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
                 break;
-	    case MySettings.MUTE_CALL_ENTRY:
+        case MySettings.MUTE_CALL_ENTRY:
                 intent.setAction(MySettings.ACTION_MUTE_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MUTE_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
@@ -390,96 +389,96 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
             case MySettings.PREF_DISABLE_AIRHELPER:
                 intent.setAction(MySettings.ACTION_PREF_DISABLE_AIRHELPER_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_DISABLE_AIRHELPER_ENABLED, sharedPreferences.getBoolean(key, false));
-		toastText = "BOOLEAN_KEY";
-		zygote_reboot = true;
+                toastText = "BOOLEAN_KEY";
+                zygote_reboot = true;
                 break;
             case MySettings.PREF_DISABLE_DOORHELPER:
                 intent.setAction(MySettings.ACTION_PREF_DISABLE_DOORHELPER_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_DISABLE_DOORHELPER_ENABLED, sharedPreferences.getBoolean(key, false));
-		toastText = "BOOLEAN_KEY";
-		zygote_reboot = true;
+                toastText = "BOOLEAN_KEY";
+                zygote_reboot = true;
                 break;
             case MySettings.PREF_DISABLE_BTPHONETOP:
                 intent.setAction(MySettings.ACTION_PREF_DISABLE_BTPHONETOP_CHANGED);
                 intent.putExtra(MySettings.EXTRA_PREF_DISABLE_BTPHONETOP_ENABLED, sharedPreferences.getBoolean(key, false));
-        	toastText = "BOOLEAN_KEY";
+                toastText = "BOOLEAN_KEY";
                 break;
             case MySettings.USE_ROOT_ACCESS:
                 intent.setAction(MySettings.ACTION_USE_ROOT_ACCESS_CHANGED);
                 intent.putExtra(MySettings.EXTRA_USE_ROOT_ACCESS_ENABLED, sharedPreferences.getBoolean(key, true));
-        	toastText = "BOOLEAN_KEY";
+                toastText = "BOOLEAN_KEY";
                 break;
             case MySettings.SHOW_CPU_TEMP:
                 intent.setAction(MySettings.ACTION_SHOW_CPU_TEMP_CHANGED);
                 intent.putExtra(MySettings.EXTRA_SHOW_CPU_TEMP_ENABLED, sharedPreferences.getBoolean(key, false));
-		toastText = "BOOLEAN_KEY";
-		zygote_reboot = true;
+                toastText = "BOOLEAN_KEY";
+                zygote_reboot = true;
                 break;
             default:
                 Log.d(TAG, "Invalid setting encountered");
                 break;
        }
 
-	    Log.d(TAG, "updated key is " + key);
-	    if (toastText.equals("BOOLEAN_KEY")) {
-		    toastText = "You updated boolean key \"" + (String)key + "\" to \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
-	    } else {
+        Log.d(TAG, "updated key is " + key);
+        if (toastText.equals("BOOLEAN_KEY")) {
+            toastText = "You updated boolean key \"" + (String)key + "\" to \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
+        } else {
             Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
             toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";
         }
         Toast mToast = Toast.makeText(mContext, toastText, Toast.LENGTH_LONG);
-	mToast.show();
+        mToast.show();
 
 
         if (intent.getAction() != null) {
-		getActivity().sendBroadcast(intent);
+        getActivity().sendBroadcast(intent);
         }
 
-	if (zygote_reboot == true) {
-		zygote_reboot = false;
-		Utils.rebootZygote(getContext());
-	}
+    if (zygote_reboot == true) {
+        zygote_reboot = false;
+        Utils.rebootZygote(getContext());
+    }
 
     }
 
-	class ApkInfo {
-	    private String appname = "";
-	    private String pname = "";
-	    private String versionName = "";
-	    private int versionCode = 0;
-	    //private Drawable icon;
-	    /*private void prettyPrint() {
-	        Log.v(appname + "\t" + pname + "\t" + versionName + "\t" + versionCode);
-	    } */
-	}
+    class ApkInfo {
+        private String appname = "";
+        private String pname = "";
+        private String versionName = "";
+        private int versionCode = 0;
+        //private Drawable icon;
+        /*private void prettyPrint() {
+            Log.v(appname + "\t" + pname + "\t" + versionName + "\t" + versionCode);
+        } */
+    }
 
-	private ArrayList<ApkInfo> getPackages() {
-	    ArrayList<ApkInfo> apps = getInstalledApps(false); /* false = no system packages */
-	    final int max = apps.size();
-	    /*for (int i=0; i<max; i++) {
-	        apps.get(i).prettyPrint();
-	    }*/
-	    return apps;
-	}
+    private ArrayList<ApkInfo> getPackages() {
+        ArrayList<ApkInfo> apps = getInstalledApps(false); /* false = no system packages */
+        final int max = apps.size();
+        /*for (int i=0; i<max; i++) {
+            apps.get(i).prettyPrint();
+        }*/
+        return apps;
+    }
 
-	private ArrayList<ApkInfo> getInstalledApps(boolean getSysPackages) {
-	    ArrayList<ApkInfo> res = new ArrayList<ApkInfo>();
-	    // PackageManager pManager = context.getPackageManager();
-	    List<PackageInfo> packs = mContext.getPackageManager().getInstalledPackages(0);
-	    for(int i=0;i<packs.size();i++) {
-	        PackageInfo p = packs.get(i);
-	        if ((!getSysPackages) && (p.versionName == null)) {
-	            continue ;
-	        }
-	        ApkInfo newInfo = new ApkInfo();
-	        newInfo.appname = p.applicationInfo.loadLabel(mContext.getPackageManager()).toString();
-	        newInfo.pname = p.packageName;
-	        //newInfo.versionName = p.versionName;
-	        //newInfo.versionCode = p.versionCode;
-	        //newInfo.icon = p.applicationInfo.loadIcon(getPackageManager());
-	        res.add(newInfo);
-	    }
-	    return res; 
-	}
+    private ArrayList<ApkInfo> getInstalledApps(boolean getSysPackages) {
+        ArrayList<ApkInfo> res = new ArrayList<ApkInfo>();
+        // PackageManager pManager = context.getPackageManager();
+        List<PackageInfo> packs = mContext.getPackageManager().getInstalledPackages(0);
+        for(int i=0;i<packs.size();i++) {
+            PackageInfo p = packs.get(i);
+            if ((!getSysPackages) && (p.versionName == null)) {
+                continue ;
+            }
+            ApkInfo newInfo = new ApkInfo();
+            newInfo.appname = p.applicationInfo.loadLabel(mContext.getPackageManager()).toString();
+            newInfo.pname = p.packageName;
+            //newInfo.versionName = p.versionName;
+            //newInfo.versionCode = p.versionCode;
+            //newInfo.icon = p.applicationInfo.loadIcon(getPackageManager());
+            res.add(newInfo);
+        }
+        return res;
+    }
 
 }

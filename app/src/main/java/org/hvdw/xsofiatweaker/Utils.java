@@ -20,40 +20,40 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 class Utils {
-	public static final String TAG = "XSofiaTweaker-Utils";
+    public static final String TAG = "XSofiaTweaker-Utils";
 
-	public static void rebootZygote(Context mContext) {
-        	AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+    public static void rebootZygote(Context mContext) {
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
 
-//        	dialogBuilder.setTitle("This change requires a soft reboot");
-//        	dialogBuilder.setMessage("This change requires a soft reboot. Do you want to do that now?");
-        	dialogBuilder.setTitle(R.string.zygote_reboot_title);
-        	dialogBuilder.setMessage(R.string.zygote_reboot_message);
-        	dialogBuilder.setNegativeButton(R.string.zygote_reboot_cancel, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				return;
-			}
-        	});
-        	dialogBuilder.setPositiveButton(R.string.zygote_reboot_soft_reboot, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				executeSystemCall("setprop ctl.restart zygote");
-			}
-		});
+//          dialogBuilder.setTitle("This change requires a soft reboot");
+//          dialogBuilder.setMessage("This change requires a soft reboot. Do you want to do that now?");
+            dialogBuilder.setTitle(R.string.zygote_reboot_title);
+            dialogBuilder.setMessage(R.string.zygote_reboot_message);
+            dialogBuilder.setNegativeButton(R.string.zygote_reboot_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+            });
+            dialogBuilder.setPositiveButton(R.string.zygote_reboot_soft_reboot, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                executeSystemCall("setprop ctl.restart zygote");
+            }
+        });
 
-		dialogBuilder.create();
-        	dialogBuilder.show();
-	}
+        dialogBuilder.create();
+            dialogBuilder.show();
+    }
 
-	private static void executeSystemCall(String input) {
-		String cmd = input;
-		try {
-			Process p = Runtime.getRuntime().exec(cmd);
-			Log.d(TAG, cmd);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	};
+    private static void executeSystemCall(String input) {
+        String cmd = input;
+        try {
+            Process p = Runtime.getRuntime().exec(cmd);
+            Log.d(TAG, cmd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    };
 
 
 }
