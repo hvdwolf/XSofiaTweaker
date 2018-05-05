@@ -16,19 +16,19 @@ import android.util.Log;
 
 public class AppsListPref extends ListPreference {
 
-	private static String TAG = "XSofiaTweaker-AppsListPref";
-	private Intent localintent;
+    private static String TAG = "XSofiaTweaker-AppsListPref";
+    private Intent localintent;
 
-	public AppsListPref(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		final PackageManager pm = context.getPackageManager();
-        	final String[] pk1 = new String[1];
-        	final String[] pk2 = new String[1];
-		Log.d(TAG, "Inside AppsList.java");
-		List<PackageInfo> appListInfo = pm.getInstalledPackages(PackageManager.GET_ACTIVITIES); 
-		Collections.sort(appListInfo, new Comparator<PackageInfo>() {
-			@Override
-			public int compare(PackageInfo o1, PackageInfo o2) {
+    public AppsListPref(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        final PackageManager pm = context.getPackageManager();
+        final String[] pk1 = new String[1];
+        final String[] pk2 = new String[1];
+        Log.d(TAG, "Inside AppsList.java");
+        List<PackageInfo> appListInfo = pm.getInstalledPackages(PackageManager.GET_ACTIVITIES);
+        Collections.sort(appListInfo, new Comparator<PackageInfo>() {
+            @Override
+            public int compare(PackageInfo o1, PackageInfo o2) {
                 try {
                     pk1[0] = o1.applicationInfo.loadLabel(pm).toString();
                     pk2[0] = o2.applicationInfo.loadLabel(pm).toString();
@@ -38,27 +38,27 @@ public class AppsListPref extends ListPreference {
                 return pk1[0].compareToIgnoreCase(pk2[0]);
 
 //                return o1.applicationInfo.loadLabel(pm).toString().compareToIgnoreCase(o2.applicationInfo.loadLabel(pm).toString());
-			}
-		});
-		List<CharSequence> entries = new ArrayList<CharSequence>();
-		List<CharSequence> entriesValues = new ArrayList<CharSequence>();	
+            }
+        });
+        List<CharSequence> entries = new ArrayList<CharSequence>();
+        List<CharSequence> entriesValues = new ArrayList<CharSequence>();
 
-		try {
-			for (PackageInfo p : appListInfo) {
-				localintent = new Intent();
-				localintent = pm.getLaunchIntentForPackage(p.applicationInfo.packageName);
-				if (localintent != null) {
-					entries.add(p.applicationInfo.loadLabel(pm).toString());
-					entriesValues.add(p.applicationInfo.packageName);              
-				}         
-			}
-		} catch (Exception e) {
-			Log.w(TAG, "Error in appslistpref");
-			e.printStackTrace();
-		}   
-		
-		setEntries(entries.toArray(new CharSequence[]{}));
-		setEntryValues(entriesValues.toArray(new CharSequence[]{}));
-	}
+        try {
+            for (PackageInfo p : appListInfo) {
+                localintent = new Intent();
+                localintent = pm.getLaunchIntentForPackage(p.applicationInfo.packageName);
+                if (localintent != null) {
+                    entries.add(p.applicationInfo.loadLabel(pm).toString());
+                    entriesValues.add(p.applicationInfo.packageName);
+                }
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Error in appslistpref");
+            e.printStackTrace();
+        }
+
+        setEntries(entries.toArray(new CharSequence[]{}));
+        setEntryValues(entriesValues.toArray(new CharSequence[]{}));
+    }
 
 }
