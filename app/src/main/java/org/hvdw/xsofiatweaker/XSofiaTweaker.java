@@ -523,8 +523,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     bt_phone_call_entry_second = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY_SECOND, "");
                     bt_phone_call_option_third = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION_THIRD, "");
                     bt_phone_call_entry_third = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY_THIRD, "");
-/*                    XposedBridge.log(TAG + " mcuKeyBtPhone pressed; bt_phone_call_option: " + bt_phone_call_option + " bt_phone_call_entry : " + bt_phone_call_entry);
-                    whichActionToPerform(context, bt_phone_call_option, bt_phone_call_entry); */
+                    XposedBridge.log(TAG + " mcuKeyBtPhone pressed; bt_phone_call_option: " + bt_phone_call_option + " bt_phone_call_entry : " + bt_phone_call_entry);
+                    /* whichActionToPerform(context, bt_phone_call_option, bt_phone_call_entry); */
                     multitap(bt_phone_call_option, bt_phone_call_entry, bt_phone_call_option_second, bt_phone_call_entry_second, bt_phone_call_option_third, bt_phone_call_entry_third);
 
                     param.setResult(null);
@@ -545,8 +545,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     navi_call_entry_second = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY_SECOND, "");
                     navi_call_option_third = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION_THIRD, "");
                     navi_call_entry_third = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY_THIRD, "");
-/*                    XposedBridge.log(TAG + " mcuKeyNavi  pressed; navi_call_option: " + navi_call_option + " navi_call_entry : " + navi_call_entry);
-                    whichActionToPerform(context, navi_call_option, navi_call_entry); */
+                    XposedBridge.log(TAG + " mcuKeyNavi  pressed; navi_call_option: " + navi_call_option + " navi_call_entry : " + navi_call_entry);
+                    /* whichActionToPerform(context, navi_call_option, navi_call_entry); */
                     multitap(navi_call_option, navi_call_entry, navi_call_option_second, navi_call_entry_second, navi_call_option_third, navi_call_entry_third);
 
                     param.setResult(null);
@@ -568,10 +568,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     band_call_entry_second = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY_SECOND, "");
                     band_call_option_third = sharedPreferences.getString(MySettings.BAND_CALL_OPTION_THIRD, "");
                     band_call_entry_third = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY_THIRD, "");
-                    /*XposedBridge.log(TAG + " mcuKeyBand (Radio) pressed; forward action to specific call method");
+                    XposedBridge.log(TAG + " mcuKeyBand (Radio) pressed; forward action to specific call method");
                     Log.d(TAG, "mcuKeyBand (Radio) pressed; forward action to specific call method");
                     XposedBridge.log(TAG + " band_call_option: " + band_call_option + " band_call_entry : " + band_call_entry);
-                    whichActionToPerform(context, band_call_option, band_call_entry); */
+                    /* whichActionToPerform(context, band_call_option, band_call_entry); */
 
                     multitap(band_call_option, band_call_entry, band_call_option_second, band_call_entry_second, band_call_option_third, band_call_entry_third);
 
@@ -593,9 +593,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     mode_src_call_entry_second = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY_SECOND, "");
                     mode_src_call_option_third = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION_THIRD, "");
                     mode_src_call_entry_third = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY_THIRD, "");
-/*                    XposedBridge.log(TAG + " Source/Mode pressed; forward action  to specific call method");
+                    XposedBridge.log(TAG + " Source/Mode pressed; forward action  to specific call method");
                     Log.d(TAG, "Source/Mode pressed; forward action  to specific call method");
-                    whichActionToPerform(context, mode_src_call_option, mode_src_call_entry); */
+                    /*whichActionToPerform(context, mode_src_call_option, mode_src_call_entry); */
                     multitap(mode_src_call_option, mode_src_call_entry, mode_src_call_option_second, mode_src_call_entry_second, mode_src_call_option_third, mode_src_call_entry_third);
 
                     param.setResult(null);
@@ -616,9 +616,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     media_call_entry_second = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY_SECOND, "");
                     media_call_option_third = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION_THIRD, "");
                     media_call_entry_third = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY_THIRD, "");
-/*                    XposedBridge.log(TAG + " MEDIA button pressed; forward action to specific call method");
+                    XposedBridge.log(TAG + " MEDIA button pressed; forward action to specific call method");
                     Log.d(TAG, "MEDIA button pressed; forward action to specific call method");
-                    whichActionToPerform(context, media_call_option, media_call_entry); */
+                    /*whichActionToPerform(context, media_call_option, media_call_entry); */
                     multitap(media_call_option, media_call_entry, media_call_option_second, media_call_entry_second, media_call_option_third, media_call_entry_third);
 
                     param.setResult(null);
@@ -671,9 +671,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     dvd_call_entry_second = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY_SECOND, "");
                     dvd_call_option_third = sharedPreferences.getString(MySettings.DVD_CALL_OPTION_THIRD, "");
                     dvd_call_entry_third = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY_THIRD, "");
-/*                    XposedBridge.log(TAG + " DVD button pressed; forward action to specific call method");
+                    XposedBridge.log(TAG + " DVD button pressed; forward action to specific call method");
                     Log.d(TAG, "DVD button pressed; forward action to specific call method");
-                    whichActionToPerform(context, dvd_call_option, dvd_call_entry); */
+                    /*whichActionToPerform(context, dvd_call_option, dvd_call_entry); */
                     multitap(dvd_call_option, dvd_call_entry, dvd_call_option_second, dvd_call_entry_second, dvd_call_option_third, dvd_call_entry_third);
                 }
                 if ((b & 255) == 1 && (data[start + 1] & 255) == 161 && (data[start + 2] & 255) == 2 && (data[start + 3] & 255) == 91) {
@@ -683,9 +683,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     eject_call_entry_second = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_SECOND, "");
                     eject_call_option_third = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION_THIRD, "");
                     eject_call_entry_third = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_THIRD, "");
-/*                    XposedBridge.log(TAG + " EJECT button pressed; forward action to specific call method");
+                    XposedBridge.log(TAG + " EJECT button pressed; forward action to specific call method");
                     Log.d(TAG, "EJECT button pressed; forward action to specific call method");
-                    whichActionToPerform(context, eject_call_option, eject_call_entry); */
+                    /* whichActionToPerform(context, eject_call_option, eject_call_entry); */
                     multitap(eject_call_option, eject_call_entry, eject_call_option_second, eject_call_entry_second, eject_call_option_third, eject_call_entry_third);
                 }
                 // Yes or No paramresult? old bug?
