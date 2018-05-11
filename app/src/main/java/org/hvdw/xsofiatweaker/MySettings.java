@@ -80,19 +80,19 @@ class MySettings {
     public static final String MODE_SRC_CALL_OPTION = "mode_src_key_call_option";
     public static final String ACTION_MODE_SRC_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_OPTION_CHANGED";
     public static final String EXTRA_MODE_SRC_CALL_OPTION_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_OPTION_STRING";
-    public static final String MODE_SRC_CALL_ENTRY = "mode_src_key_call_entry";
+    public static final String MODE_SRC_CALL_ENTRY = "mode_src_key_entry";
     public static final String ACTION_MODE_SRC_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_ENTRY_CHANGED";
     public static final String EXTRA_MODE_SRC_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_ENTRY_STRING";
     public static final String MODE_SRC_CALL_OPTION_SECOND = "mode_src_key_call_option_second";
     public static final String ACTION_MODE_SRC_CALL_OPTION_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_OPTION_SECOND_CHANGED";
     public static final String EXTRA_MODE_SRC_CALL_OPTION_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_OPTION_SECOND_STRING";
-    public static final String MODE_SRC_CALL_ENTRY_SECOND = "mode_src_key_call_entry_second";
+    public static final String MODE_SRC_CALL_ENTRY_SECOND = "mode_src_key_entry_second";
     public static final String ACTION_MODE_SRC_CALL_ENTRY_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_ENTRY_SECOND_CHANGED";
     public static final String EXTRA_MODE_SRC_CALL_ENTRY_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_ENTRY_SECOND_STRING";
     public static final String MODE_SRC_CALL_OPTION_THIRD = "mode_src_key_call_option_third";
     public static final String ACTION_MODE_SRC_CALL_OPTION_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_OPTION_THIRD_CHANGED";
     public static final String EXTRA_MODE_SRC_CALL_OPTION_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_OPTION_THIRD_STRING";
-    public static final String MODE_SRC_CALL_ENTRY_THIRD = "mode_src_key_call_entry_third";
+    public static final String MODE_SRC_CALL_ENTRY_THIRD = "mode_src_key_entry_third";
     public static final String ACTION_MODE_SRC_CALL_ENTRY_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_MODE_SRC_CALL_ENTRY_THIRD_CHANGED";
     public static final String EXTRA_MODE_SRC_CALL_ENTRY_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_MODE_SRC_CALL_ENTRY_THIRD_STRING";
 

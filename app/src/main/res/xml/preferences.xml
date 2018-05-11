@@ -75,11 +75,11 @@
                 android:title="@string/band_key_category"
                 android:key="band_key_category">
                 <ListPreference
-                        android:key="band_key_call_option"
+                    android:key="band_key_call_option"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/band_key_call_title" />
+                    android:title="@string/band_key_call_title" />
                 <EditTextPreference
                     android:dependency="band_key_call_option"
                     android:key="band_key_entry"
@@ -90,11 +90,11 @@
                 android:title="@string/band_key_category_second"
                 android:key="band_key_category_second">
                 <ListPreference
-                        android:key="band_key_call_option_second"
+                    android:key="band_key_call_option_second"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/band_key_call_title_second" />
+                    android:title="@string/band_key_call_title_second" />
                 <EditTextPreference
                     android:dependency="band_key_call_option_second"
                     android:key="band_key_entry_second"
@@ -105,11 +105,11 @@
                 android:title="@string/band_key_category_third"
                 android:key="band_key_category_third">
                 <ListPreference
-                        android:key="band_key_call_option_third"
+                    android:key="band_key_call_option_third"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/band_key_call_title_third" />
+                    android:title="@string/band_key_call_title_third" />
                 <EditTextPreference
                     android:dependency="band_key_call_option_third"
                     android:key="band_key_entry_third"
@@ -124,11 +124,11 @@
                 android:title="@string/dvd_key_category"
                 android:key="dvd_key_category">
                 <ListPreference
-                        android:key="dvd_key_call_option"
+                    android:key="dvd_key_call_option"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/dvd_key_call_title" />
+                    android:title="@string/dvd_key_call_title" />
                 <EditTextPreference
                     android:dependency="dvd_key_call_option"
                     android:key="dvd_key_entry"
@@ -139,11 +139,11 @@
                 android:title="@string/dvd_key_category_second"
                 android:key="dvd_key_category_second">
                 <ListPreference
-                        android:key="dvd_key_call_option_second"
+                    android:key="dvd_key_call_option_second"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/dvd_key_call_title_second" />
+                    android:title="@string/dvd_key_call_title_second" />
                 <EditTextPreference
                     android:dependency="dvd_key_call_option_second"
                     android:key="dvd_key_entry_second"
@@ -154,11 +154,11 @@
                 android:title="@string/dvd_key_category_third"
                 android:key="dvd_key_category_third">
                 <ListPreference
-                        android:key="dvd_key_call_option_third"
+                    android:key="dvd_key_call_option_third"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/dvd_key_call_title_third" />
+                    android:title="@string/dvd_key_call_title_third" />
                 <EditTextPreference
                     android:dependency="dvd_key_call_option_third"
                     android:key="dvd_key_entry_third"
@@ -173,11 +173,11 @@
                 android:title="@string/eject_key_category"
                 android:key="eject_key_category">
                 <ListPreference
-                        android:key="eject_key_call_option"
+                    android:key="eject_key_call_option"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/eject_key_call_title" />
+                    android:title="@string/eject_key_call_title" />
                 <EditTextPreference
                     android:dependency="eject_key_call_option"
                     android:key="eject_key_entry"
@@ -188,11 +188,11 @@
                 android:title="@string/eject_key_category_second"
                 android:key="eject_key_category_second">
                 <ListPreference
-                        android:key="eject_key_call_option_second"
+                    android:key="eject_key_call_option_second"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/eject_key_call_title_second" />
+                    android:title="@string/eject_key_call_title_second" />
                 <EditTextPreference
                     android:dependency="eject_key_call_option_second"
                     android:key="eject_key_entry_second"
@@ -203,11 +203,11 @@
                 android:title="@string/eject_key_category_third"
                 android:key="eject_key_category_third">
                 <ListPreference
-                        android:key="eject_key_call_option_third"
+                    android:key="eject_key_call_option_third"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/eject_key_call_title_third" />
+                    android:title="@string/eject_key_call_title_third" />
                 <EditTextPreference
                     android:dependency="eject_key_call_option_third"
                     android:key="eject_key_entry_third"
@@ -237,11 +237,11 @@
                 android:title="@string/media_key_category"
                 android:key="media_key_category">
                 <ListPreference
-                        android:key="media_key_call_option"
+                    android:key="media_key_call_option"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/media_key_call_title" />
+                    android:title="@string/media_key_call_title" />
                 <EditTextPreference
                     android:dependency="media_key_call_option"
                     android:key="media_key_entry"
@@ -252,11 +252,11 @@
                 android:title="@string/media_key_category_second"
                 android:key="media_key_category_second">
                 <ListPreference
-                        android:key="media_key_call_option_second"
+                    android:key="media_key_call_option_second"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/media_key_call_title_second" />
+                    android:title="@string/media_key_call_title_second" />
                 <EditTextPreference
                     android:dependency="media_key_call_option_second"
                     android:key="media_key_entry_second"
@@ -267,11 +267,11 @@
                 android:title="@string/media_key_category_third"
                 android:key="media_key_category_third">
                 <ListPreference
-                        android:key="media_key_call_option_third"
+                    android:key="media_key_call_option_third"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/media_key_call_title_third" />
+                    android:title="@string/media_key_call_title_third" />
                 <EditTextPreference
                     android:dependency="media_key_call_option_third"
                     android:key="media_key_entry_third"
@@ -286,11 +286,11 @@
                 android:title="@string/navi_key_category"
                 android:key="navi_key_category">
                 <ListPreference
-                        android:key="navi_key_call_option"
+                    android:key="navi_key_call_option"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/navi_key_call_title" />
+                    android:title="@string/navi_key_call_title" />
                 <EditTextPreference
                     android:dependency="navi_key_call_option"
                     android:key="navi_key_entry"
@@ -301,11 +301,11 @@
                 android:title="@string/navi_key_category_second"
                 android:key="navi_key_category_second">
                 <ListPreference
-                        android:key="navi_key_call_option_second"
+                    android:key="navi_key_call_option_second"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/navi_key_call_title_second" />
+                    android:title="@string/navi_key_call_title_second" />
                 <EditTextPreference
                     android:dependency="navi_key_call_option_second"
                     android:key="navi_key_entry_second"
@@ -316,11 +316,11 @@
                 android:title="@string/navi_key_category_third"
                 android:key="navi_key_category_third">
                 <ListPreference
-                        android:key="navi_key_call_option_third"
+                    android:key="navi_key_call_option_third"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/navi_key_call_title_third" />
+                    android:title="@string/navi_key_call_title_third" />
                 <EditTextPreference
                     android:dependency="navi_key_call_option_third"
                     android:key="navi_key_entry_third"
@@ -340,11 +340,11 @@
                 android:title="@string/bt_phone_key_category"
                 android:key="bt_phone_key_category">
                 <ListPreference
-                        android:key="bt_phone_key_call_option"
+                    android:key="bt_phone_key_call_option"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/bt_phone_key_call_title" />
+                    android:title="@string/bt_phone_key_call_title" />
                 <EditTextPreference
                     android:dependency="bt_phone_key_call_option"
                     android:key="bt_phone_key_entry"
@@ -355,11 +355,11 @@
                 android:title="@string/bt_phone_key_category_second"
                 android:key="bt_phone_key_category_second">
                 <ListPreference
-                        android:key="bt_phone_key_call_option_second"
+                    android:key="bt_phone_key_call_option_second"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/bt_phone_key_call_title_second" />
+                    android:title="@string/bt_phone_key_call_title_second" />
                 <EditTextPreference
                     android:dependency="bt_phone_key_call_option_second"
                     android:key="bt_phone_key_entry_second"
@@ -370,11 +370,11 @@
                 android:title="@string/bt_phone_key_category_third"
                 android:key="bt_phone_key_category_third">
                 <ListPreference
-                        android:key="bt_phone_key_call_option_third"
+                    android:key="bt_phone_key_call_option_third"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/bt_phone_key_call_title_third" />
+                    android:title="@string/bt_phone_key_call_title_third" />
                 <EditTextPreference
                     android:dependency="bt_phone_key_call_option_third"
                     android:key="bt_phone_key_entry_third"
@@ -404,11 +404,11 @@
                 android:title="@string/mode_src_key_category"
                 android:key="mode_src_key_category">
                 <ListPreference
-                        android:key="mode_src_key_call_option"
+                    android:key="mode_src_key_call_option"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/mode_src_key_call_title" />
+                    android:title="@string/mode_src_key_call_title" />
                 <EditTextPreference
                     android:dependency="mode_src_key_call_option"
                     android:key="mode_src_key_entry"
@@ -419,11 +419,11 @@
                 android:title="@string/mode_src_key_category_second"
                 android:key="mode_src_key_category_second">
                 <ListPreference
-                        android:key="mode_src_key_call_option_second"
+                    android:key="mode_src_key_call_option_second"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/mode_src_key_call_title_second" />
+                    android:title="@string/mode_src_key_call_title_second" />
                 <EditTextPreference
                     android:dependency="mode_src_key_call_option_second"
                     android:key="mode_src_key_entry_second"
@@ -434,11 +434,11 @@
                 android:title="@string/mode_src_key_category_third"
                 android:key="mode_src_key_category_third">
                 <ListPreference
-                        android:key="mode_src_key_call_option_third"
+                    android:key="mode_src_key_call_option_third"
                     android:entries="@array/key_call_entries"
                     android:entryValues="@array/key_call_values"
                     android:defaultValue="pkgname"
-                        android:title="@string/mode_src_key_call_title_third" />
+                    android:title="@string/mode_src_key_call_title_third" />
                 <EditTextPreference
                     android:dependency="mode_src_key_call_option_third"
                     android:key="mode_src_key_entry_third"
@@ -455,11 +455,11 @@
             android:title="@string/acc_on_settings"
             android:key="acc_on_settings">
             <ListPreference
-                    android:key="acc_on_call_option"
+                android:key="acc_on_call_option"
                 android:entries="@array/key_call_entries"
                 android:entryValues="@array/key_call_values"
                 android:defaultValue="sys_call"
-                    android:title="@string/acc_on_call_title" />
+                android:title="@string/acc_on_call_title" />
             <EditTextPreference
                 android:dependency="acc_on_call_option"
                 android:key="acc_on_entry"
@@ -470,11 +470,11 @@
             android:title="@string/acc_off_settings"
             android:key="acc_off_settings">
             <ListPreference
-                    android:key="acc_off_call_option"
+                android:key="acc_off_call_option"
                 android:entries="@array/key_call_entries"
                 android:entryValues="@array/key_call_values"
                 android:defaultValue="sys_call"
-                    android:title="@string/acc_off_call_title" />
+                android:title="@string/acc_off_call_title" />
             <EditTextPreference
                 android:dependency="acc_off_call_option"
                 android:key="acc_off_entry"
@@ -485,11 +485,11 @@
             android:title="@string/resume_settings"
             android:key="resume_settings">
             <ListPreference
-                    android:key="resume_call_option"
+                android:key="resume_call_option"
                 android:entries="@array/key_call_entries"
                 android:entryValues="@array/key_call_values"
                 android:defaultValue="sys_call"
-                    android:title="@string/resume_call_title" />
+                android:title="@string/resume_call_title" />
             <EditTextPreference
                 android:dependency="resume_call_option"
                 android:key="resume_entry"
@@ -513,11 +513,11 @@
                 android:summaryOff="@string/home_key_capture_summary_disabled" />
             <ListPreference
                 android:dependency="home_key_capture_enabled"
-                    android:key="home_key_call_option"
+                android:key="home_key_call_option"
                 android:entries="@array/key_call_entries"
                 android:entryValues="@array/key_call_values"
                 android:defaultValue="sys_call"
-                    android:title="@string/home_key_call_title" />
+                android:title="@string/home_key_call_title" />
             <EditTextPreference
                 android:dependency="home_key_capture_enabled"
                 android:key="home_key_entry"
@@ -535,11 +535,11 @@
                 android:summaryOff="@string/back_key_capture_summary_disabled" />
             <ListPreference
                 android:dependency="back_key_capture_enabled"
-                    android:key="back_key_call_option"
+                android:key="back_key_call_option"
                 android:entries="@array/key_call_entries"
                 android:entryValues="@array/key_call_values"
                 android:defaultValue="sys_call"
-                    android:title="@string/back_key_call_title" />
+                android:title="@string/back_key_call_title" />
             <EditTextPreference
                 android:dependency="back_key_capture_enabled"
                 android:key="back_key_entry"
@@ -557,11 +557,11 @@
                 android:summaryOff="@string/mute_key_capture_summary_disabled" />
             <ListPreference
                 android:dependency="mute_key_capture_enabled"
-                    android:key="mute_key_call_option"
+                android:key="mute_key_call_option"
                 android:entries="@array/key_call_entries"
                 android:entryValues="@array/key_call_values"
                 android:defaultValue="sys_call"
-                    android:title="@string/mute_key_call_title" />
+                android:title="@string/mute_key_call_title" />
             <EditTextPreference
                 android:dependency="mute_key_capture_enabled"
                 android:key="mute_key_entry"
