@@ -71,6 +71,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
     private boolean display_org_clock = false; // just a helper boolean for show_cpu_temp, not a setting.
     public boolean firstCall = false; // For the "eliminate feedback during the call if you have OK Google anywhere enabled"
 
+    public Integer tap_delay;
+
     private String band_call_option;
     private String band_call_entry;
     private String band_call_option_second;
@@ -136,7 +138,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
     private String test_entry;
 
     private static int count3 = 0;
-    private static int delay3 = 300;
+    //private static int delay3 = 300;
 
 
     @Override
@@ -154,6 +156,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
         disable_btphonetop = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
         use_root_access = sharedPreferences.getBoolean(MySettings.USE_ROOT_ACCESS, true);
         show_cpu_temp = sharedPreferences.getBoolean(MySettings.SHOW_CPU_TEMP, false);
+
+        tap_delay = sharedPreferences.getInt(MySettings.PREF_TAP_DELAY, 300);
 
         band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
         band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
@@ -1135,7 +1139,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                                   }
                                }
                             },
-                            delay3
+                            tap_delay
                         );
                     } else if (count3 == 2) {
                         new Timer().schedule(
@@ -1148,7 +1152,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                                   }
                                }
                             },
-                            delay3
+                            tap_delay
                         );
                     } else if (count3 == 3) {
                         new Timer().schedule(
@@ -1161,7 +1165,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                                   }
                                }
                             },
-                            delay3
+                            tap_delay
                         );
                     } else if (count3 >= 4) {
                         new Timer().schedule(
@@ -1175,7 +1179,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                                   }
                                }
                             },
-                            delay3
+                            tap_delay
                         );
                     }
     }

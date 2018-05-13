@@ -31,6 +31,7 @@
     <string name="disable_doorhelper_sum_on">ON: Cuando se abra una puerta, el cartel Canbus no se mostrará.</string>
     <string name="disable_doorhelper_sum_off">OFF: Cuando se abra una puerta, el cartel Canbus se mostrará.</string>
 
+    <string name="tap_delay_title">tap delay: milliseconds allowed between multiple taps (double-tap/triple-tap)</string> 
     <string name="app_keymod_settings">Asignar app o acción a los botones físicos</string>
     <string name="band_key_settings">Ajustes del botón BAND</string>
     <string name="band_key_category">Botón BAND Single tap</string>

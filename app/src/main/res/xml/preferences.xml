@@ -65,6 +65,13 @@
             android:title="@string/disable_doorhelper_title" />
     </PreferenceScreen>
 
+<!-- only value that stands apart in the preferences as being modifiable in the main settings screen -->
+    <EditTextPreference
+        android:key="tap_delay__entry"
+        android:title="@string/tap_delay_title"
+        android:numeric="integer"
+        android:defaultValue="300" />
+
     <PreferenceScreen
         android:title="@string/app_keymod_settings"
         android:key="app_keymod_settings">

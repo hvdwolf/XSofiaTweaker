@@ -31,6 +31,7 @@
     <string name="disable_doorhelper_sum_on">AAN: Bij een geopende deur wordt de Canbus overlay niet getoond.</string>
     <string name="disable_doorhelper_sum_off">UIT: Bij een geopende deur wordt de Canbus overlay wel getoond.</string>
 
+    <string name="tap_delay_title">tap delay: toegestaand aantal milliseconden tussen de "multi-tikken" (twee keer / drie keer tikken)</string> 
     <string name="app_keymod_settings">Koppel andere apk of actie aan een hardware knop</string>
     <string name="band_key_settings">Instelling voor de BAND knop</string>
     <string name="band_key_category">BAND Knop één keer tikken</string>

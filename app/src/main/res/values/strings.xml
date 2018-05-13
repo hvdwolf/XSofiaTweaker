@@ -33,6 +33,7 @@
     <string name="disable_doorhelper_sum_off">OFF: When a door is open, the Canbus overlay will be displayed.</string>
 
 
+    <string name="tap_delay_title">tap delay: milliseconds allowed between multiple taps (double-tap/triple-tap)</string> 
     <string name="app_keymod_settings">Assign app or action to hardware buttons</string>
     <string name="band_key_settings">Settings for the BAND (=Radio) key</string>
     <string name="band_key_category">BAND Key Single tap</string>

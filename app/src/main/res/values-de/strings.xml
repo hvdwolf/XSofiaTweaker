@@ -31,6 +31,7 @@
     <string name="disable_doorhelper_sum_on">AN: Bei geöffneter Tür wird das CAN-Bus-Symbol nicht angezeigt.</string>
     <string name="disable_doorhelper_sum_off">AUS: Bei geöffneter Tür wird das CAN-Bus-Symbol angezeigt.</string>
 
+    <string name="tap_delay_title">tap delay: milliseconds allowed between multiple taps (double-tap/triple-tap)</string> 
     <string name="app_keymod_settings">Zuordnung von Anwendungen/Aktionen zu Hardware-Tasten</string>
     <string name="band_key_settings">Einstellungen für BAND-Taste (=Radio)</string>
     <string name="band_key_category">BAND-Taste Einfach-Tippen</string>

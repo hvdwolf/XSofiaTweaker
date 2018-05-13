@@ -31,6 +31,7 @@
     <string name="disable_doorhelper_sum_on">ВКЛ: Когда дверь открыта, наложение CAN bus не будет отображаться.</string>
     <string name="disable_doorhelper_sum_off">ВЫКЛ: Когда дверь открыта, наложение CAN bus будет отображаться.</string>
 
+    <string name="tap_delay_title">tap delay: milliseconds allowed between multiple taps (double-tap/triple-tap)</string> 
     <string name="app_keymod_settings">Назначение приложения или действия на аппаратные кнопки</string>
     <string name="band_key_settings">Настройки для кнопки Радио</string>
     <string name="band_key_category">BAND Key Single tap</string>
