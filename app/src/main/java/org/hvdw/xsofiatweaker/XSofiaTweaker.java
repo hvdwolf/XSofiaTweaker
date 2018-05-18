@@ -368,23 +368,13 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     sharedPreferences.makeWorldReadable();
                     UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
                     AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-                    if (audioManager.isStreamMute(AudioManager.STREAM_MUSIC)) {
-                        audioManager.adjustStreamVolume(0, 100, 0);
-                        audioManager.adjustStreamVolume(1, 100, 0);
-                        audioManager.adjustStreamVolume(2, 100, 0);
-                        audioManager.adjustStreamVolume(3, 100, 1);
-                        audioManager.adjustStreamVolume(4, 100, 0);
-                        audioManager.adjustStreamVolume(5, 100, 0);
-                        audioManager.adjustStreamVolume(6, 100, 0);
-                    } else {
-                        audioManager.adjustStreamVolume(0, 101, 0);
-                        audioManager.adjustStreamVolume(1, 101, 0);
-                        audioManager.adjustStreamVolume(2, 101, 0);
-                        audioManager.adjustStreamVolume(3, 101, 1);
-                        audioManager.adjustStreamVolume(4, 101, 0);
-                        audioManager.adjustStreamVolume(5, 101, 0);
-                        audioManager.adjustStreamVolume(6, 101, 0);
-                    }
+                    audioManager.adjustStreamVolume(3, 101, 1);
+                    audioManager.adjustStreamVolume(0, 101, 0);
+                    audioManager.adjustStreamVolume(1, 101, 0);
+                    audioManager.adjustStreamVolume(2, 101, 0);
+                    audioManager.adjustStreamVolume(4, 101, 0);
+                    audioManager.adjustStreamVolume(5, 101, 0);
+                    audioManager.adjustStreamVolume(8, 101, 0);
                     //XposedBridge.log(TAG + " Mute");
                     param.setResult(null);
                 }
