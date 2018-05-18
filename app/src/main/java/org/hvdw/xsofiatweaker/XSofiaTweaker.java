@@ -621,7 +621,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
         }
 
         if ((eq_call_option != "") && (eq_call_entry != "")) {
-            findAndHookMethod("util.JumpPage", lpparam.classLoader, "eq", new XC_MethodHook() {
+//            findAndHookMethod("util.JumpPage", lpparam.classLoader, "eq", new XC_MethodHook() {
+            findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyAudio", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     Context context = (Context) AndroidAppHelper.currentApplication();
