@@ -140,8 +140,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 break;
             case MySettings.PREF_TAP_DELAY:
                 intent.setAction(MySettings.ACTION_PREF_TAP_DELAY_CHANGED);
-                intent.putExtra(MySettings.EXTRA_PREF_TAP_DELAY_ENABLED, sharedPreferences.getInt(key, 300));
-                toastText = "INTEGER";
+                intent.putExtra(MySettings.EXTRA_PREF_TAP_DELAY_ENTRY, sharedPreferences.getString(key, "300"));
                 break;
             case MySettings.BAND_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_BAND_CALL_OPTION_CHANGED);
@@ -427,8 +426,6 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         Log.d(TAG, "updated key is " + key);
         if (toastText.equals("BOOLEAN_KEY")) {
             toastText = "You updated boolean key \"" + (String)key + "\" to \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
-        } else if (toastText.equals("INTEGER")) {
-            toastText = "You updated integer key \"" + (String)key + "\" to \"" + String.valueOf(sharedPreferences.getInt(key, 0)) + "\"";
         } else {
             Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
             toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";

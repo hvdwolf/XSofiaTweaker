@@ -67,7 +67,7 @@
 
 <!-- only value that stands apart in the preferences as being modifiable in the main settings screen -->
     <EditTextPreference
-        android:key="tap_delay__entry"
+        android:key="pref_tap_delay"
         android:title="@string/tap_delay_title"
         android:numeric="integer"
         android:defaultValue="300" />

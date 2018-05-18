@@ -41,7 +41,7 @@ class MySettings {
 
     public static final String PREF_TAP_DELAY = "pref_tap_delay";
     public static final String ACTION_PREF_TAP_DELAY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_TAP_DELAY_CHANGED";
-    public static final String EXTRA_PREF_TAP_DELAY_ENABLED = "org.hvdw.xsofiatweaker.extra.PREF_TAP_DELAY_ENABLED";
+    public static final String EXTRA_PREF_TAP_DELAY_ENTRY = "org.hvdw.xsofiatweaker.extra.PREF_TAP_DELAY_ENTRY";
 
     public static final String NAVI_CALL_OPTION = "navi_key_call_option";
     public static final String ACTION_NAVI_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_NAVI_CALL_OPTION_CHANGED";

@@ -71,7 +71,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
     private boolean display_org_clock = false; // just a helper boolean for show_cpu_temp, not a setting.
     public boolean firstCall = false; // For the "eliminate feedback during the call if you have OK Google anywhere enabled"
 
-    public Integer tap_delay;
+    private Integer tap_delay;
 
     private String band_call_option;
     private String band_call_entry;
@@ -157,7 +157,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
         use_root_access = sharedPreferences.getBoolean(MySettings.USE_ROOT_ACCESS, true);
         show_cpu_temp = sharedPreferences.getBoolean(MySettings.SHOW_CPU_TEMP, false);
 
-        tap_delay = sharedPreferences.getInt(MySettings.PREF_TAP_DELAY, 300);
+        tap_delay = Integer.parseInt(sharedPreferences.getString(MySettings.PREF_TAP_DELAY, "300"));
 
         band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
         band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
@@ -529,7 +529,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     bt_phone_call_entry_third = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY_THIRD, "");
                     XposedBridge.log(TAG + " mcuKeyBtPhone pressed; bt_phone_call_option: " + bt_phone_call_option + " bt_phone_call_entry : " + bt_phone_call_entry);
                     /* whichActionToPerform(context, bt_phone_call_option, bt_phone_call_entry); */
-                    multitap(bt_phone_call_option, bt_phone_call_entry, bt_phone_call_option_second, bt_phone_call_entry_second, bt_phone_call_option_third, bt_phone_call_entry_third);
+                    multitap(bt_phone_call_option, bt_phone_call_entry, bt_phone_call_option_second, bt_phone_call_entry_second, bt_phone_call_option_third, bt_phone_call_entry_third, tap_delay);
 
                     param.setResult(null);
                 }
@@ -551,7 +551,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     navi_call_entry_third = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY_THIRD, "");
                     XposedBridge.log(TAG + " mcuKeyNavi  pressed; navi_call_option: " + navi_call_option + " navi_call_entry : " + navi_call_entry);
                     /* whichActionToPerform(context, navi_call_option, navi_call_entry); */
-                    multitap(navi_call_option, navi_call_entry, navi_call_option_second, navi_call_entry_second, navi_call_option_third, navi_call_entry_third);
+                    multitap(navi_call_option, navi_call_entry, navi_call_option_second, navi_call_entry_second, navi_call_option_third, navi_call_entry_third, tap_delay);
 
                     param.setResult(null);
                 }
@@ -577,7 +577,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     XposedBridge.log(TAG + " band_call_option: " + band_call_option + " band_call_entry : " + band_call_entry);
                     /* whichActionToPerform(context, band_call_option, band_call_entry); */
 
-                    multitap(band_call_option, band_call_entry, band_call_option_second, band_call_entry_second, band_call_option_third, band_call_entry_third);
+                    multitap(band_call_option, band_call_entry, band_call_option_second, band_call_entry_second, band_call_option_third, band_call_entry_third, tap_delay);
 
                     param.setResult(null);
                 }
@@ -600,7 +600,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     XposedBridge.log(TAG + " Source/Mode pressed; forward action  to specific call method");
                     Log.d(TAG, "Source/Mode pressed; forward action  to specific call method");
                     /*whichActionToPerform(context, mode_src_call_option, mode_src_call_entry); */
-                    multitap(mode_src_call_option, mode_src_call_entry, mode_src_call_option_second, mode_src_call_entry_second, mode_src_call_option_third, mode_src_call_entry_third);
+                    multitap(mode_src_call_option, mode_src_call_entry, mode_src_call_option_second, mode_src_call_entry_second, mode_src_call_option_third, mode_src_call_entry_third, tap_delay);
 
                     param.setResult(null);
                 }
@@ -623,7 +623,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     XposedBridge.log(TAG + " MEDIA button pressed; forward action to specific call method");
                     Log.d(TAG, "MEDIA button pressed; forward action to specific call method");
                     /*whichActionToPerform(context, media_call_option, media_call_entry); */
-                    multitap(media_call_option, media_call_entry, media_call_option_second, media_call_entry_second, media_call_option_third, media_call_entry_third);
+                    multitap(media_call_option, media_call_entry, media_call_option_second, media_call_entry_second, media_call_option_third, media_call_entry_third, tap_delay);
 
                     param.setResult(null);
                 }
@@ -678,7 +678,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     XposedBridge.log(TAG + " DVD button pressed; forward action to specific call method");
                     Log.d(TAG, "DVD button pressed; forward action to specific call method");
                     /*whichActionToPerform(context, dvd_call_option, dvd_call_entry); */
-                    multitap(dvd_call_option, dvd_call_entry, dvd_call_option_second, dvd_call_entry_second, dvd_call_option_third, dvd_call_entry_third);
+                    multitap(dvd_call_option, dvd_call_entry, dvd_call_option_second, dvd_call_entry_second, dvd_call_option_third, dvd_call_entry_third, tap_delay);
                 }
                 if ((b & 255) == 1 && (data[start + 1] & 255) == 161 && (data[start + 2] & 255) == 2 && (data[start + 3] & 255) == 91) {
                     eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
@@ -690,7 +690,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     XposedBridge.log(TAG + " EJECT button pressed; forward action to specific call method");
                     Log.d(TAG, "EJECT button pressed; forward action to specific call method");
                     /* whichActionToPerform(context, eject_call_option, eject_call_entry); */
-                    multitap(eject_call_option, eject_call_entry, eject_call_option_second, eject_call_entry_second, eject_call_option_third, eject_call_entry_third);
+                    multitap(eject_call_option, eject_call_entry, eject_call_option_second, eject_call_entry_second, eject_call_option_third, eject_call_entry_third, tap_delay);
                 }
                 // Yes or No paramresult? old bug?
                 //param.setResult(null);
@@ -1118,7 +1118,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
 
     //Function used for the multiptap options
-    public void multitap(String first_call_option, String first_call_entry, String second_call_option, String second_call_entry, String third_call_option, String third_call_entry) {
+    public void multitap(String first_call_option, String first_call_entry, String second_call_option, String second_call_entry, String third_call_option, String third_call_entry, Integer tap_delay) {
         final String first_call = first_call_option;
         final String first_entry = first_call_entry;
         final String second_call = second_call_option;
@@ -1126,6 +1126,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
         final String third_call = third_call_option;
         final String third_entry = third_call_entry;
         final Context context = (Context) AndroidAppHelper.currentApplication();
+        XposedBridge.log(TAG + String.valueOf(tap_delay));
         count3++;
 
                     if (count3 == 1) {
