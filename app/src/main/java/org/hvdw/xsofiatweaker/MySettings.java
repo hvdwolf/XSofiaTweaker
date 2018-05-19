@@ -189,6 +189,18 @@ class MySettings {
     public static final String EQ_CALL_ENTRY = "eq_key_entry";
     public static final String ACTION_EQ_CALL_ENTRY_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EQ_CALL_ENTRY_CHANGED";
     public static final String EXTRA_EQ_CALL_ENTRY_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EQ_CALL_ENTRY_STRING";
+    public static final String EQ_CALL_OPTION_SECOND = "eq_key_call_option_second";
+    public static final String ACTION_EQ_CALL_OPTION_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EQ_CALL_OPTION_SECOND_CHANGED";
+    public static final String EXTRA_EQ_CALL_OPTION_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EQ_CALL_OPTION_SECOND_STRING";
+    public static final String EQ_CALL_ENTRY_SECOND = "eq_key_entry_second";
+    public static final String ACTION_EQ_CALL_ENTRY_SECOND_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EQ_CALL_ENTRY_SECOND_CHANGED";
+    public static final String EXTRA_EQ_CALL_ENTRY_SECOND_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EQ_CALL_ENTRY_SECOND_STRING";
+    public static final String EQ_CALL_OPTION_THIRD = "eq_key_call_option_third";
+    public static final String ACTION_EQ_CALL_OPTION_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EQ_CALL_OPTION_THIRD_CHANGED";
+    public static final String EXTRA_EQ_CALL_OPTION_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EQ_CALL_OPTION_THIRD_STRING";
+    public static final String EQ_CALL_ENTRY_THIRD = "eq_key_entry_third";
+    public static final String ACTION_EQ_CALL_ENTRY_THIRD_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_EQ_CALL_ENTRY_THIRD_CHANGED";
+    public static final String EXTRA_EQ_CALL_ENTRY_THIRD_STRING = "org.hvdw.xsofiatweaker.extra.PREF_EQ_CALL_ENTRY_THIRD_STRING";
 
     public static final String ACC_ON_CALL_OPTION = "acc_on_call_option";
     public static final String ACTION_ACC_ON_CALL_OPTION_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_ACC_ON_CALL_OPTION_CHANGED";

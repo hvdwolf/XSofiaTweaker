@@ -67,8 +67,15 @@
     <string name="eject_key_text_title_third">Кнопка EJECT: Строка, которая будет использоваться (triple tap)</string>
 
     <string name="eq_key_settings">Накстройки кнопки эквалайзера</string>
+    <string name="eq_key_category">EQ key Single tap</string>
     <string name="eq_key_call_title">Кнопка EQ: Метод вызова</string>
     <string name="eq_key_text_title">Кнопка EQ: Строка, которая будет использоваться</string>
+    <string name="eq_key_category_second">EQ key Double tap</string>
+    <string name="eq_key_call_title_second">EQ Key: Call method (double tap)</string>
+    <string name="eq_key_text_title_second">EQ Key: String to be used (double tap)</string>
+    <string name="eq_key_category_third">EQ key Triple tap</string>
+    <string name="eq_key_call_title_third">EQ Key: Call method (triple tap)</string>
+    <string name="eq_key_text_title_third">EQ Key: String to be used (triple tap)</string>
 
     <string name="media_key_settings">Настройки для кнопки MEDIA</string>
     <string name="media_key_category">MEDIA key Single tap</string>

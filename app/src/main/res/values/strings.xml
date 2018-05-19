@@ -69,8 +69,15 @@
     <string name="eject_key_text_title_third">EJECT Key: String to be used (triple tap)</string>
 
     <string name="eq_key_settings">Settings for the EQ key</string>
+    <string name="eq_key_category">EQ key Single tap</string>
     <string name="eq_key_call_title">EQ Key: Call method</string>
     <string name="eq_key_text_title">EQ Key: String to be used</string>
+    <string name="eq_key_category_second">EQ key Double tap</string>
+    <string name="eq_key_call_title_second">EQ Key: Call method (double tap)</string>
+    <string name="eq_key_text_title_second">EQ Key: String to be used (double tap)</string>
+    <string name="eq_key_category_third">EQ key Triple tap</string>
+    <string name="eq_key_call_title_third">EQ Key: Call method (triple tap)</string>
+    <string name="eq_key_text_title_third">EQ Key: String to be used (triple tap)</string>
 
     <string name="media_key_settings">Settings for the MEDIA key</string>
     <string name="media_key_category">MEDIA key Single tap</string>

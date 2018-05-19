@@ -67,8 +67,15 @@
     <string name="eject_key_text_title_third">EJECT Knop: Te gebruiken commandoregel (drie keer tikken)</string>
 
     <string name="eq_key_settings">Instelling voor de EQ knop</string>
+    <string name="eq_key_category">EQ knop één keer tikken</string>
     <string name="eq_key_call_title">EQ Knop: Aanroep methode</string>
     <string name="eq_key_text_title">EQ Knop: Te gebruiken commandoregel</string>
+    <string name="eq_key_category_second">EQ knop twee keer tikken</string>
+    <string name="eq_key_call_title_second">EQ Knop: Aanroep methode (twee keer tikken)</string>
+    <string name="eq_key_text_title_second">EQ Knop: Te gebruiken commandoregel (twee keer tikken)</string>
+    <string name="eq_key_category_third">EQ knop drie keer tikken</string>
+    <string name="eq_key_call_title_third">EQ Knop: Aanroep methode (drie keer tikken)</string>
+    <string name="eq_key_text_title_third">EQ Knop: Te gebruiken commandoregel (drie keer tikken)</string>
 
     <string name="media_key_settings">Instelling voor de MEDIA knop</string>
     <string name="media_key_category">MEDIA Knop één keer tikken</string>
@@ -90,7 +97,7 @@
     <string name="navi_key_text_title_second">NAVI Knop: Te gebruiken commandoregel (twee keer tikken)</string>
     <string name="navi_key_category_third">NAVI Knop drie keer tikken</string>
     <string name="navi_key_call_title_third">NAVI Knop: Aanroep methode (drie keer tikken)</string>
-    <string name="navi_key_text_title_third">NAVI Knop: Te gebruiken commandoregel ( tap)</string>
+    <string name="navi_key_text_title_third">NAVI Knop: Te gebruiken commandoregel (drie keer tikken)</string>
 
     <string name="key_summary">Aanroep methode</string>
     <string name="key_text_title">Te gebruiken commandoregel</string>

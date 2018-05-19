@@ -101,6 +101,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
     private String eject_call_entry_third;
     private String eq_call_option;
     private String eq_call_entry;
+    private String eq_call_option_second;
+    private String eq_call_entry_second;
+    private String eq_call_option_third;
+    private String eq_call_entry_third;
     private String media_call_option;
     private String media_call_entry;
     private String media_call_option_second;
@@ -187,6 +191,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
         eject_call_entry_third = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_THIRD, "");
         eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
         eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
+        eq_call_option_second = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_SECOND, "");
+        eq_call_entry_second = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_SECOND, "");
+        eq_call_option_third = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_THIRD, "");
+        eq_call_entry_third = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_THIRD, "");
         media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
         media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
         media_call_option_second = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION_SECOND, "");
@@ -630,13 +638,14 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     sharedPreferences.makeWorldReadable();
                     eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
                     eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
-                    /*eq_call_option_second = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_SECOND, "");
+                    eq_call_option_second = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_SECOND, "");
                     eq_call_entry_second = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_SECOND, "");
                     eq_call_option_third = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_THIRD, "");
-                    eq_call_entry_third = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_THIRD, ""); */
+                    eq_call_entry_third = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_THIRD, "");
                     XposedBridge.log(TAG + " EQ button pressed; forward action  to specific call method");
                     Log.d(TAG, "EQ button pressed; forward action  to specific call method");
-                    whichActionToPerform(context, eq_call_option, eq_call_entry);
+                    //whichActionToPerform(context, eq_call_option, eq_call_entry);
+                    multitap(eq_call_option, eq_call_entry, eq_call_option_second, eq_call_entry_second, eq_call_option_third, eq_call_entry_third, tap_delay);
 
                     param.setResult(null);
                 }

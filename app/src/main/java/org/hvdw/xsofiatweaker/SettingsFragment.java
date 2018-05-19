@@ -254,6 +254,22 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_EQ_CALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_EQ_CALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
+            case MySettings.EQ_CALL_OPTION_SECOND:
+                intent.setAction(MySettings.ACTION_EQ_CALL_OPTION_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_EQ_CALL_OPTION_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+            case MySettings.EQ_CALL_ENTRY_SECOND:
+                intent.setAction(MySettings.ACTION_EQ_CALL_ENTRY_SECOND_CHANGED);
+                intent.putExtra(MySettings.EXTRA_EQ_CALL_ENTRY_SECOND_STRING, sharedPreferences.getString(key, ""));
+                break;
+            case MySettings.EQ_CALL_OPTION_THIRD:
+                intent.setAction(MySettings.ACTION_EQ_CALL_OPTION_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_EQ_CALL_OPTION_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
+            case MySettings.EQ_CALL_ENTRY_THIRD:
+                intent.setAction(MySettings.ACTION_EQ_CALL_ENTRY_THIRD_CHANGED);
+                intent.putExtra(MySettings.EXTRA_EQ_CALL_ENTRY_THIRD_STRING, sharedPreferences.getString(key, ""));
+                break;
             case MySettings.MEDIA_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_MEDIA_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_MEDIA_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
