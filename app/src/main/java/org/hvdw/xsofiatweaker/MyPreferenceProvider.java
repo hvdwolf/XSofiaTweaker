@@ -5,6 +5,6 @@ import com.crossbowffs.remotepreferences.RemotePreferenceProvider;
 
 public class MyPreferenceProvider extends RemotePreferenceProvider {
     public MyPreferenceProvider() {
-        super("com.dev.weathon.customalertslider", new String[] {"com.dev.weathon.customalertslider_preferences"});
+        super("org.hvdw.xsofiatweaker", new String[] {"org.hvdw.xsofiatweaker_preferences"});
     }
 }
