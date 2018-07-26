@@ -39,6 +39,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
+              
+        <provider
+            android:name=".MyPreferenceProvider"
+            android:authorities="com.example.app.preferences"
+            android:exported="true"/>
+              
     </application>
 
 </manifest>
