@@ -31,9 +31,8 @@ import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-import de.robv.android.xposed.XposedBridge;
-
 import java.io.File;
+
 
 
 public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
@@ -48,8 +47,9 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
     private BroadcastReceiver broadcastReceiver;
     IntentFilter intentFilter = new IntentFilter();
 
-    @Override
 
+
+    @Override
     public void onAttach(Activity activity) {
 //    public void onAttach(Context mContext) {
 //    super.onAttach(mContext);
@@ -140,10 +140,33 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         super.onDestroy();
     }
 
+    public void focustoHOME() {
+/*        //First get the intent of my current app
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0); */
+        //Now jump to HOME
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+/*        //Now jump back to my app
+        try
+        {
+            pendingIntent.send();
+        }
+        catch (CanceledException e)
+        {
+            e.printStackTrace();
+        } */
+
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Intent intent = new Intent();
         String toastText = "";
+        String additionalText = "";
 
         switch (key) {
             /* All the settings belonging to the SofiaServer */
@@ -461,7 +484,8 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_SHOW_CPU_TEMP_CHANGED);
                 intent.putExtra(MySettings.EXTRA_SHOW_CPU_TEMP_ENABLED, sharedPreferences.getBoolean(key, false));
                 toastText = "BOOLEAN_KEY";
-                zygote_reboot = true;
+                additionalText = "\nWait up to 1 minute for the update of the time in the status bar";
+                //zygote_reboot = true;
                 break;
             default:
                 Log.d(TAG, "Invalid setting encountered");
@@ -473,15 +497,24 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
             toastText = "You updated boolean key \"" + (String)key + "\" to \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
         } else {
             Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
-            if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.N){
-                toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"\nNow exit the XSofiaTweaker Gui or switch it to the background. (press HOME key).";
-            } else {
-                toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";
-            }
+            toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";
+        }
+        if (additionalText != "") {
+            toastText = toastText + additionalText;
+        }
+        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.N){
+            //toastText = toastText + "\nNow exit the XSofiaTweaker Gui or switch it to the background. (press HOME key).";
+            toastText = toastText + "\n\nYou are automatically switched to the HOME screen to activate the setting.";
         }
         Toast mToast = Toast.makeText(mContext, toastText, Toast.LENGTH_LONG);
         mToast.show();
-
+        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.N){
+/*            //SystemClock.sleep(2000);
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {} */
+            focustoHOME();
+        }
 
         if (intent.getAction() != null) {
             if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.N){
@@ -497,8 +530,14 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
     if (zygote_reboot == true) {
         zygote_reboot = false;
-        Utils.rebootZygote(getContext());
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N){
+            Utils.rebootZygote(getContext());
+            //focustoHOME();
+        } else {
+            //find something to make it save the setting before the zygote reboot
+        }
     }
+
 
     }
 
