@@ -2,6 +2,9 @@ package org.hvdw.xsofiatweaker;
 
 class MySettings {
 
+    public static final String PACKAGE_APP = "org.hvdw.xsofiatweaker";
+    public static final String SHARED_PREFS_FILENAME = PACKAGE_APP + "_preferences";
+
     /* All the necessary variables */
     public static final String PREF_NO_KILL = "pref_no_kill";
     public static final String ACTION_PREF_NO_KILL_CHANGED = "org.hvdw.xsofiatweaker.action.ACTION_PREF_NO_KILL_CHANGED";

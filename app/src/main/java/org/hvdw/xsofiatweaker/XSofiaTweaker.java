@@ -9,8 +9,9 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo; */
 import android.content.ComponentName;
+import android.content.SharedPreferences;
 /*import android.content.SharedPreferences;
-import android.preference.Preference;
+import android.preference.Preferences;
 import android.preference.PreferenceManager; */
 import android.app.AndroidAppHelper;
 import android.widget.Toast;
@@ -49,12 +50,21 @@ import de.robv.android.xposed.XposedHelpers;
 //import de.robv.android.xposed.XC_MethodReplacement;
 //import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import com.crossbowffs.remotepreferences.RemotePreferences;
+//import org.hvdw.xsofiatweaker.MySettings;
+import java.io.File;
+import java.util.Map;
+//import android.os.SystemProperties;
+import java.lang.System;
 
 public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPackage {
-    public static final String TAG = "XSofiaTweaker";
+
+    public static final String TAG = "XSofiaTweaker ";
     public static Context mContext;
     private static PackageManager pm;
-    public static XSharedPreferences pref;
+    private static XSharedPreferences xsharedprefs;
+    private static SharedPreferences sharedprefs;
+    //private static SharedPreferences prefs;
 
     private AudioManager audioManager; //USB-DAC
     private int CurrentVolume; //USB-DAC
@@ -144,89 +154,85 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
     private static int count3 = 0;
     //private static int delay3 = 300;
 
+    /*public static boolean isDebugMode() {
+        // Hard-coded flag check
+        //if (Common.getInstance().DEBUG) {
+        //    return true;
+        //}
+
+        // Load XSharedPreferences before we start checking if debug mode is enabled from user.
+        if (xsharedprefs == null) {
+            refreshSharedPreferences(false);
+        }
+
+        // Attempt to check if debug mode is toggled by the user
+        // Use RemotePreference first as this will be have the most recent (and stable) data.
+        // Use XSharedPreference instance if RemotePreference instance doesn't exist yet.
+        if(sharedprefs != null) {
+            return sharedprefs.getBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, PreferencesSettings.DEFAULT_VALUES.MAIN.DEBUG);
+        } else {
+            return xsharedprefs.getBoolean(PreferencesSettings.KEYS.MAIN.DEBUG, PreferencesSettings.DEFAULT_VALUES.MAIN.DEBUG);
+        }
+    } */
+
+    public static void log(String message) {
+        XposedBridge.log("[" + TAG + "] " + message);
+    }
+
+
+    public static void makePrefsReadable() {
+        // Set preferences file permissions to be world readable
+        File prefsFile = new File("/data/data/org.hvdw.xsofiatweaker/shared_prefs/org.hvdw.xsofiatweaker_preferences.xml");
+        if (prefsFile.exists()) {
+            log("MakePrefsReadable: found org.hvdw.xsofiatweaker prefsFile and set to readable for all");
+            prefsFile.setReadable(true, false);
+        } else {
+            log("MakePrefsReadable: Can find or can't access the org.hvdw.xsofiatweaker prefsFile");
+        }
+    }
+
+    public static void refreshSharedPreferences(boolean displayLogs) {
+        log("inside public static void refreshSharedPreferences");
+        //makePrefsReadable();
+
+        xsharedprefs = new XSharedPreferences(MySettings.SHARED_PREFS_FILENAME);
+        //xsharedprefs.makeWorldReadable();
+        //xsharedprefs.reload();
+
+        // Only continue if we want to produce logging
+        //if(!displayLogs) {
+        //    return;
+        //}
+
+        // Logging the properties to see if the file is actually readable
+        //XposedBridge.log(TAG + "Shared Preferences Properties:");
+        //XposedBridge.log(TAG + "World Readable: " + xsharedprefs.makeWorldReadable());
+        //XposedBridge.log(TAG + "Path: " + xsharedprefs.getFile().getAbsolutePath());
+        //XposedBridge.log(TAG + "File Readable: " + xsharedprefs.getFile().canRead());
+        //XposedBridge.log(TAG + "Exists: " + xsharedprefs.getFile().exists());
+
+        if (xsharedprefs.getAll().size() == 0) {
+            log("Shared Preferences seems not to be initialized or does not have read permissions. Common on ROMs with SELinux enforcing.");
+            //log("Trying to load Shared Preferences Defaults Instead.");
+        } else {
+            log("");
+            log("Loading Shared Preferences:");
+            Map<String, ?> prefsMap = xsharedprefs.getAll();
+            for(String key: prefsMap.keySet()) {
+                String val = prefsMap.get(key).toString();
+                log("\t " + key + ": " + val);
+            }
+        }
+    }
 
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
-        Context mContext = (Context) AndroidAppHelper.currentApplication();
-        XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-        sharedPreferences.makeWorldReadable();
+        log("inside public void initZygote");
+        makePrefsReadable();        
+        refreshSharedPreferences(true);
+        //Do not try to read the RemotePreferences here. It will crash the singleton
+        //GlobalVars GlobalVars = GlobalVars.getInstance();
 
-        noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
-        UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, false); //USB-DAC
-        noMcuErrors = sharedPreferences.getBoolean(MySettings.PREF_NO_MCU_ERRORS, false);
-        skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
-        disable_airhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, false);
-        disable_doorhelper = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, false);
-        disable_btphonetop = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
-        use_root_access = sharedPreferences.getBoolean(MySettings.USE_ROOT_ACCESS, true);
-        show_cpu_temp = sharedPreferences.getBoolean(MySettings.SHOW_CPU_TEMP, false);
-
-        tap_delay = Integer.parseInt(sharedPreferences.getString(MySettings.PREF_TAP_DELAY, "300"));
-
-        band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
-        band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
-        band_call_option_second = sharedPreferences.getString(MySettings.BAND_CALL_OPTION_SECOND, "");
-        band_call_entry_second = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY_SECOND, "");
-        band_call_option_third = sharedPreferences.getString(MySettings.BAND_CALL_OPTION_THIRD, "");
-        band_call_entry_third = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY_THIRD, "");
-        bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
-        bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
-        bt_phone_call_option_second = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION_SECOND, "");
-        bt_phone_call_entry_second = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY_SECOND, "");
-        bt_phone_call_option_third = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION_THIRD, "");
-        bt_phone_call_entry_third = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY_THIRD, "");
-        bt_hang_call_option = sharedPreferences.getString(MySettings.BT_HANG_CALL_OPTION, "");
-        bt_hang_call_entry = sharedPreferences.getString(MySettings.BT_HANG_CALL_ENTRY, "");
-        dvd_call_option = sharedPreferences.getString(MySettings.DVD_CALL_OPTION, "");
-        dvd_call_entry = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY, "");
-        dvd_call_option_second = sharedPreferences.getString(MySettings.DVD_CALL_OPTION_SECOND, "");
-        dvd_call_entry_second = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY_SECOND, "");
-        dvd_call_option_third = sharedPreferences.getString(MySettings.DVD_CALL_OPTION_THIRD, "");
-        dvd_call_entry_third = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY_THIRD, "");
-        eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
-        eject_call_entry = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY, "");
-        eject_call_option_second = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION_SECOND, "");
-        eject_call_entry_second = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_SECOND, "");
-        eject_call_option_third = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION_THIRD, "");
-        eject_call_entry_third = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_THIRD, "");
-        eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
-        eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
-        eq_call_option_second = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_SECOND, "");
-        eq_call_entry_second = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_SECOND, "");
-        eq_call_option_third = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_THIRD, "");
-        eq_call_entry_third = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_THIRD, "");
-        media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
-        media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
-        media_call_option_second = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION_SECOND, "");
-        media_call_entry_second = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY_SECOND, "");
-        media_call_option_third = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION_THIRD, "");
-        media_call_entry_third = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY_THIRD, "");
-        mode_src_call_option = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION, "");
-        mode_src_call_entry = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY, "");
-        mode_src_call_option_second = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION_SECOND, "");
-        mode_src_call_entry_second = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY_SECOND, "");
-        mode_src_call_option_second = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION_THIRD, "");
-        mode_src_call_entry_second = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY_THIRD, "");
-        navi_call_option = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION, "");
-        navi_call_entry = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY, "");
-        navi_call_option_second = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION_SECOND, "");
-        navi_call_entry_second = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY_SECOND, "");
-        navi_call_option_third = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION_THIRD, "");
-        navi_call_entry_third = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY_THIRD, "");
-
-        acc_on_call_option = sharedPreferences.getString(MySettings.ACC_ON_CALL_OPTION, "");
-        acc_on_call_entry = sharedPreferences.getString(MySettings.ACC_ON_CALL_ENTRY, "");
-        acc_off_call_option = sharedPreferences.getString(MySettings.ACC_OFF_CALL_OPTION, "");
-        acc_off_call_entry = sharedPreferences.getString(MySettings.ACC_OFF_CALL_ENTRY, "");
-        resume_call_option = sharedPreferences.getString(MySettings.RESUME_CALL_OPTION, "");
-        resume_call_entry = sharedPreferences.getString(MySettings.RESUME_CALL_ENTRY, "");
-
-        home_key_capture_enabled = sharedPreferences.getBoolean(MySettings.HOME_KEY_CAPTURE, true);
-        home_call_option = sharedPreferences.getString(MySettings.HOME_CALL_OPTION, "");
-        home_call_entry = sharedPreferences.getString(MySettings.HOME_CALL_ENTRY, "");
-        mute_key_capture_enabled = sharedPreferences.getBoolean(MySettings.MUTE_KEY_CAPTURE, true);
-        mute_call_option = sharedPreferences.getString(MySettings.MUTE_CALL_OPTION, "");
-        mute_call_entry = sharedPreferences.getString(MySettings.MUTE_CALL_ENTRY, "");
 
         // check our assets file and copy to /sdcard/XSofiaTweaker if necessary
         /*Log.d(TAG, "copying navi_app.txt");
@@ -237,11 +243,111 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
     }
 
 
-    public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-       XposedBridge.log(TAG + " Loaded app: " + lpparam.packageName);
+/*    public void ReadSettings(Context mcontext) {
+        //makePrefsReadable();  
+        //Context mcontext = MyApplication.getAppContext();
+        sharedprefs = new RemotePreferences(mcontext, "org.hvdw.xsofiatweaker.preferences.provider", MySettings.SHARED_PREFS_FILENAME);
+        //log("Inside ReadSettings trying to read the preferences via the RemotePreferences");
+        //sharedprefs = new RemotePreferences(ctx, "org.hvdw.xsofiatweaker.preferences.provider", "preferences");
+        //sharedprefs = new RemotePreferences((Context) param.thisObject, "org.hvdw.xsofiatweaker.preferences.provider", "preferences");
 
-//     if (!lpparam.packageName.equals("com.syu.ms")) return;
-       if (lpparam.packageName.equals("com.syu.ms")) {
+        noKillEnabled = sharedprefs.getBoolean(MySettings.PREF_NO_KILL, true);
+        //GlobalVars.setInstance().noKillEnabled(sharedprefs.getBoolean(MySettings.PREF_NO_KILL, true));
+        log("ReadSettings noKillEnabled: " + Boolean.toString(noKillEnabled));
+        UsbDac = sharedprefs.getBoolean(MySettings.PREF_UsbDac, false); //USB-DAC
+        noMcuErrors = sharedprefs.getBoolean(MySettings.PREF_NO_MCU_ERRORS, false);
+        skip_ch_four = sharedprefs.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
+        disable_airhelper = sharedprefs.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, false);
+        disable_doorhelper = sharedprefs.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, false);
+        disable_btphonetop = sharedprefs.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
+        use_root_access = sharedprefs.getBoolean(MySettings.USE_ROOT_ACCESS, true);
+        show_cpu_temp = sharedprefs.getBoolean(MySettings.SHOW_CPU_TEMP, false);
+        log("ReadSettings show_cpu_temp: " + Boolean.toString(show_cpu_temp));
+        tap_delay = Integer.parseInt(sharedprefs.getString(MySettings.PREF_TAP_DELAY, "300"));
+
+        band_call_option = sharedprefs.getString(MySettings.BAND_CALL_OPTION, "");
+        log("ReadSettings band_call_option: " + band_call_option);
+        band_call_entry = sharedprefs.getString(MySettings.BAND_CALL_ENTRY, "");
+        log("ReadSettings band_call_entry: " + band_call_entry);
+        band_call_option_second = sharedprefs.getString(MySettings.BAND_CALL_OPTION_SECOND, "");
+        band_call_entry_second = sharedprefs.getString(MySettings.BAND_CALL_ENTRY_SECOND, "");
+        band_call_option_third = sharedprefs.getString(MySettings.BAND_CALL_OPTION_THIRD, "");
+        band_call_entry_third = sharedprefs.getString(MySettings.BAND_CALL_ENTRY_THIRD, "");
+        bt_phone_call_option = sharedprefs.getString(MySettings.BT_PHONE_CALL_OPTION, "");
+        bt_phone_call_entry = sharedprefs.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
+        bt_phone_call_option_second = sharedprefs.getString(MySettings.BT_PHONE_CALL_OPTION_SECOND, "");
+        bt_phone_call_entry_second = sharedprefs.getString(MySettings.BT_PHONE_CALL_ENTRY_SECOND, "");
+        bt_phone_call_option_third = sharedprefs.getString(MySettings.BT_PHONE_CALL_OPTION_THIRD, "");
+        bt_phone_call_entry_third = sharedprefs.getString(MySettings.BT_PHONE_CALL_ENTRY_THIRD, "");
+        bt_hang_call_option = sharedprefs.getString(MySettings.BT_HANG_CALL_OPTION, "");
+        bt_hang_call_entry = sharedprefs.getString(MySettings.BT_HANG_CALL_ENTRY, "");
+        dvd_call_option = sharedprefs.getString(MySettings.DVD_CALL_OPTION, "");
+        dvd_call_entry = sharedprefs.getString(MySettings.DVD_CALL_ENTRY, "");
+        dvd_call_option_second = sharedprefs.getString(MySettings.DVD_CALL_OPTION_SECOND, "");
+        dvd_call_entry_second = sharedprefs.getString(MySettings.DVD_CALL_ENTRY_SECOND, "");
+        dvd_call_option_third = sharedprefs.getString(MySettings.DVD_CALL_OPTION_THIRD, "");
+        dvd_call_entry_third = sharedprefs.getString(MySettings.DVD_CALL_ENTRY_THIRD, "");
+        eject_call_option = sharedprefs.getString(MySettings.EJECT_CALL_OPTION, "");
+        eject_call_entry = sharedprefs.getString(MySettings.EJECT_CALL_ENTRY, "");
+        eject_call_option_second = sharedprefs.getString(MySettings.EJECT_CALL_OPTION_SECOND, "");
+        eject_call_entry_second = sharedprefs.getString(MySettings.EJECT_CALL_ENTRY_SECOND, "");
+        eject_call_option_third = sharedprefs.getString(MySettings.EJECT_CALL_OPTION_THIRD, "");
+        eject_call_entry_third = sharedprefs.getString(MySettings.EJECT_CALL_ENTRY_THIRD, "");
+        eq_call_option = sharedprefs.getString(MySettings.EQ_CALL_OPTION, "");
+        eq_call_entry = sharedprefs.getString(MySettings.EQ_CALL_ENTRY, "");
+        eq_call_option_second = sharedprefs.getString(MySettings.EQ_CALL_OPTION_SECOND, "");
+        eq_call_entry_second = sharedprefs.getString(MySettings.EQ_CALL_ENTRY_SECOND, "");
+        eq_call_option_third = sharedprefs.getString(MySettings.EQ_CALL_OPTION_THIRD, "");
+        eq_call_entry_third = sharedprefs.getString(MySettings.EQ_CALL_ENTRY_THIRD, "");
+        media_call_option = sharedprefs.getString(MySettings.MEDIA_CALL_OPTION, "");
+        media_call_entry = sharedprefs.getString(MySettings.MEDIA_CALL_ENTRY, "");
+        media_call_option_second = sharedprefs.getString(MySettings.MEDIA_CALL_OPTION_SECOND, "");
+        media_call_entry_second = sharedprefs.getString(MySettings.MEDIA_CALL_ENTRY_SECOND, "");
+        media_call_option_third = sharedprefs.getString(MySettings.MEDIA_CALL_OPTION_THIRD, "");
+        media_call_entry_third = sharedprefs.getString(MySettings.MEDIA_CALL_ENTRY_THIRD, "");
+        mode_src_call_option = sharedprefs.getString(MySettings.MODE_SRC_CALL_OPTION, "");
+        mode_src_call_entry = sharedprefs.getString(MySettings.MODE_SRC_CALL_ENTRY, "");
+        mode_src_call_option_second = sharedprefs.getString(MySettings.MODE_SRC_CALL_OPTION_SECOND, "");
+        mode_src_call_entry_second = sharedprefs.getString(MySettings.MODE_SRC_CALL_ENTRY_SECOND, "");
+        mode_src_call_option_second = sharedprefs.getString(MySettings.MODE_SRC_CALL_OPTION_THIRD, "");
+        mode_src_call_entry_second = sharedprefs.getString(MySettings.MODE_SRC_CALL_ENTRY_THIRD, "");
+        navi_call_option = sharedprefs.getString(MySettings.NAVI_CALL_OPTION, "");
+        navi_call_entry = sharedprefs.getString(MySettings.NAVI_CALL_ENTRY, "");
+        navi_call_option_second = sharedprefs.getString(MySettings.NAVI_CALL_OPTION_SECOND, "");
+        navi_call_entry_second = sharedprefs.getString(MySettings.NAVI_CALL_ENTRY_SECOND, "");
+        navi_call_option_third = sharedprefs.getString(MySettings.NAVI_CALL_OPTION_THIRD, "");
+        navi_call_entry_third = sharedprefs.getString(MySettings.NAVI_CALL_ENTRY_THIRD, "");
+
+        acc_on_call_option = sharedprefs.getString(MySettings.ACC_ON_CALL_OPTION, "");
+        acc_on_call_entry = sharedprefs.getString(MySettings.ACC_ON_CALL_ENTRY, "");
+        acc_off_call_option = sharedprefs.getString(MySettings.ACC_OFF_CALL_OPTION, "");
+        acc_off_call_entry = sharedprefs.getString(MySettings.ACC_OFF_CALL_ENTRY, "");
+        resume_call_option = sharedprefs.getString(MySettings.RESUME_CALL_OPTION, "");
+        resume_call_entry = sharedprefs.getString(MySettings.RESUME_CALL_ENTRY, "");
+
+        home_key_capture_enabled = sharedprefs.getBoolean(MySettings.HOME_KEY_CAPTURE, true);
+        home_call_option = sharedprefs.getString(MySettings.HOME_CALL_OPTION, "");
+        home_call_entry = sharedprefs.getString(MySettings.HOME_CALL_ENTRY, "");
+        mute_key_capture_enabled = sharedprefs.getBoolean(MySettings.MUTE_KEY_CAPTURE, true);
+        mute_call_option = sharedprefs.getString(MySettings.MUTE_CALL_OPTION, "");
+        mute_call_entry = sharedprefs.getString(MySettings.MUTE_CALL_ENTRY, "");
+    }
+*/
+
+    public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+       log("handleLoadPackage: Loaded app: " + lpparam.packageName);
+
+        // Hook the Application class of this application. This allows us
+        // to have some application Context and use it to update the RemotePreferences Content Provider
+        // and the other information. This allows us to read SharedPreference from the app process
+        // without tripping SELinux and Android 8 restrictions
+        findAndHookMethod("android.app.Application", lpparam.classLoader, "onCreate", new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+            }
+        });
+
+      if (lpparam.packageName.equals("com.syu.ms")) {
 
 /**********************************************************************************************************************************************/
 
@@ -314,21 +420,24 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
         // End of the hook to correct the media keys.
 
         /* This is the No Kill function */
-        if (noKillEnabled == true) {
+//        if (noKillEnabled == true) {
             findAndHookMethod("app.ToolkitApp", lpparam.classLoader, "killAppWhenSleep", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     Context context = (Context) AndroidAppHelper.currentApplication();
-                    XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-                    sharedPreferences.makeWorldReadable();
-                    noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_NO_KILL, true);
-                    XposedBridge.log(TAG + " nokill enabled");
+                    sharedprefs = new RemotePreferences((Context) param.thisObject, "org.hvdw.xsofiatweaker.preferences.provider", MySettings.SHARED_PREFS_FILENAME);
+                    //XSharedPreferences xsharedprefs = new XSharedPreferences("org.hvdw.xsofiatweaker");
+                    //xsharedprefs.makeWorldReadable();
+                    noKillEnabled = sharedprefs.getBoolean(MySettings.PREF_NO_KILL, true);
+                    String Strnke = String.valueOf(noKillEnabled);
+                    log("value of noKillEnabled is: " + Strnke);
+                    //XposedBridge.log(TAG + " nokill enabled");
                     param.setResult(null);
                 }
             });
-        } else {
-            XposedBridge.log(TAG + " nokill disabled");
-        }
+//        } else {
+//            XposedBridge.log(TAG + " nokill disabled");
+//        }
 
         //USB-DAC-START
         if (UsbDac == true) {
@@ -338,7 +447,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+                    UsbDac = xsharedprefs.getBoolean(MySettings.PREF_UsbDac, true);
                     AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
                     CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                     audioManager.setStreamVolume(3, CurrentVolume + 1, 1);
@@ -356,7 +465,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+                    UsbDac = xsharedprefs.getBoolean(MySettings.PREF_UsbDac, true);
                     AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
                     CurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                     audioManager.setStreamVolume(3, CurrentVolume + -1, 1);
@@ -374,7 +483,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+                    UsbDac = xsharedprefs.getBoolean(MySettings.PREF_UsbDac, true);
                     AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
                     audioManager.adjustStreamVolume(3, 101, 1);
                     audioManager.adjustStreamVolume(0, 101, 0);
@@ -394,7 +503,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    UsbDac = sharedPreferences.getBoolean(MySettings.PREF_UsbDac, true);
+                    UsbDac = xsharedprefs.getBoolean(MySettings.PREF_UsbDac, true);
                     //XposedBridge.log(TAG + " Stop setStreamVol");
                     param.setResult(null);
                 }
@@ -409,7 +518,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    noMcuErrors = sharedPreferences.getBoolean(MySettings.PREF_NO_MCU_ERRORS, true);
+                    noMcuErrors = xsharedprefs.getBoolean(MySettings.PREF_NO_MCU_ERRORS, true);
                     XposedBridge.log(TAG + " noMcuErrors enabled");
                     param.setResult(null);
                 }
@@ -431,7 +540,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                         Context context = (Context) AndroidAppHelper.currentApplication();
                         XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                         sharedPreferences.makeWorldReadable();
-                        skip_ch_four = sharedPreferences.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
+                        skip_ch_four = xsharedprefs.getBoolean(MySettings.PREF_SKIP_CH_FOUR, false);
                         XposedBridge.log(TAG + " skipping alarm channel 4 mute");
                         Log.d(TAG, " skipping alarm channel 4 mute");
 
@@ -451,7 +560,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                        Context context = (Context) AndroidAppHelper.currentApplication();
                        XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                        sharedPreferences.makeWorldReadable();
-                       disable_btphonetop = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
+                       disable_btphonetop = xsharedprefs.getBoolean(MySettings.PREF_DISABLE_BTPHONETOP, false);
                        XposedBridge.log(TAG + " prevent bt phone app from forcing always on top during call");
                        param.setResult(null);
                    }
@@ -503,8 +612,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                 Context context = (Context) AndroidAppHelper.currentApplication();
                 XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                 sharedPreferences.makeWorldReadable();
-                resume_call_option = sharedPreferences.getString(MySettings.RESUME_CALL_OPTION, "");
-                resume_call_entry = sharedPreferences.getString(MySettings.RESUME_CALL_ENTRY, "");
+                resume_call_option = xsharedprefs.getString(MySettings.RESUME_CALL_OPTION, "");
+                resume_call_entry = xsharedprefs.getString(MySettings.RESUME_CALL_ENTRY, "");
                 XposedBridge.log(TAG + " Execute the RESUME action using specific call method");
                 Log.d(TAG, "Execute the RESUME action using specific call method");
             }
@@ -519,12 +628,12 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    bt_phone_call_option = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION, "");
-                    bt_phone_call_entry = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
-                    bt_phone_call_option_second = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION_SECOND, "");
-                    bt_phone_call_entry_second = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY_SECOND, "");
-                    bt_phone_call_option_third = sharedPreferences.getString(MySettings.BT_PHONE_CALL_OPTION_THIRD, "");
-                    bt_phone_call_entry_third = sharedPreferences.getString(MySettings.BT_PHONE_CALL_ENTRY_THIRD, "");
+                    bt_phone_call_option = xsharedprefs.getString(MySettings.BT_PHONE_CALL_OPTION, "");
+                    bt_phone_call_entry = xsharedprefs.getString(MySettings.BT_PHONE_CALL_ENTRY, "");
+                    bt_phone_call_option_second = xsharedprefs.getString(MySettings.BT_PHONE_CALL_OPTION_SECOND, "");
+                    bt_phone_call_entry_second = xsharedprefs.getString(MySettings.BT_PHONE_CALL_ENTRY_SECOND, "");
+                    bt_phone_call_option_third = xsharedprefs.getString(MySettings.BT_PHONE_CALL_OPTION_THIRD, "");
+                    bt_phone_call_entry_third = xsharedprefs.getString(MySettings.BT_PHONE_CALL_ENTRY_THIRD, "");
                     XposedBridge.log(TAG + " mcuKeyBtPhone pressed; bt_phone_call_option: " + bt_phone_call_option + " bt_phone_call_entry : " + bt_phone_call_entry);
                     /* whichActionToPerform(context, bt_phone_call_option, bt_phone_call_entry); */
                     multitap(bt_phone_call_option, bt_phone_call_entry, bt_phone_call_option_second, bt_phone_call_entry_second, bt_phone_call_option_third, bt_phone_call_entry_third, tap_delay);
@@ -534,45 +643,51 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
             });
         }
 
-        if ((navi_call_option != "") && (navi_call_entry != "")) {
+//        if ((navi_call_option != "") && (navi_call_entry != "")) {
             findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyNavi", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Context context = (Context) AndroidAppHelper.currentApplication();
-                    XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-                    sharedPreferences.makeWorldReadable();
-                    navi_call_option = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION, "");
-                    navi_call_entry = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY, "");
-                    navi_call_option_second = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION_SECOND, "");
-                    navi_call_entry_second = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY_SECOND, "");
-                    navi_call_option_third = sharedPreferences.getString(MySettings.NAVI_CALL_OPTION_THIRD, "");
-                    navi_call_entry_third = sharedPreferences.getString(MySettings.NAVI_CALL_ENTRY_THIRD, "");
-                    XposedBridge.log(TAG + " mcuKeyNavi  pressed; navi_call_option: " + navi_call_option + " navi_call_entry : " + navi_call_entry);
+                    Context mcontext = (Context) AndroidAppHelper.currentApplication();
+                    sharedprefs = new RemotePreferences(mcontext, "org.hvdw.xsofiatweaker.preferences.provider", MySettings.SHARED_PREFS_FILENAME);
+                    navi_call_option = sharedprefs.getString(MySettings.NAVI_CALL_OPTION, "");
+                    navi_call_entry = sharedprefs.getString(MySettings.NAVI_CALL_ENTRY, "");
+                    navi_call_option_second = sharedprefs.getString(MySettings.NAVI_CALL_OPTION_SECOND, "");
+                    navi_call_entry_second = sharedprefs.getString(MySettings.NAVI_CALL_ENTRY_SECOND, "");
+                    navi_call_option_third = sharedprefs.getString(MySettings.NAVI_CALL_OPTION_THIRD, "");
+                    navi_call_entry_third = sharedprefs.getString(MySettings.NAVI_CALL_ENTRY_THIRD, "");
+                    tap_delay = Integer.parseInt(sharedprefs.getString(MySettings.PREF_TAP_DELAY, "300"));
+                    log("mcuKeyNavi  pressed; navi_call_option: " + navi_call_option + " navi_call_entry : " + navi_call_entry);
                     /* whichActionToPerform(context, navi_call_option, navi_call_entry); */
                     multitap(navi_call_option, navi_call_entry, navi_call_option_second, navi_call_entry_second, navi_call_option_third, navi_call_entry_third, tap_delay);
 
                     param.setResult(null);
                 }
             });
-        }
+//        }
 
-        if ((band_call_option != "") && (band_call_entry != "")) {
+//        if ((band_call_option != "") && (band_call_entry != "")) {
             // band button = radio
             findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyBand", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    final Context context = (Context) AndroidAppHelper.currentApplication();
-                    XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-                    sharedPreferences.makeWorldReadable();
-                    band_call_option = sharedPreferences.getString(MySettings.BAND_CALL_OPTION, "");
-                    band_call_entry = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY, "");
-                    band_call_option_second = sharedPreferences.getString(MySettings.BAND_CALL_OPTION_SECOND, "");
-                    band_call_entry_second = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY_SECOND, "");
-                    band_call_option_third = sharedPreferences.getString(MySettings.BAND_CALL_OPTION_THIRD, "");
-                    band_call_entry_third = sharedPreferences.getString(MySettings.BAND_CALL_ENTRY_THIRD, "");
-                    XposedBridge.log(TAG + " mcuKeyBand (Radio) pressed; forward action to specific call method");
-                    Log.d(TAG, "mcuKeyBand (Radio) pressed; forward action to specific call method");
-                    XposedBridge.log(TAG + " band_call_option: " + band_call_option + " band_call_entry : " + band_call_entry);
+                    Context mcontext = (Context) AndroidAppHelper.currentApplication();
+                    sharedprefs = new RemotePreferences(mcontext, "org.hvdw.xsofiatweaker.preferences.provider", MySettings.SHARED_PREFS_FILENAME);
+                    band_call_option = sharedprefs.getString(MySettings.BAND_CALL_OPTION, "");
+                    log("mcuKeyBand band_call_option: " + band_call_option);
+                    band_call_entry = sharedprefs.getString(MySettings.BAND_CALL_ENTRY, "");
+                    log("mcuKeyBand band_call_entry: " + band_call_entry);
+                    band_call_option_second = sharedprefs.getString(MySettings.BAND_CALL_OPTION_SECOND, "");
+                    log("mcuKeyBand band_call_option_second: " + band_call_option_second);
+                    band_call_entry_second = sharedprefs.getString(MySettings.BAND_CALL_ENTRY_SECOND, "");
+                    log("mcuKeyBand band_call_entry_second: " + band_call_entry_second);
+                    band_call_option_third = sharedprefs.getString(MySettings.BAND_CALL_OPTION_THIRD, "");
+                    log("mcuKeyBand band_call_option_third: " + band_call_option_third);
+                    band_call_entry_third = sharedprefs.getString(MySettings.BAND_CALL_ENTRY_THIRD, "");
+                    log("mcuKeyBand band_call_entry_third: " + band_call_entry_third);
+                    log("mcuKeyBand (Radio) pressed; forward action to specific call method");
+                    log("mcuKeyBand band_call_option: " + band_call_option + " band_call_entry : " + band_call_entry);
+                    tap_delay = Integer.parseInt(sharedprefs.getString(MySettings.PREF_TAP_DELAY, "300"));
+                    log("mcuKeyBand tap_delay: " + tap_delay);
                     /* whichActionToPerform(context, band_call_option, band_call_entry); */
 
                     multitap(band_call_option, band_call_entry, band_call_option_second, band_call_entry_second, band_call_option_third, band_call_entry_third, tap_delay);
@@ -580,7 +695,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     param.setResult(null);
                 }
             });
-        }
+//        }
 
         if ((mode_src_call_option != "") && (mode_src_call_entry != "")) {
             findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyMode", new XC_MethodHook() {
@@ -589,12 +704,12 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    mode_src_call_option = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION, "");
-                    mode_src_call_entry = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY, "");
-                    mode_src_call_option_second = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION_SECOND, "");
-                    mode_src_call_entry_second = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY_SECOND, "");
-                    mode_src_call_option_third = sharedPreferences.getString(MySettings.MODE_SRC_CALL_OPTION_THIRD, "");
-                    mode_src_call_entry_third = sharedPreferences.getString(MySettings.MODE_SRC_CALL_ENTRY_THIRD, "");
+                    mode_src_call_option = xsharedprefs.getString(MySettings.MODE_SRC_CALL_OPTION, "");
+                    mode_src_call_entry = xsharedprefs.getString(MySettings.MODE_SRC_CALL_ENTRY, "");
+                    mode_src_call_option_second = xsharedprefs.getString(MySettings.MODE_SRC_CALL_OPTION_SECOND, "");
+                    mode_src_call_entry_second = xsharedprefs.getString(MySettings.MODE_SRC_CALL_ENTRY_SECOND, "");
+                    mode_src_call_option_third = xsharedprefs.getString(MySettings.MODE_SRC_CALL_OPTION_THIRD, "");
+                    mode_src_call_entry_third = xsharedprefs.getString(MySettings.MODE_SRC_CALL_ENTRY_THIRD, "");
                     XposedBridge.log(TAG + " Source/Mode pressed; forward action  to specific call method");
                     Log.d(TAG, "Source/Mode pressed; forward action  to specific call method");
                     /*whichActionToPerform(context, mode_src_call_option, mode_src_call_entry); */
@@ -605,28 +720,27 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
             });
         }
 
-        if ((media_call_option != "") && (media_call_entry != "")) {
+//        if ((media_call_option != "") && (media_call_entry != "")) {
             findAndHookMethod("module.main.HandlerMain", lpparam.classLoader, "mcuKeyPlayer", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    Context context = (Context) AndroidAppHelper.currentApplication();
-                    XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
-                    sharedPreferences.makeWorldReadable();
-                    media_call_option = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION, "");
-                    media_call_entry = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY, "");
-                    media_call_option_second = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION_SECOND, "");
-                    media_call_entry_second = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY_SECOND, "");
-                    media_call_option_third = sharedPreferences.getString(MySettings.MEDIA_CALL_OPTION_THIRD, "");
-                    media_call_entry_third = sharedPreferences.getString(MySettings.MEDIA_CALL_ENTRY_THIRD, "");
-                    XposedBridge.log(TAG + " MEDIA button pressed; forward action to specific call method");
-                    Log.d(TAG, "MEDIA button pressed; forward action to specific call method");
+                    Context mcontext = (Context) AndroidAppHelper.currentApplication();
+                    sharedprefs = new RemotePreferences(mcontext, "org.hvdw.xsofiatweaker.preferences.provider", MySettings.SHARED_PREFS_FILENAME);
+                    media_call_option = sharedprefs.getString(MySettings.MEDIA_CALL_OPTION, "");
+                    media_call_entry = sharedprefs.getString(MySettings.MEDIA_CALL_ENTRY, "");
+                    media_call_option_second = sharedprefs.getString(MySettings.MEDIA_CALL_OPTION_SECOND, "");
+                    media_call_entry_second = sharedprefs.getString(MySettings.MEDIA_CALL_ENTRY_SECOND, "");
+                    media_call_option_third = sharedprefs.getString(MySettings.MEDIA_CALL_OPTION_THIRD, "");
+                    media_call_entry_third = sharedprefs.getString(MySettings.MEDIA_CALL_ENTRY_THIRD, "");
+                    tap_delay = Integer.parseInt(sharedprefs.getString(MySettings.PREF_TAP_DELAY, "300"));
+                    log("MEDIA button pressed; forward action to specific call method");
                     /*whichActionToPerform(context, media_call_option, media_call_entry); */
                     multitap(media_call_option, media_call_entry, media_call_option_second, media_call_entry_second, media_call_option_third, media_call_entry_third, tap_delay);
 
                     param.setResult(null);
                 }
             });
-        }
+//        }
 
         if ((eq_call_option != "") && (eq_call_entry != "")) {
 //            findAndHookMethod("util.JumpPage", lpparam.classLoader, "eq", new XC_MethodHook() {
@@ -636,12 +750,12 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    eq_call_option = sharedPreferences.getString(MySettings.EQ_CALL_OPTION, "");
-                    eq_call_entry = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY, "");
-                    eq_call_option_second = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_SECOND, "");
-                    eq_call_entry_second = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_SECOND, "");
-                    eq_call_option_third = sharedPreferences.getString(MySettings.EQ_CALL_OPTION_THIRD, "");
-                    eq_call_entry_third = sharedPreferences.getString(MySettings.EQ_CALL_ENTRY_THIRD, "");
+                    eq_call_option = xsharedprefs.getString(MySettings.EQ_CALL_OPTION, "");
+                    eq_call_entry = xsharedprefs.getString(MySettings.EQ_CALL_ENTRY, "");
+                    eq_call_option_second = xsharedprefs.getString(MySettings.EQ_CALL_OPTION_SECOND, "");
+                    eq_call_entry_second = xsharedprefs.getString(MySettings.EQ_CALL_ENTRY_SECOND, "");
+                    eq_call_option_third = xsharedprefs.getString(MySettings.EQ_CALL_OPTION_THIRD, "");
+                    eq_call_entry_third = xsharedprefs.getString(MySettings.EQ_CALL_ENTRY_THIRD, "");
                     XposedBridge.log(TAG + " EQ button pressed; forward action  to specific call method");
                     Log.d(TAG, "EQ button pressed; forward action  to specific call method");
                     //whichActionToPerform(context, eq_call_option, eq_call_entry);
@@ -669,24 +783,24 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
 
                 //Log.d(TAG, "DVD or eject button; Executed the Media action to the launcher.sh");
                 if ((b & 255) == 1 && (data[start + 1] & 255) == 0 && (data[start + 2] & 255) == 16 && (data[start + 3] & 255) == 80) {
-                    dvd_call_option = sharedPreferences.getString(MySettings.DVD_CALL_OPTION, "");
-                    dvd_call_entry = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY, "");
-                    dvd_call_option_second = sharedPreferences.getString(MySettings.DVD_CALL_OPTION_SECOND, "");
-                    dvd_call_entry_second = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY_SECOND, "");
-                    dvd_call_option_third = sharedPreferences.getString(MySettings.DVD_CALL_OPTION_THIRD, "");
-                    dvd_call_entry_third = sharedPreferences.getString(MySettings.DVD_CALL_ENTRY_THIRD, "");
+                    dvd_call_option = xsharedprefs.getString(MySettings.DVD_CALL_OPTION, "");
+                    dvd_call_entry = xsharedprefs.getString(MySettings.DVD_CALL_ENTRY, "");
+                    dvd_call_option_second = xsharedprefs.getString(MySettings.DVD_CALL_OPTION_SECOND, "");
+                    dvd_call_entry_second = xsharedprefs.getString(MySettings.DVD_CALL_ENTRY_SECOND, "");
+                    dvd_call_option_third = xsharedprefs.getString(MySettings.DVD_CALL_OPTION_THIRD, "");
+                    dvd_call_entry_third = xsharedprefs.getString(MySettings.DVD_CALL_ENTRY_THIRD, "");
                     XposedBridge.log(TAG + " DVD button pressed; forward action to specific call method");
                     Log.d(TAG, "DVD button pressed; forward action to specific call method");
                     /*whichActionToPerform(context, dvd_call_option, dvd_call_entry); */
                     multitap(dvd_call_option, dvd_call_entry, dvd_call_option_second, dvd_call_entry_second, dvd_call_option_third, dvd_call_entry_third, tap_delay);
                 }
                 if ((b & 255) == 1 && (data[start + 1] & 255) == 161 && (data[start + 2] & 255) == 2 && (data[start + 3] & 255) == 91) {
-                    eject_call_option = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION, "");
-                    eject_call_entry = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY, "");
-                    eject_call_option_second = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION_SECOND, "");
-                    eject_call_entry_second = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_SECOND, "");
-                    eject_call_option_third = sharedPreferences.getString(MySettings.EJECT_CALL_OPTION_THIRD, "");
-                    eject_call_entry_third = sharedPreferences.getString(MySettings.EJECT_CALL_ENTRY_THIRD, "");
+                    eject_call_option = xsharedprefs.getString(MySettings.EJECT_CALL_OPTION, "");
+                    eject_call_entry = xsharedprefs.getString(MySettings.EJECT_CALL_ENTRY, "");
+                    eject_call_option_second = xsharedprefs.getString(MySettings.EJECT_CALL_OPTION_SECOND, "");
+                    eject_call_entry_second = xsharedprefs.getString(MySettings.EJECT_CALL_ENTRY_SECOND, "");
+                    eject_call_option_third = xsharedprefs.getString(MySettings.EJECT_CALL_OPTION_THIRD, "");
+                    eject_call_entry_third = xsharedprefs.getString(MySettings.EJECT_CALL_ENTRY_THIRD, "");
                     XposedBridge.log(TAG + " EJECT button pressed; forward action to specific call method");
                     Log.d(TAG, "EJECT button pressed; forward action to specific call method");
                     /* whichActionToPerform(context, eject_call_option, eject_call_entry); */
@@ -710,8 +824,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                         Context context = (Context) AndroidAppHelper.currentApplication();
                         XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                         sharedPreferences.makeWorldReadable();
-                        bt_hang_call_option = sharedPreferences.getString(MySettings.BT_HANG_CALL_OPTION, "");
-                        bt_hang_call_entry = sharedPreferences.getString(MySettings.BT_HANG_CALL_ENTRY, "");
+                        bt_hang_call_option = xsharedprefs.getString(MySettings.BT_HANG_CALL_OPTION, "");
+                        bt_hang_call_entry = xsharedprefs.getString(MySettings.BT_HANG_CALL_ENTRY, "");
                         XposedBridge.log(TAG + " BT_Hang pressed; bt_hang_call_option: " + bt_hang_call_option + " bt_hang_call_entry : " + bt_hang_call_entry);
                         whichActionToPerform(context, bt_hang_call_option, bt_hang_call_entry);
 
@@ -732,15 +846,15 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                 XposedBridge.log(TAG + " broadcastByIntentName in util.JumpPage beforeHooked " + actionName);
                 Log.d(TAG, "broadcastByIntentName in util.JumpPage afterHooked " + actionName);
                 if (actionName == "com.glsx.boot.ACCON") {
-                    acc_on_call_option = sharedPreferences.getString(MySettings.ACC_ON_CALL_OPTION, "");
-                    acc_on_call_entry = sharedPreferences.getString(MySettings.ACC_ON_CALL_ENTRY, "");
+                    acc_on_call_option = xsharedprefs.getString(MySettings.ACC_ON_CALL_OPTION, "");
+                    acc_on_call_entry = xsharedprefs.getString(MySettings.ACC_ON_CALL_ENTRY, "");
                     Log.d(TAG, "ACC_ON command received");
                     XposedBridge.log(TAG + " ACC_ON command received");
                     whichActionToPerform(context, acc_on_call_option, acc_on_call_entry);
                 }
                 if (actionName == "com.glsx.boot.ACCOFF") {
-                    acc_off_call_option = sharedPreferences.getString(MySettings.ACC_OFF_CALL_OPTION, "");
-                    acc_off_call_entry = sharedPreferences.getString(MySettings.ACC_OFF_CALL_ENTRY, "");
+                    acc_off_call_option = xsharedprefs.getString(MySettings.ACC_OFF_CALL_OPTION, "");
+                    acc_off_call_entry = xsharedprefs.getString(MySettings.ACC_OFF_CALL_ENTRY, "");
                     Log.d(TAG, "ACC_OFF command received");
                     XposedBridge.log(TAG + " ACC_OFF command received");
                     whichActionToPerform(context, acc_off_call_option, acc_off_call_entry);
@@ -755,8 +869,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    home_call_option = sharedPreferences.getString(MySettings.HOME_CALL_OPTION, "");
-                    home_call_entry = sharedPreferences.getString(MySettings.HOME_CALL_ENTRY, "");
+                    home_call_option = xsharedprefs.getString(MySettings.HOME_CALL_OPTION, "");
+                    home_call_entry = xsharedprefs.getString(MySettings.HOME_CALL_ENTRY, "");
                     XposedBridge.log(TAG + " HOME button pressed; forward action to specific call method");
                     Log.d(TAG, "HOME button pressed; forward action to specific call method");
                     //executeSystemCall("am start -a android.intent.action.MAIN -c android.intent.category.HOME");
@@ -783,8 +897,8 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    mute_call_option = sharedPreferences.getString(MySettings.MUTE_CALL_OPTION, "");
-                    mute_call_entry = sharedPreferences.getString(MySettings.MUTE_CALL_ENTRY, "");
+                    mute_call_option = xsharedprefs.getString(MySettings.MUTE_CALL_OPTION, "");
+                    mute_call_entry = xsharedprefs.getString(MySettings.MUTE_CALL_ENTRY, "");
                     XposedBridge.log(TAG + " MUTE button pressed; forward action to specific call method");
                     Log.d(TAG, "MUTE button pressed; forward action to specific call method");
                     whichActionToPerform(context, mute_call_option, mute_call_entry);
@@ -804,7 +918,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, true);
+                    noKillEnabled = xsharedprefs.getBoolean(MySettings.PREF_DISABLE_AIRHELPER, true);
                     XposedBridge.log(TAG + " prevent canbus airconditiong change popup");
                     param.setResult(null);
                 }
@@ -819,7 +933,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     Context context = (Context) AndroidAppHelper.currentApplication();
                     XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
                     sharedPreferences.makeWorldReadable();
-                    noKillEnabled = sharedPreferences.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, true);
+                    noKillEnabled = xsharedprefs.getBoolean(MySettings.PREF_DISABLE_DOORHELPER, true);
                     XposedBridge.log(TAG + " prevent canbus door open popup");
                     param.setResult(null);
                 }
@@ -829,19 +943,25 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
        /* End of the part where the CANbus apk hooks are taking place
        *  Nowstarts the part where the SystemUI clock display is captured to display the CPU temp.
        */
-       } else if ((lpparam.packageName.equals("com.android.systemui")) && (show_cpu_temp == true)) {
+//       } else if ((lpparam.packageName.equals("com.android.systemui")) && (show_cpu_temp == true)) {
+       } else if ((lpparam.packageName.equals("com.android.systemui"))) {
         findAndHookMethod("com.android.systemui.statusbar.policy.Clock", lpparam.classLoader, "updateClock", new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                TextView tv = (TextView) param.thisObject;
-                String text = tv.getText().toString();
-                String temp = String.valueOf(getCpuTemp());
-                //remove + in front of string
-                temp = temp.replace("+", "");
-                tv.setText("CPU: " + temp + " °C  " + text);
-                //tv.setTextColor(Color.YELLOW);
-                //tv.setTextColor(Color.parseColor("#F06D2F")); // orange
-                //tv.setTextColor(Color.RED);
+                Context context = (Context) AndroidAppHelper.currentApplication();
+                sharedprefs = new RemotePreferences(context, "org.hvdw.xsofiatweaker.preferences.provider", MySettings.SHARED_PREFS_FILENAME);
+                show_cpu_temp = sharedprefs.getBoolean(MySettings.SHOW_CPU_TEMP, false);
+                if (show_cpu_temp == true) {
+                    TextView tv = (TextView) param.thisObject;
+                    String text = tv.getText().toString();
+                    String temp = String.valueOf(getCpuTemp());
+                    //remove + in front of string
+                    temp = temp.replace("+", "");
+                    tv.setText("CPU: " + temp + " °C  " + text);
+                    //tv.setTextColor(Color.YELLOW);
+                    //tv.setTextColor(Color.parseColor("#F06D2F")); // orange
+                   //tv.setTextColor(Color.RED);
+                }
             }
 
         });
@@ -865,7 +985,7 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
         if (callMethod.equals("sys_call")) {
             XSharedPreferences sharedPreferences = new XSharedPreferences("org.hvdw.xsofiatweaker");
             sharedPreferences.makeWorldReadable();
-            use_root_access = sharedPreferences.getBoolean(MySettings.USE_ROOT_ACCESS, true);
+            use_root_access = xsharedprefs.getBoolean(MySettings.USE_ROOT_ACCESS, true);
             //executeSystemCall(actionString);
             String[] cmd = actionString.split(";");
             if (use_root_access == true) {
@@ -1061,23 +1181,41 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
     public float getCpuTemp() {
         Process p;
         float temp = 0;
-        try {
-            for (int i=1; i<5; i++) {
-                p = Runtime.getRuntime().exec("cat sys/class/thermal/thermal_zone" + Integer.toString(i) + "/temp");
+        String tempstr;
+        String ro_product_cpu_abi;
+
+        ro_product_cpu_abi = System.getProperty("ro.product.cpu.abi");
+        if (ro_product_cpu_abi == "x86") {
+            try {
+                for (int i=1; i<5; i++) {
+                    p = Runtime.getRuntime().exec("cat sys/class/thermal/thermal_zone" + Integer.toString(i) + "/temp");
+                    p.waitFor();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+                    String line = reader.readLine();
+                    float tmptemp = Float.parseFloat(line) / 1000.0f;
+                    if (tmptemp > temp) temp = tmptemp;
+                }
+                // round to 1 decimal like 45.3
+                int scale = (int) Math.pow(10, 1);
+                return (float) Math.round(temp *scale)/scale;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return 0.0f;
+            }
+        } else {
+            try {
+                p = Runtime.getRuntime().exec("cat /sys/rockchip_thermal/temp");
                 p.waitFor();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-                String line = reader.readLine();
-                float tmptemp = Float.parseFloat(line) / 1000.0f;
-                if (tmptemp > temp) temp = tmptemp;
+                String splitline[] = reader.readLine().split(":");
+                tempstr = splitline[1].trim();
+                return (float) Float.parseFloat(tempstr);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return 0.0f;
             }
-            // round to 1 decimal like 45.3
-            int scale = (int) Math.pow(10, 1);
-            return (float) Math.round(temp *scale)/scale;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0.0f;
         }
     }
 

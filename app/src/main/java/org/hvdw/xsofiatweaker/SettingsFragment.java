@@ -31,6 +31,9 @@ import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import de.robv.android.xposed.XposedBridge;
+
+import java.io.File;
 
 
 public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
@@ -87,8 +90,25 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
-        addPreferencesFromResource(R.xml.preferences);
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N){
+            Log.d(TAG, "onCreate: in Sofia 6.0.1 sdk23");
+            //Old version used on Sofia 6.0.1 sdk23
+            getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+            addPreferencesFromResource(R.xml.preferences);
+        } else {
+            //pyler workaround: https://forum.xda-developers.com/showpost.php?p=67561995&postcount=8
+            Log.d(TAG, "onCreate: in pylers workaround");
+            getPreferenceManager().setSharedPreferencesMode(Context.MODE_PRIVATE);
+            addPreferencesFromResource(R.xml.preferences);
+            // Set preferences file permissions to be world readable
+            File prefsDir = new File(getActivity().getApplicationInfo().dataDir, "shared_prefs");
+            File prefsFile = new File(prefsDir, getPreferenceManager().getSharedPreferencesName() + ".xml");
+            if (prefsFile.exists()) {
+                Log.d(TAG, "Oncreate: found org.hvdw.xsofiatweaker prefsFile and set to readable for all");
+                prefsFile.setReadable(true, false);
+            }
+        }
+
         getActivity().registerReceiver(broadcastReceiver, intentFilter);
         //getPackages(mContext);
     }
@@ -104,6 +124,15 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
     public void onPause() {
         getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         super.onPause();
+
+        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.N){
+            // Set preferences file permissions to be world readable
+            File prefsDir = new File(getActivity().getApplicationInfo().dataDir, "shared_prefs");
+            File prefsFile = new File(prefsDir, getPreferenceManager().getSharedPreferencesName() + ".xml");
+            if (prefsFile.exists()) {
+                prefsFile.setReadable(true, false);
+            }
+        }
     }
 
     @Override
@@ -444,14 +473,26 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
             toastText = "You updated boolean key \"" + (String)key + "\" to \"" + String.valueOf(sharedPreferences.getBoolean(key, false)) + "\"";
         } else {
             Log.d(TAG, "updated string is " + sharedPreferences.getString(key, ""));
-            toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";
+            if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.N){
+                toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"\nNow exit the XSofiaTweaker Gui or switch it to the background. (press HOME key).";
+            } else {
+                toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";
+            }
         }
         Toast mToast = Toast.makeText(mContext, toastText, Toast.LENGTH_LONG);
         mToast.show();
 
 
         if (intent.getAction() != null) {
-        getActivity().sendBroadcast(intent);
+            if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.N){
+                // Set preferences file permissions to be world readable
+                File prefsDir = new File(getActivity().getApplicationInfo().dataDir, "shared_prefs");
+                File prefsFile = new File(prefsDir, getPreferenceManager().getSharedPreferencesName() + ".xml");
+                if (prefsFile.exists()) {
+                    prefsFile.setReadable(true, false);
+                }
+            }
+            getActivity().sendBroadcast(intent);
         }
 
     if (zygote_reboot == true) {
