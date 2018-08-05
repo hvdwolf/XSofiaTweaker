@@ -56,6 +56,7 @@ import java.io.File;
 import java.util.Map;
 //import android.os.SystemProperties;
 import java.lang.System;
+import android.os.Build;
 
 public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPackage {
 
@@ -879,8 +880,10 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
        *  Now starts the part where the keys of the Canbus apk are captured
        */ 
        } else if (lpparam.packageName.equals("com.syu.canbus")) {
+          if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N){
+
 //        if (disable_airhelper == true) {
-/*          findAndHookMethod("com.syu.ui.air.AirHelper", lpparam.classLoader, "showAndRefresh", new XC_MethodHook() {
+          findAndHookMethod("com.syu.ui.air.AirHelper", lpparam.classLoader, "showAndRefresh", new XC_MethodHook() {
               @Override
               protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                 Context mcontext = (Context) AndroidAppHelper.currentApplication();
@@ -907,8 +910,9 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
                     param.setResult(null);
                   }
               }
-          }); */
+          });
 //        }
+          } // end of Android version check
 
        /* End of the part where the CANbus apk hooks are taking place
        *  Nowstarts the part where the SystemUI clock display is captured to display the CPU temp.
@@ -1152,10 +1156,11 @@ public class XSofiaTweaker implements IXposedHookZygoteInit, IXposedHookLoadPack
         Process p;
         float temp = 0;
         String tempstr;
-        String ro_product_cpu_abi;
+        String build_version;
 
-        ro_product_cpu_abi = System.getProperty("ro.product.cpu.abi");
-        if (ro_product_cpu_abi == "x86") {
+        build_version = Build.VERSION.RELEASE;
+        log("build_version: " + build_version);
+        if (build_version.toLowerCase().contains("6".toLowerCase())) {
             try {
                 for (int i=1; i<5; i++) {
                     p = Runtime.getRuntime().exec("cat sys/class/thermal/thermal_zone" + Integer.toString(i) + "/temp");
