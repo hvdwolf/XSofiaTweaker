@@ -2,6 +2,9 @@
 
 For releases see the "[Xposed Module Repository](http://repo.xposed.info/module/org.hvdw.xsofiatweaker) or use the Xposed Installer on your Joying unit.
 
+This Xposed module was not possible without the excellent Xposed framework by rovo89. Thanks a lot
+This Xposed module was not possible on Android 8 without the great RemotePreferences library from apsun.
+
 This xposed module:
 * captures the hardware keys from the Joying unit and allows you to reprogram them. This must/can be configured from the Settings (sub)screen.
 * allows you to switch on/off the nokill.
@@ -20,7 +23,7 @@ This module can replace the custom key mod mod from Gustden.
 
 Please help to translate in your own language: see bottom of this page.
 
-## Beta !!
+
 
 **Working:** 
 * ACC_ON/ACC_OF (key 97 and 98)
