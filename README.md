@@ -1,9 +1,13 @@
 # XSofiaTweaker
 
-For releases see the "[Xposed Module Repository](http://repo.xposed.info/module/org.hvdw.xsofiatweaker) or use the Xposed Installer on your Joying unit.
+# !!! DISCONTINUED !!!
+## This Xposed module is discontinued. It was written for the FYT based Joying Sofia 3GR Intel car head unit. With some minor modifications it can run on an any FYT based car head unit running Android 6.0.1 or 8.0.0.
+## Development continues in the [XFytTweaker](https://github.com/hvdwolf/XFytTweaker) Xposed module.
+<br><br><br>
+~~For releases see the "[Xposed Module Repository](http://repo.xposed.info/module/org.hvdw.xsofiatweaker) or use the Xposed Installer on your Joying unit.~~
 
-This Xposed module was not possible without the excellent Xposed framework by rovo89. Thanks a lot.<br>
-This Xposed module was not possible on Android 8 without the great RemotePreferences library from apsun.<br>
+This Xposed module would not have been possible without the excellent Xposed framework by rovo89. Thanks a lot.<br>
+This Xposed module would not have been possible on Android 8 without the great RemotePreferences library from apsun.<br>
 
 This xposed module:
 * captures the hardware keys from the Joying unit and allows you to reprogram them. This must/can be configured from the Settings (sub)screen.
@@ -85,6 +89,9 @@ and
 `<string name="misc_settings">Miscellaneous Settings</string>`
 The second part "Application preferences" and Miscellaneous Settings are the strings to be translated.
 
-Note: Do use an editor that can handle unix linefeeds. Do NOT use windows notepad. Instead use a tool like Notepad++ (if you are on Windows)
+Note: Do use an editor that can handle unix linefeeds. Do NOT use windows notepad. Instead use a tool like Notepad++ (if you are on Windows)~~
 
 If you are ready, create an issue (top menu of this page) and call it something like "Finnish translation" (or whatever your language is). Attach your file and again: specify which language it is!
+# !!! DISCONTINUED !!!
+## This Xposed module is discontinued. It was written for the FYT based Joying Sofia 3GR Intel car head unit. With some minor modifications it can run on an any FYT based car head unit running Android 6.0.1 or 8.0.0.
+## Development continues in the [XFytTweaker](https://github.com/hvdwolf/XFytTweaker) Xposed module.
